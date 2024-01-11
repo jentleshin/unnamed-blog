@@ -1,7 +1,7 @@
 const HomeLayout = ({ children }: { children: any }) => {
     return (
         <>
-            <div className={"dark:bg-slate-900 dark:text-white bg-slate-100 text-black pb-[20px] md:min-h-screen font-regular text-lg leading-relaxed"}>
+            <div className={"dark:bg-organic dark:text-lime bg-lime text-organic pb-[500px] md:min-h-screen"}>
                 {children}
             </div>
         </>
