@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[70],{7070:function(s,e,n){"use strict";n.r(e);var t=n(5893),i=n(6990),l=n(4101),c=n(8543),r=n.n(c);e.default=function(s){var e=s.children,n=s.type,c=void 0===n?i.RH.disc:n,u=s.className;return(0,t.jsx)("ul",{className:(0,l.GF)(r().list,c,"pl-[30px]",u),children:e})}},8543:function(s){s.exports={list:"List_list__M0n5r"}}}]);
