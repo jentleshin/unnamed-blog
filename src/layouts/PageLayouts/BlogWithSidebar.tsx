@@ -1,11 +1,11 @@
 import classes from './PageLayout.module.scss';
-import { combineClasses, getArticleDetails, transformImagePaths, transformPath } from '../../utils/utils';
+import { combineClasses, useArticleDetails, transformImagePaths, transformPath } from '../../utils/utils';
 import { SORTED_ARTICLES_BY_DATE } from '../../../BLOG_CONSTANTS/_ARTICLES_LIST';
 import ArticleHeader from '../../components/ArticleHeader';
 import ArticleMoreFromAuthor from '../../components/Misc/ArticleMoreFromAuthor';
 
 const WithSidebar = ({ children, ads }: {children: any, ads?: string[]}) => {
-    const ARTICLE_DETAILS = getArticleDetails();
+    const ARTICLE_DETAILS = useArticleDetails();
     const author = ARTICLE_DETAILS.preview.author;
     const relatedArticles = SORTED_ARTICLES_BY_DATE.filter((each) => each.preview.author === author);
 
