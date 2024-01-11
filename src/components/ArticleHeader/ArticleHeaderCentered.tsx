@@ -18,7 +18,10 @@ const ArticleHeaderCenter = ({ headerData }: IProps) => {
                     {
                         headerData.category && <>
                             <span className="px-1 font-light">in</span>
-                            <Link href={"/blog?category=" + headerData.category} passHref={true}>
+                            <Link
+                                href={"/blog?category=" + headerData.category}
+                                passHref={true}
+                                legacyBehavior>
                                 {headerData.category}
                             </Link>
                         </>
@@ -29,7 +32,7 @@ const ArticleHeaderCenter = ({ headerData }: IProps) => {
             </div>
             <ArticleTags tags={headerData.tags} center />
         </div>
-    )
+    );
 }
 
 export default ArticleHeaderCenter

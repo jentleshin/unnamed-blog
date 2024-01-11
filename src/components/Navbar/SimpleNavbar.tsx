@@ -27,7 +27,7 @@ const SimpleNavbar = ({ openSearch, changeTheme, toggleSideMenu, openSidebar = f
             onClick={() => toggleSideMenu()}>
             <AiOutlineMenu className="dark:text-white text-black text-2xl" />
           </div> */}
-          <Link href="/" passHref>
+          <Link href="/" passHref legacyBehavior>
             {
               logo ?
                 logo.type === LogoType.IMAGE ?

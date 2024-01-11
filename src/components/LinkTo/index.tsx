@@ -11,21 +11,22 @@ interface iLinkTo {
 }
 
 const LinkTo = ({ href, passHref = true, newTab = false, external = false, children, className }: iLinkTo) => {
-    return (
-        <>
-            {
-                newTab || external ?
-                    <a href={transformPath(href)} className={className} target="_blank" rel="noopener noreferrer">
-                        {children}
-                    </a> :
-                    <Link href={transformPath(href)} passHref={passHref}>
-                        <a className={combineClasses('cursor-pointer', className)}>
-                            {children}
-                        </a>
-                    </Link>
-            }
-        </>
-    )
+    return <>
+        {
+            newTab || external ?
+                <a href={transformPath(href)} className={className} target="_blank" rel="noopener noreferrer">
+                    {children}
+                </a> :
+                <Link
+                    href={transformPath(href)}
+                    passHref={passHref}
+                    className={combineClasses('cursor-pointer', className)}>
+
+                    {children}
+
+                </Link>
+        }
+    </>;
 }
 
 export default LinkTo
