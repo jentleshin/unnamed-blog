@@ -16,7 +16,8 @@ const CenteredNavbar = ({
   navSetup,
   onShareClick
 }: iNavbar) => {
-  const { navLinks, socials, logo } = navSetup;
+  // const { navLinks, socials, logo } = navSetup;
+  const { navLinks, logo } = navSetup;
 
   const [openDD, setOpenDD] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -75,7 +76,7 @@ const CenteredNavbar = ({
           )}
         </LinkTo>
 
-        <div className="flex justify-end" style={{ width: "120px" }}>
+        {/* <div className="flex justify-end" style={{ width: "120px" }}>
           {socials &&
             socials.map((each: iNavSocials, i: any) => (
               <a
@@ -91,7 +92,7 @@ const CenteredNavbar = ({
                 {each.icon}
               </a>
             ))}
-        </div>
+        </div> */}
       </div>
       <div className="flex justify-center items-center font-regular text-[14px] d-sm-none mt-3">
         {navLinks.map((each: iNavLink, i: any) =>
