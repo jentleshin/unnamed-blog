@@ -1,11 +1,12 @@
 import { combineClasses } from "../../utils/utils"
+import Text from "../Text"
 
 const ArticleTags = ({ tags, center = false }: { tags: string, center?: boolean }) => {
     return (
-        <div className={combineClasses('md:mt-2 flex flex-wrap', center && 'justify-center')}>
+        <div className={combineClasses('flex flex-wrap', center && 'justify-center')}>
             {
                 tags.split(',').map((each, i) => (
-                    <p key={i} className="text-[12px] font-normal mr-2 mb-1 inline-block text-gray-500 dark:text-gray-400" >#{each.trim()}</p>
+                    <Text token key={i} className="mr-2 inline-block text-organic dark:text-lime" >#{each.trim()}</Text>
                 ))
             }
         </div>
