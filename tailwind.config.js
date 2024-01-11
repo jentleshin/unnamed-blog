@@ -19,7 +19,18 @@ const tailwind = {
       padding: '15px'
     },
     typography: (theme) => ({}),
-    extend: {},
+    extend: {
+      colors: {
+        "organic": "#1A1510",
+        "lime": "#C0D99E",
+        "beigie": "#FEE9D1"
+      },
+      fontFamily: {
+        "body": ["Merriweather", "sans-serif"],
+        "display": ["Bodoni Moda", "serif"],
+        "text": ["Noto Sans", "sans-serif"]
+      },
+    },
   },
   variants: {},
   plugins: [require('@tailwindcss/typography')],
