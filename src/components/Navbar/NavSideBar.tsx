@@ -95,7 +95,7 @@ const NavSidebar = ({ openSidebar = false, closeNavSidebar, navSetup, changeThem
 
                 </div>
                 <hr />
-                <div className='my-5'>
+                {/* <div className='my-5'>
                     {
                         navSetup.socials && <>
                             <p className='font-light'>Follow us : </p> {
@@ -106,7 +106,7 @@ const NavSidebar = ({ openSidebar = false, closeNavSidebar, navSetup, changeThem
                             <hr className='mt-5' />
                         </>
                     }
-                </div>
+                </div> */}
                 <div className='mt-5 mb-4'>
                     <p className='mb-2 font-light'>Switch To {theme === THEMES.LIGHT ? 'Dark' : 'Light'} Theme :</p>
                     <button name="theme-switch" aria-label="theme-switch" className={combineClasses(classes.theme_switch, 'dark:text-white text-black')} onClick={() => changeTheme()}>
