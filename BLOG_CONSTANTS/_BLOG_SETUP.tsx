@@ -77,39 +77,20 @@ export const PRIMARY_NAV: iNavSetup = {
     // },
     logo: {
         type: LogoType.TEXT,
-        logo: 'Next Blog',
+        logo: 'The Greenary',
     },
     // navLinks are the main navbar links that apper on top of every page
     navLinks: [
         {
-            label: 'Home',
-            path: '/'
-        },
-        {
             // for categories don't add path and add type: dropdown and pass path empty
-            label: 'Blog',
+            label: 'Archive',
             type: 'dropdown',
             path: ''
         },
         {
-            label: 'About Us',
+            label: 'Demo',
             path: '/about-us'
         },
-        {
-            // to open a link in new tab pass newTab: true
-            label: 'Support Us',
-            path: 'https://www.buymeacoffee.com/webexpe13z',
-            newTab: true
-        },
-        {
-            label: 'Github Repo',
-            path: 'https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss',
-            newTab: true
-        },
-        {
-            label: 'Contact Us',
-            path: '/contact-us'
-        }
     ],
     // sideNavLinks are the links which appear when you open the side menu after clicking the burger menu icon.
     sideNavLinks: [
@@ -142,20 +123,20 @@ export const PRIMARY_NAV: iNavSetup = {
             path: '/contact-us'
         }
     ],
-    socials: [
-        {
-            link: 'https://www.facebook.com/',
-            icon: <AiFillFacebook />
-        },
-        {
-            link: 'https://www.instagram.com/',
-            icon: <AiFillInstagram />
-        },
-        {
-            link: 'https://twitter.com/WebExpe',
-            icon: <AiOutlineTwitter />
-        },
-    ]
+    // socials: [
+    //     {
+    //         link: 'https://www.facebook.com/',
+    //         icon: <AiFillFacebook />
+    //     },
+    //     {
+    //         link: 'https://www.instagram.com/',
+    //         icon: <AiFillInstagram />
+    //     },
+    //     {
+    //         link: 'https://twitter.com/WebExpe',
+    //         icon: <AiOutlineTwitter />
+    //     },
+    // ]
 }
 
 export const DEFAULT_SEO: iSEO = {
