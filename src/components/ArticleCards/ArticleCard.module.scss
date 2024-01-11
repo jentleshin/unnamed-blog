@@ -2,16 +2,11 @@
 
 .article_card,
 .featured_article {
-    @apply bg-white text-black rounded-[4px] overflow-hidden h-full drop-shadow-lg transition-transform;
-    
-    &:hover{
-        transform: translateY(-10px);
-    }
+    @apply cursor-pointer rounded-[4px] overflow-hidden h-full transition-transform;
 }
 
 .featured_article {
-    @apply flex relative w-full md:flex-nowrap flex-wrap;
-    margin: 0px 10px 30px;
+    @apply flex relative w-full md:flex-nowrap flex-wrap mt-0 mb-11 mx-0;
 
     &__image {
         @apply md:w-[50%] w-full md:h-[auto] h-[200px];

@@ -10,7 +10,8 @@ import Avatar from "../Misc/Avatar";
 import ArticleCardCategory from "../Misc/ArticleCardCategory";
 import ArticleTags from "../Misc/ArticleTags";
 import Image from "next/image";
-
+import Text from "../Text";
+import Seperator from "../Seperator";
 interface IProp {
   article: IArticleHeaderData;
   path: string;
@@ -34,11 +35,12 @@ const ArticleCard = ({ article, path }: IProp) => {
         passHref
         className={combineClasses(
           classes.article_card,
-          "border-b-[5px] border-blue-500 dark:bg-slate-800 dark:text-white dark:drop-shadow-lg flex flex-col justify-between"
+          "group dark:bg-lime dark:bg-opacity-[0.02] dark:text-lime bg-organic text-organic bg-opacity-[0.04] flex flex-col justify-between"
         )}
       >
         <div>
           <div className={"rounded-t-[4px] overflow-hidden h-[200px] relative"}>
+
             <Image
               src={transformImagePaths(article.thumbnail)}
               alt={article.articleTitle}
@@ -47,39 +49,50 @@ const ArticleCard = ({ article, path }: IProp) => {
               objectFit="cover"
               loader={imgLoader}
             />
+            <Image
+              src={transformImagePaths("/public/imp_assets/chizizic/cover.svg")}
+              alt={article.articleTitle}
+              className="opacity-0 group-hover:opacity-80 transition-all ease-in-out duration-500"
+              layout="fill"
+              quality={100}
+              objectFit="cover"
+              loader={imgLoader}
+            />
           </div>
 
-          <div className={"d-block px-[15px] py-0"}>
-            <p className={"font-normal text-xs pt-3 mb-0 md:mb-3"}>
-              {article.date}
-            </p>
+          <div className={"px-[30px] py-[30px]"}>
+            {/* <Text subtitle className={combineClasses(classes.featured_article__code, "pt-0 pb-0 -mb-2")} >
+                        {article.codeName+" ;"}
+            </Text> */}
             <LinkTo href={transformPath(path)} passHref>
-              <h1
-                className={
-                  "text-[22px] font-bold cursor-pointer tracking-wide hover:text-blue-600"
-                }
-              >
+              <Text plaintitle className="md:text-2xl italic pt-0"> 
                 {article.articleTitle}
-              </h1>
+              </Text>
+              <div className="flex flex-wrap">
+                <Seperator className="max-w-0 transition-all ease-in-out duration-500 group-hover:max-w-16 text-left"/>
+              </div>
             </LinkTo>
-            <p
-              className={combineClasses(
+            <Text 
+              p className={combineClasses(
                 classes.article_card__intro,
                 "text-sm font-normal mt-2 md:mt-1"
               )}
             >
               {article.shortIntro.slice(0, 100)} ...
-            </p>
+            </Text>
             <ArticleTags tags={article.tags} />
+            <Text token>
+              {article.date}
+            </Text>
           </div>
         </div>
-        <div
+        {/* <div
           className={combineClasses(
             classes.article_card_footer,
             "mt-4 mb-3 flex items-center px-3"
           )}
-        >
-          <div className={"flex items-center"}>
+        > */}
+          {/* <div className={"flex items-center"}>
             <Avatar
               author={article.author}
               className="w-[40px] h-[40px] mr-3 text-xl"
@@ -93,13 +106,13 @@ const ArticleCard = ({ article, path }: IProp) => {
               )}
             >
               {article.author.name}
-            </LinkTo>
+            </LinkTo> */}
             {/* <p className={combineClasses(classes.author_name, 'text-sm font-medium')}>
               {article.author.name}
             </p> */}
-          </div>
-          <ArticleCardCategory category={article.category} />
-        </div>
+          {/* </div>
+          <ArticleCardCategory category={article.category} /> */}
+        {/* </div> */}
       </LinkTo>
     </div>
   );
