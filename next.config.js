@@ -6,8 +6,6 @@ const nextConfig = {
   images: {
     loader: "akamai",
     path: "",
-  // Add basePath
-  basePath: '/unnamed-blog',
   }
 };
 

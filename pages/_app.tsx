@@ -10,9 +10,11 @@ import * as gtag from '../google';
 import { useEffect, useState } from 'react';
 import { CREATE_SEO_CONFIG } from '../src/utils/utils';
 import { ThemeProvider } from 'next-themes'
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import "@uiw/react-textarea-code-editor/dist.css";
 import 'react-medium-image-zoom/dist/styles.css';
+
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -67,6 +69,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       }
       <ThemeProvider enableSystem={true} attribute="class">
         <Component {...pageProps} />
+        <SpeedInsights />
         <Footer />
       </ThemeProvider>
     </>
