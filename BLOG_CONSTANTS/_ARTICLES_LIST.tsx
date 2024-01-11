@@ -38,6 +38,7 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: MAYUR,
       date: "August 08 2022",
+      codeName: "ivy",
       articleTitle: "How to setup this blog template",
       tags: "demo, blog setup",
       thumbnail: "/public/imp_assets/tutorials/how-to-setup-blog.svg",
@@ -59,6 +60,7 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 08 2022",
+      codeName: "oakTree",
       articleTitle: "How to write your first article",
       tags: "demo, first article",
       thumbnail: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
@@ -78,6 +80,7 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 08 2022",
+      codeName : "orchid",
       articleTitle: "How to Export and deploy on firebase",
       tags: "demo, deploy blog",
       thumbnail: "/public/imp_assets/tutorials/how-to-deploy.svg",
@@ -94,6 +97,7 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 14 2022",
+      codeName: "vine",
       articleTitle: "Home Layout Example",
       tags: "demo, layout, home layout",
       thumbnail: "/public/imp_assets/tutorials/home-layouts.svg",
@@ -114,6 +118,7 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: MAYUR,
       date: "August 14 2022",
+      codeName: "tulip",
       articleTitle: "Page Layout for a article with sidebar",
       tags: "demo, with sidebar, default layout",
       thumbnail: "/public/imp_assets/tutorials/blog-with-sidebar-layout.svg",
@@ -132,6 +137,7 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 14 2022",
+      codeName: "sunflower",
       articleTitle: "Page Layout for a article with centered layout",
       tags: "demo, centered, centered layout",
       thumbnail: "/public/imp_assets/tutorials/blog-with-centered-layout.svg",
@@ -150,6 +156,7 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 08 2022",
+      codeName: "pothos",
       articleTitle: "All Components",
       tags: "demo, all components",
       thumbnail: "/public/imp_assets/tutorials/all-components.svg",
@@ -166,6 +173,7 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: MAYUR,
       date: "August 10 2022",
+      codeName: "lily",
       articleTitle: "Style Guide",
       tags: "demo, all components, style guide, styling tutorial",
       thumbnail: "/public/imp_assets/tutorials/style-guide.svg",
@@ -183,6 +191,7 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: MAYUR,
       date: "August 13 2022",
+      codeName: "cacti",
       articleTitle: "How to use icons",
       tags: "demo, all components, style guide, styling tutorial, icons, how to use icons in website",
       thumbnail: "/public/imp_assets/tutorials/how-to-use-icons.svg",
@@ -200,6 +209,7 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: MAYUR,
       date: "August 6 2022",
+      codeName: "moss",
       articleTitle: "Your first article",
       shortIntro:
         "This is a demo file for your first article, you can copy structure of this file to create multile article.",

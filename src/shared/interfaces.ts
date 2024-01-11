@@ -11,6 +11,7 @@ export interface IAuthor {
 export interface IArticleHeaderData {
   author: IAuthor;
   date: string;
+  codeName: string;
   articleTitle: string;
   tags: string;
   thumbnail: string;
@@ -48,7 +49,7 @@ export interface iNavSetup {
   type: NavbarType,
   navLinks: iNavLink[];
   sideNavLinks: iNavLink[];
-  socials: iNavSocials[];
+  // socials: iNavSocials[];
   logo: iNavLogo;
 }
 
