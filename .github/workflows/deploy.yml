@@ -25,4 +25,4 @@ jobs:
         with:
           branch: gh-pages
           folder: out
-          tokens: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
