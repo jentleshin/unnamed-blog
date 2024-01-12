@@ -3,13 +3,14 @@ import { iArticle } from "../../shared/interfaces"
 import ArticleCard from '../ArticleCards/ArticleCard';
 import LinkTo from "../LinkTo";
 import Header from "../Header";
+import React from "react";
 
-const HomeNonFeatureArticles = () => {
+const HomeNonFeatureArticles = React.forwardRef<HTMLDivElement, {}>((props, ref) => {
     const restArticles = SORTED_ARTICLES_BY_DATE.filter((article: iArticle) => !article.featureArticle);
     const articlesToDisplay = 9;
     return (
         <>
-            <Header>Archive</Header>
+            <Header ref={ref}>Archive</Header>
             {
                 restArticles.length ?
                     restArticles.slice(0, articlesToDisplay).map((each, i) => (
@@ -36,6 +37,6 @@ const HomeNonFeatureArticles = () => {
 
         </>
     )
-}
+});
 
 export default HomeNonFeatureArticles

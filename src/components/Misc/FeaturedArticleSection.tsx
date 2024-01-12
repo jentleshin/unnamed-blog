@@ -1,17 +1,16 @@
 import { SORTED_ARTICLES_BY_DATE } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST"
 import { iArticle } from "../../shared/interfaces"
 import FeaturedArticle from "../ArticleCards/FeaturedArticle"
-import Seperator from "../Seperator"
-import Text from "../Text"
 import Header from "../Header"
+import React from "react"
 
-const FeaturedArticleSection = () => {
+const FeaturedArticleSection = React.forwardRef<HTMLDivElement, {}>((props, ref) => {
     const featureArticles = SORTED_ARTICLES_BY_DATE.filter((article: iArticle) => article.featureArticle === true)
     return (
 
         featureArticles.length ?
             (<>
-                <Header>
+                <Header ref={ref}>
                     Featured Articles
                 </Header>
                 {
@@ -23,6 +22,6 @@ const FeaturedArticleSection = () => {
                 
             </>) : null
     )
-}
+});
 
 export default FeaturedArticleSection

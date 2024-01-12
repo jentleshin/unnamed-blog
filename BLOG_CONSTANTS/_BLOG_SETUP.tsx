@@ -24,8 +24,8 @@ import { AiFillGithub, AiOutlineTwitter, AiFillLinkedin, AiFillInstagram, AiFill
  */
 
 export const MAYUR: IAuthor = {
-    name: "Mayur Nalwala",
-    designation: "Software Engineer",
+    name: "Dongwook Shin",
+    designation: "UX Designer, ML-Engineer",
     bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     profilePic: "",
     social: [
@@ -89,7 +89,7 @@ export const PRIMARY_NAV: iNavSetup = {
         },
         {
             label: 'Demo',
-            path: '/about-us'
+            path: '/#demo'
         },
     ],
     // sideNavLinks are the links which appear when you open the side menu after clicking the burger menu icon.
@@ -106,7 +106,7 @@ export const PRIMARY_NAV: iNavSetup = {
         },
         {
             label: 'About Us',
-            path: '/about-us'
+            path: '/demo'
         },
         {
             label: 'Support Us',

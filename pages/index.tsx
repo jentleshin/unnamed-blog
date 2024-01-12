@@ -7,8 +7,59 @@ import FeaturedArticleSection from "../src/components/Misc/FeaturedArticleSectio
 import HomeNonFeatureArticles from "../src/components/Misc/HomeNonFeatureAricles";
 import { transformImagePaths } from "../src/utils/utils";
 
+import { useRef, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const Home = () => {
+  const router = useRouter();
+  const archiveRef = useRef<HTMLDivElement>(null);
+  const demoRef = useRef<HTMLDivElement>(null);
+  const sectionRefs = {
+    archive: archiveRef,
+    demo: demoRef,
+  };
+  type SectionKey = keyof typeof sectionRefs;
+  
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver((entries) => {
+  //     entries.forEach(entry => {
+  //       if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+  //         const sectionId = entry.target.id;
+  //         router.push(`/#[${sectionId}]`, undefined, { shallow: true });
+  //       }
+  //     });
+  //   }, { threshold: 0.5 });
+
+  //   // Observing each section
+  //   Object.values(sectionRefs).forEach(ref => {
+  //     if (ref.current) {
+  //       observer.observe(ref.current);
+  //     }
+  //   });
+
+  //   // Cleanup observer on unmount
+  //   return () => {
+  //     Object.values(sectionRefs).forEach(ref => {
+  //       if (ref.current) {
+  //         observer.unobserve(ref.current);
+  //       }
+  //     });
+  //   };
+  // }, []);
+
+
+  useEffect(() => {
+    const section = router.asPath.split('#')[1];
+    if (section && section in sectionRefs) {
+      const key = section as SectionKey;
+      const sectionElement = sectionRefs[key].current;
+      console.log(sectionRefs[key]);
+      if (sectionElement) {
+        sectionElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [router.asPath]);
+
   return (
     <PageLayout home PAGE_SEO={DEFAULT_SEO}>
       <section className='w-full md:py-[500px] pt-[500px] pb-20 dark:bg-organic bg-lime'>
@@ -24,8 +75,8 @@ const Home = () => {
       </section>
       <div className="container mx-auto lg:px-[15px] px-0">
         <div className={'flex flex-wrap'}>
-          <FeaturedArticleSection />
-          <HomeNonFeatureArticles />
+          <FeaturedArticleSection ref={sectionRefs.archive}/>
+          <HomeNonFeatureArticles ref={sectionRefs.demo}/>
         </div>
       </div>
     </PageLayout>
