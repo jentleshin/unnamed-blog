@@ -6,29 +6,49 @@ import { DEFAULT_SEO } from "../BLOG_CONSTANTS/_BLOG_SETUP";
 import FeaturedArticleSection from "../src/components/Misc/FeaturedArticleSection";
 import HomeNonFeatureArticles from "../src/components/Misc/HomeNonFeatureAricles";
 import { transformImagePaths } from "../src/utils/utils";
-
+import Section from "../src/components/Section";
 import { useRef, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 const Home = () => {
   const router = useRouter();
-  const archiveRef = useRef<HTMLDivElement>(null);
-  const demoRef = useRef<HTMLDivElement>(null);
-  const sectionRefs = {
-    archive: archiveRef,
-    demo: demoRef,
+  type SectionRefs = {
+    [key: string]: React.RefObject<HTMLElement>;
+  };
+  type SectionHeadings = {
+    [key: string]: string;
+  };
+  const sectionRefs:SectionRefs = {
+    featured: useRef<HTMLElement>(null),
+    archive: useRef<HTMLElement>(null),
+    home: useRef<HTMLElement>(null),
+    onboarding: useRef<HTMLElement>(null),
+  };
+  const sectionHeadings:SectionHeadings = {
+    featured: "Featured",
+    archive: "Archive",
+    home: "The Greenery",
+    onboarding: "______",
   };
   type SectionKey = keyof typeof sectionRefs;
   
   // useEffect(() => {
   //   const observer = new IntersectionObserver((entries) => {
-  //     entries.forEach(entry => {
-  //       if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-  //         const sectionId = entry.target.id;
-  //         router.push(`/#[${sectionId}]`, undefined, { shallow: true });
-  //       }
-  //     });
-  //   }, { threshold: 0.5 });
+  //     const visibleSections = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+  //     if (visibleSections.length > 0) {
+  //       const topSection = visibleSections[0];
+  //       const sectionRefKey = Object.keys(sectionRefs).find(key => sectionRefs[key].current === topSection.target);
+  //       const sectionHeading = sectionRefKey ? sectionHeadings[sectionRefKey] : "";
+  //       router.push(`/#${sectionHeading}`, undefined, { shallow: true });
+  //     }
+  //   }, { threshold: 0.01 });
+  //   //     if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+  //   //       const sectionRefKey = Object.keys(sectionRefs).find(key => sectionRefs[key].current === entry.target);
+  //   //       const sectionHeading = sectionRefKey? sectionHeadings[sectionRefKey] : "";
+  //   //       router.push(`/#${sectionHeading}`, undefined, { shallow: true });
+  //   //     }
+  //   //   });
+  //   // }, { threshold: 0.5 });
 
   //   // Observing each section
   //   Object.values(sectionRefs).forEach(ref => {
@@ -61,22 +81,25 @@ const Home = () => {
 
   return (
     <PageLayout home PAGE_SEO={DEFAULT_SEO}>
-      <section className='w-full md:py-[500px] pt-[500px] pb-20 dark:bg-organic bg-lime'>
-        <div className="container text-left px-3">
-         <img src={transformImagePaths("/public/imp_assets/chizizic/sphere.svg")} alt={"sphere"} className="w-1/2 mx-auto my-[500px] object-cover" />
-          <Text title className=''>
-            The Greenery
-          </Text>
-          <Text texttitle className="mt-6 italic md:w-1/2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </Text>
-        </div>
-      </section>
-      <div className="container mx-auto lg:px-[15px] px-0">
-        <div className={'flex flex-wrap'}>
-          <FeaturedArticleSection ref={sectionRefs.archive}/>
-          <HomeNonFeatureArticles ref={sectionRefs.demo}/>
-        </div>
+      <div className="container mx-auto flex flex-wrap">
+        <Section ref={sectionRefs.onboarding} heading={sectionHeadings.onboarding}>
+          <div className="w-full">
+            <img src={transformImagePaths("/public/imp_assets/chizizic/sphere.svg")} alt={"sphere"} className="w-1/2 mx-auto object-cover" />
+          </div>
+        </Section>
+        <Section ref={sectionRefs.home} heading={sectionHeadings.home}>
+          <div className="text-left">
+            <Text texttitle className="mt-6 italic md:w-1/2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </Text>
+          </div>
+        </Section>
+        <Section ref={sectionRefs.featured} heading={sectionHeadings.featured}>
+          <FeaturedArticleSection/>
+        </Section>
+        <Section ref={sectionRefs.archive} heading={sectionHeadings.archive}>
+        <HomeNonFeatureArticles/>
+        </Section>
       </div>
     </PageLayout>
   )

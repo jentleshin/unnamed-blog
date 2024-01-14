@@ -22,25 +22,25 @@ export const combineClasses = function (...classes: any): string {
 /**
  * Changes Dark / Light Theme
  */
-export const changeTheme = (): void => {
-  const lsTheme = localStorage.getItem("theme");
-  localStorage.setItem(
-    "theme",
-    lsTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT
-  );
+// export const changeTheme = (): void => {
+//   const lsTheme = localStorage.getItem("theme");
+//   localStorage.setItem(
+//     "theme",
+//     lsTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT
+//   );
 
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
+//   if (
+//     localStorage.theme === "dark" ||
+//     (!("theme" in localStorage) &&
+//       window.matchMedia("(prefers-color-scheme: dark)").matches)
+//   ) {
+//     document.documentElement.classList.add("dark");
+//   } else {
+//     document.documentElement.classList.remove("dark");
+//   }
 
-  location.reload();
-};
+//   location.reload();
+// };
 
 /**
  * Returns Device Type tablet , mobile, desktop

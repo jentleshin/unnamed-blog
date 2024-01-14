@@ -6,6 +6,7 @@ import { CREATE_SEO_CONFIG, useArticleDetails } from '../../utils/utils';
 import Centered from './BlogCentered';
 import WithSidebar from './BlogWithSidebar';
 import HomeLayout from './HomeLayout';
+import { useRef, useEffect } from 'react';
 
 interface IBlogLayout {
     children: any
@@ -27,11 +28,32 @@ const PageLayout = ({ children, PAGE_SEO, blogwithsidebar = false, blogcentered 
         SEO_CONFIG = CREATE_SEO_CONFIG({ ...DEFAULT_SEO })
     }
 
+    const navRef = useRef<HTMLDivElement>(null);
+    const homeRef = useRef<HTMLDivElement>(null);
+
+    const handleScroll = () => {
+        if (navRef.current && homeRef.current) {
+            const homeSection = homeRef.current.querySelector("div")?.querySelectorAll("section")?.[1];
+            if (homeSection) {
+                const { top } = homeSection.getBoundingClientRect();
+                const opacity = (top < 0) ? 1 : 0;
+                navRef.current.style.opacity = opacity.toString();
+            }
+        }
+    };
+    useEffect(() => {
+        // use useState first.
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    });
+
     return (
         <>
             <NextSeo {...SEO_CONFIG} />
-            <Navbar />
-            <HomeLayout> {children} </HomeLayout>
+            <Navbar ref={navRef}/>
+            <HomeLayout ref={homeRef}> {children} </HomeLayout>
         </>
     )
 }

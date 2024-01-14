@@ -15,8 +15,9 @@ import { PRIMARY_NAV } from "../../../BLOG_CONSTANTS/_BLOG_SETUP";
 import { useTheme } from "next-themes";
 import classes from "./Navbar.module.scss";
 import SocialShareModal from "../SocialShare/SocialShareModal";
+import React from "react";
 
-const Navbar = () => {
+const Navbar = React.forwardRef<HTMLElement, {}>(({}, ref) => {
   const { theme, setTheme } = useTheme();
   const [isMobile, setIsMobile] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -76,9 +77,11 @@ const Navbar = () => {
   return (
     <>
       <nav
+        ref={ref}
         className={combineClasses(
           classes.navbar,
-          "dark:bg-organic dark:text-lime bg-lime text-organic"
+          "dark:bg-organic dark:text-lime bg-lime text-organic",
+          "opacity-0 transition-all ease-in-out duration-500"
         )}
       >
         {isMobile ? (
@@ -131,12 +134,12 @@ const Navbar = () => {
         )}
       </nav>
 
-      <NavSidebar
+      {/* <NavSidebar
         openSidebar={openSidebar}
         closeNavSidebar={() => setOpenSidebar(false)}
         navSetup={PRIMARY_NAV}
         changeTheme={changeTheme}
-      />
+      /> */}
       {showSearch && <Search closeSearch={() => setShowSearch(false)} />}
 
       <SocialShareModal
@@ -145,6 +148,6 @@ const Navbar = () => {
       />
     </>
   );
-};
+});
 
 export default Navbar;

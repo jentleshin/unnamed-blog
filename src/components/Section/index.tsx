@@ -11,7 +11,7 @@ const Section = React.forwardRef<HTMLElement, IProps>(({ children, heading="" },
         <section ref={ref} data-heading={heading} className="flex flex-wrap w-full h-fit">
             <Header>{heading}</Header>
             {children}
-            <div className="h-[500px]"/> 
+            <div className="h-[1000px]"/> 
         </section>
     )
 });
