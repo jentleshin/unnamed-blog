@@ -2,15 +2,14 @@ import { SORTED_ARTICLES_BY_DATE } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST"
 import { iArticle } from "../../shared/interfaces"
 import ArticleCard from '../ArticleCards/ArticleCard';
 import LinkTo from "../LinkTo";
-import Header from "../Header";
+import Section from "../Section";
 import React from "react";
 
 const HomeNonFeatureArticles = React.forwardRef<HTMLDivElement, {}>((props, ref) => {
     const restArticles = SORTED_ARTICLES_BY_DATE.filter((article: iArticle) => !article.featureArticle);
     const articlesToDisplay = 9;
     return (
-        <>
-            <Header ref={ref}>Archive</Header>
+        <Section ref={ref} heading="Non-Featured">
             {
                 restArticles.length ?
                     restArticles.slice(0, articlesToDisplay).map((each, i) => (
@@ -35,7 +34,7 @@ const HomeNonFeatureArticles = React.forwardRef<HTMLDivElement, {}>((props, ref)
                     ) : null
             }
 
-        </>
+        </Section>
     )
 });
 

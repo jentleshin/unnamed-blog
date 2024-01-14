@@ -6,15 +6,15 @@ interface IProps {
     children?: any;
 }
 
-const Header = React.forwardRef<HTMLDivElement, IProps>(({ children }, ref) => {
+const Header = ( { children } :IProps ) => {
     return  (
-        <div ref={ref} className="w-full">
+        <div className="w-full">
             <Text subtitle className="w-full">
                 {children}
             </Text>
             <Seperator className="mt-6 mb-11"/>      
         </div>
     )
-});
+}
 
 export default Header

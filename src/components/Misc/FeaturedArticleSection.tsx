@@ -1,7 +1,7 @@
 import { SORTED_ARTICLES_BY_DATE } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST"
 import { iArticle } from "../../shared/interfaces"
 import FeaturedArticle from "../ArticleCards/FeaturedArticle"
-import Header from "../Header"
+import Section from "../Section"
 import React from "react"
 
 const FeaturedArticleSection = React.forwardRef<HTMLDivElement, {}>((props, ref) => {
@@ -9,10 +9,7 @@ const FeaturedArticleSection = React.forwardRef<HTMLDivElement, {}>((props, ref)
     return (
 
         featureArticles.length ?
-            (<>
-                <Header ref={ref}>
-                    Featured Articles
-                </Header>
+            (<Section ref={ref} heading="Featured Articles">
                 {
                     featureArticles.map((each, i) => (
                         <FeaturedArticle article={each.preview} path={each.path} key={each.path + i} />
@@ -20,7 +17,7 @@ const FeaturedArticleSection = React.forwardRef<HTMLDivElement, {}>((props, ref)
                 }
 
                 
-            </>) : null
+            </Section>) : null
     )
 });
 

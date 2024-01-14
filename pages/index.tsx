@@ -53,7 +53,6 @@ const Home = () => {
     if (section && section in sectionRefs) {
       const key = section as SectionKey;
       const sectionElement = sectionRefs[key].current;
-      console.log(sectionRefs[key]);
       if (sectionElement) {
         sectionElement.scrollIntoView({ behavior: 'smooth' });
       }
