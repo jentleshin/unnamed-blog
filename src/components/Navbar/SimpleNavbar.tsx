@@ -18,7 +18,7 @@ const SimpleNavbar = ({ openSearch, changeTheme, toggleSideMenu, openSidebar = f
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className={combineClasses(classes.navbar__container, 'container flex flex-col items-center justify-between', "px-2")}>
+    <div className={combineClasses(classes.navbar__container, 'container flex flex-col items-center justify-between')}>
       <div className="flex items-center justify-between w-full">
       
         <div className="flex items-center">

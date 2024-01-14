@@ -6,12 +6,13 @@ interface IProps {
     heading?: string;
 }
 
-const Section = React.forwardRef<HTMLDivElement, IProps>(({ children, heading="" }, ref) => {
+const Section = React.forwardRef<HTMLElement, IProps>(({ children, heading="" }, ref) => {
     return  (
-        <div ref={ref} className="flex flex-wrap w-full h-fit">
+        <section ref={ref} data-heading={heading} className="flex flex-wrap w-full h-fit">
             <Header>{heading}</Header>
-            {children} 
-        </div>
+            {children}
+            <div className="h-[500px]"/> 
+        </section>
     )
 });
 

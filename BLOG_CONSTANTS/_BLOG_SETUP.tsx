@@ -77,7 +77,7 @@ export const PRIMARY_NAV: iNavSetup = {
     // },
     logo: {
         type: LogoType.TEXT,
-        logo: 'The Greenary',
+        logo: '  ',
     },
     // navLinks are the main navbar links that apper on top of every page
     navLinks: [

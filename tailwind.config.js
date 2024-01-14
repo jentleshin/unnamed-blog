@@ -16,7 +16,12 @@ const tailwind = {
         xl: '1140px',
         '2xl': '1200px',
       },
-      padding: '15px'
+      padding: {
+        DEFAULT: '15px',
+        lg: "30px",
+        xl: "30px",
+        '2xl': "30px",
+      }
     },
     typography: (theme) => ({}),
     extend: {

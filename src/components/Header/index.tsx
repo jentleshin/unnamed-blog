@@ -8,12 +8,14 @@ interface IProps {
 
 const Header = ( { children } :IProps ) => {
     return  (
-        <div className="w-full">
-            <Text subtitle className="w-full">
-                {children}
-            </Text>
-            <Seperator className="mt-6 mb-11"/>      
-        </div>
+        <>
+            <div className="sticky top-0 z-20">
+                <Text subtitle className="sticky top-0 my-6">
+                    {children}
+                </Text>
+            </div>
+            <Seperator className="mb-11 dark:border-transparent border-transparent"/> 
+        </>
     )
 }
 

@@ -16,16 +16,16 @@
 
 .navbar {
     z-index: 10;
-    @apply sticky top-0 w-full pt-6;
+    @apply fixed top-0 w-full pt-6;
     // -webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.25);
     // -moz-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.25);
     // box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.25);
-    @include mobile {
-        position: fixed;
-        top: 0;
-        left: 0;
-        transform: translateY(0%);
-    }
+    // @include mobile {
+    //     position: fixed;
+    //     top: 0;
+    //     left: 0;
+    //     transform: translateY(0%);
+    // }
 }
 
 .search_icon_wrapper {
