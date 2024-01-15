@@ -31,23 +31,25 @@ const PageLayout = ({ children, PAGE_SEO, blogwithsidebar = false, blogcentered 
     const navRef = useRef<HTMLDivElement>(null);
     const homeRef = useRef<HTMLDivElement>(null);
 
-    const handleScroll = () => {
-        if (navRef.current && homeRef.current) {
-            const homeSection = homeRef.current.querySelector("div")?.querySelectorAll("section")?.[1];
-            if (homeSection) {
-                const { top } = homeSection.getBoundingClientRect();
-                const opacity = (top < 0) ? 1 : 0;
-                navRef.current.style.opacity = opacity.toString();
-            }
-        }
-    };
     useEffect(() => {
-        // use useState first.
-        window.addEventListener('scroll', handleScroll);
+        const homeSection = homeRef.current?.querySelector("div")?.querySelectorAll("section")?.[1];
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const { isIntersecting } = entry;
+                if (navRef.current) {
+                    navRef.current.style.opacity = isIntersecting ? '1' : '0';
+                }
+            });
+        }, { 
+            rootMargin: `100000px 0px ${-window.innerHeight}px 0px`,
+            threshold: 0
+        });
+        
+        homeSection? observer.observe(homeSection): null;
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            homeSection?observer.unobserve(homeSection): null;
         };
-    });
+    }, []);
 
     return (
         <>

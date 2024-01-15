@@ -19,6 +19,17 @@ export const combineClasses = function (...classes: any): string {
   return classes.filter((item: any) => !!item).join(" ");
 };
 
+export const combineRefs = (...refs: any) => (value: any) => {
+  refs.forEach((ref: any) => {
+      if (!ref) return;
+      if (typeof ref === 'function') {
+          ref(value);
+      } else {
+          ref.current = value;
+      }
+  });
+}
+
 /**
  * Changes Dark / Light Theme
  */
