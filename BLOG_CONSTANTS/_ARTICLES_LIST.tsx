@@ -80,7 +80,7 @@ const ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 08 2022",
-      codeName : "orchid",
+      codeName: "orchid",
       articleTitle: "How to Export and deploy on firebase",
       tags: "demo, deploy blog",
       thumbnail: "/public/imp_assets/tutorials/how-to-deploy.svg",
@@ -226,5 +226,5 @@ const ARTICLES_LIST: iArticle[] = [
 ];
 
 export const SORTED_ARTICLES_BY_DATE = ARTICLES_LIST.sort((a, b) =>
-  new Date(a.preview.date) > new Date(b.preview.date) ? -1 : 1
+  new Date(a.preview.date) > new Date(b.preview.date) ? -1 : 1,
 );

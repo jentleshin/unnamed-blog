@@ -19,16 +19,18 @@ export const combineClasses = function (...classes: any): string {
   return classes.filter((item: any) => !!item).join(" ");
 };
 
-export const combineRefs = (...refs: any) => (value: any) => {
-  refs.forEach((ref: any) => {
+export const combineRefs =
+  (...refs: any) =>
+  (value: any) => {
+    refs.forEach((ref: any) => {
       if (!ref) return;
-      if (typeof ref === 'function') {
-          ref(value);
+      if (typeof ref === "function") {
+        ref(value);
       } else {
-          ref.current = value;
+        ref.current = value;
       }
-  });
-}
+    });
+  };
 
 /**
  * Changes Dark / Light Theme
@@ -58,13 +60,13 @@ export const combineRefs = (...refs: any) => (value: any) => {
  * @returns string
  */
 export const getDeviceType = (): string => {
-  const ua = typeof window !== "undefined" ? navigator.userAgent : 'desktop';
+  const ua = typeof window !== "undefined" ? navigator.userAgent : "desktop";
   if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
     return "tablet";
   }
   if (
     /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
-      ua
+      ua,
     )
   ) {
     return "mobile";

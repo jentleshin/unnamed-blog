@@ -9,7 +9,7 @@ const SocialShareModal = ({ closeModal, openShareModal = false }: any) => {
         "transition-all fixed h-screen w-screen flex items-center justify-center left-0 z-20 top-0",
         openShareModal
           ? "pointer-events-auto opacity-100"
-          : "pointer-events-none opacity-0"
+          : "pointer-events-none opacity-0",
       )}
     >
       <div
@@ -19,7 +19,7 @@ const SocialShareModal = ({ closeModal, openShareModal = false }: any) => {
       <div
         className={combineClasses(
           "bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded lg:w-1/6 mx-3 w-full relative z-10 transition-all",
-          openShareModal ? "top-0" : "top-10"
+          openShareModal ? "top-0" : "top-10",
         )}
       >
         <div className="flex border-gray-300 pb-2 mb-3 border-b">

@@ -81,7 +81,7 @@ const Navbar = React.forwardRef<HTMLElement, {}>(({}, ref) => {
         className={combineClasses(
           classes.navbar,
           "dark:bg-organic dark:text-lime bg-lime text-organic",
-          "opacity-0 transition-all ease-in-out duration-500"
+          "opacity-0 transition-all ease-in-out duration-500",
         )}
       >
         {isMobile ? (

@@ -35,12 +35,11 @@ const ArticleCard = ({ article, path }: IProp) => {
         passHref
         className={combineClasses(
           classes.article_card,
-          "group dark:bg-lime dark:bg-opacity-[0.02] dark:text-lime bg-organic text-organic bg-opacity-[0.04] flex flex-col justify-between"
+          "group dark:bg-lime dark:bg-opacity-[0.02] dark:text-lime bg-organic text-organic bg-opacity-[0.04] flex flex-col justify-between",
         )}
       >
         <div>
           <div className={"rounded-t-[4px] overflow-hidden h-[200px] relative"}>
-
             <Image
               src={transformImagePaths(article.thumbnail)}
               alt={article.articleTitle}
@@ -65,25 +64,24 @@ const ArticleCard = ({ article, path }: IProp) => {
                         {article.codeName+" ;"}
             </Text> */}
             <LinkTo href={transformPath(path)} passHref>
-              <Text plaintitle className="md:text-2xl italic pt-0"> 
+              <Text plaintitle className="md:text-2xl italic pt-0">
                 {article.articleTitle}
               </Text>
               <div className="flex flex-wrap">
-                <Seperator className="max-w-0 transition-all ease-in-out duration-500 group-hover:max-w-16 text-left"/>
+                <Seperator className="max-w-0 transition-all ease-in-out duration-500 group-hover:max-w-16 text-left" />
               </div>
             </LinkTo>
-            <Text 
-              p className={combineClasses(
+            <Text
+              p
+              className={combineClasses(
                 classes.article_card__intro,
-                "text-sm font-normal mt-2 md:mt-1"
+                "text-sm font-normal mt-2 md:mt-1",
               )}
             >
               {article.shortIntro.slice(0, 100)} ...
             </Text>
             <ArticleTags tags={article.tags} />
-            <Text token>
-              {article.date}
-            </Text>
+            <Text token>{article.date}</Text>
           </div>
         </div>
         {/* <div
@@ -92,7 +90,7 @@ const ArticleCard = ({ article, path }: IProp) => {
             "mt-4 mb-3 flex items-center px-3"
           )}
         > */}
-          {/* <div className={"flex items-center"}>
+        {/* <div className={"flex items-center"}>
             <Avatar
               author={article.author}
               className="w-[40px] h-[40px] mr-3 text-xl"
@@ -107,10 +105,10 @@ const ArticleCard = ({ article, path }: IProp) => {
             >
               {article.author.name}
             </LinkTo> */}
-            {/* <p className={combineClasses(classes.author_name, 'text-sm font-medium')}>
+        {/* <p className={combineClasses(classes.author_name, 'text-sm font-medium')}>
               {article.author.name}
             </p> */}
-          {/* </div>
+        {/* </div>
           <ArticleCardCategory category={article.category} /> */}
         {/* </div> */}
       </LinkTo>

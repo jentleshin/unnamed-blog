@@ -46,7 +46,7 @@ export interface iNavbar {
 }
 
 export interface iNavSetup {
-  type: NavbarType,
+  type: NavbarType;
   navLinks: iNavLink[];
   sideNavLinks: iNavLink[];
   // socials: iNavSocials[];

@@ -96,7 +96,7 @@ const SocialShare = () => {
           "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded fixed flex transition-all right-[10px]",
           showCopiedAlert
             ? "md:bottom-10 sm:bottom-[0px] opacity-100"
-            : "-bottom-20 opacity-0"
+            : "-bottom-20 opacity-0",
         )}
         role="alert"
       >

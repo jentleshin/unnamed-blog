@@ -1,7 +1,7 @@
 /**These are necessary imports / components for the page */
 import { PageLayout, Text, LinkTo } from "../src/components";
-import ArticleCard from '../src/components/ArticleCards/ArticleCard';
-import { SORTED_ARTICLES_BY_DATE } from '../BLOG_CONSTANTS/_ARTICLES_LIST';
+import ArticleCard from "../src/components/ArticleCards/ArticleCard";
+import { SORTED_ARTICLES_BY_DATE } from "../BLOG_CONSTANTS/_ARTICLES_LIST";
 import { DEFAULT_SEO } from "../BLOG_CONSTANTS/_BLOG_SETUP";
 import FeaturedArticleSection from "../src/components/Misc/FeaturedArticleSection";
 import HomeNonFeatureArticles from "../src/components/Misc/HomeNonFeatureAricles";
@@ -18,20 +18,20 @@ const Home = () => {
   type SectionHeadings = {
     [key: string]: string;
   };
-  const sectionRefs:SectionRefs = {
+  const sectionRefs: SectionRefs = {
     featured: useRef<HTMLElement>(null),
     archive: useRef<HTMLElement>(null),
     home: useRef<HTMLElement>(null),
     onboarding: useRef<HTMLElement>(null),
   };
-  const sectionHeadings:SectionHeadings = {
+  const sectionHeadings: SectionHeadings = {
     featured: "Featured",
     archive: "Archive",
     home: "The Greenery",
     onboarding: "______",
   };
   type SectionKey = keyof typeof sectionRefs;
-  
+
   // useEffect(() => {
   //   const observer = new IntersectionObserver((entries) => {
   //     const visibleSections = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
@@ -67,14 +67,13 @@ const Home = () => {
   //   };
   // }, []);
 
-
   useEffect(() => {
-    const section = router.asPath.split('#')[1];
+    const section = router.asPath.split("#")[1];
     if (section && section in sectionRefs) {
       const key = section as SectionKey;
       const sectionElement = sectionRefs[key].current;
       if (sectionElement) {
-        sectionElement.scrollIntoView({ behavior: 'smooth' });
+        sectionElement.scrollIntoView({ behavior: "smooth" });
       }
     }
   }, [router.asPath]);
@@ -82,27 +81,39 @@ const Home = () => {
   return (
     <PageLayout home PAGE_SEO={DEFAULT_SEO}>
       <div className="container mx-auto flex flex-wrap">
-        <Section ref={sectionRefs.onboarding} heading={sectionHeadings.onboarding}>
+        <Section
+          ref={sectionRefs.onboarding}
+          heading={sectionHeadings.onboarding}
+        >
           <div className="w-full">
-            <img src={transformImagePaths("/public/imp_assets/chizizic/sphere.svg")} alt={"sphere"} className="w-1/2 mx-auto object-cover" />
+            <img
+              src={transformImagePaths(
+                "/public/imp_assets/chizizic/sphere.svg",
+              )}
+              alt={"sphere"}
+              className="w-1/2 mx-auto object-cover"
+            />
           </div>
         </Section>
         <Section ref={sectionRefs.home} heading={sectionHeadings.home}>
           <div className="text-left">
             <Text texttitle className="mt-6 italic md:w-1/2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
             </Text>
           </div>
         </Section>
         <Section ref={sectionRefs.featured} heading={sectionHeadings.featured}>
-          <FeaturedArticleSection/>
+          <FeaturedArticleSection />
         </Section>
         <Section ref={sectionRefs.archive} heading={sectionHeadings.archive}>
-        <HomeNonFeatureArticles/>
+          <HomeNonFeatureArticles />
         </Section>
       </div>
     </PageLayout>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

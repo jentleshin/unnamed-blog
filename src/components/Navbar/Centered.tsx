@@ -14,7 +14,7 @@ const CenteredNavbar = ({
   toggleSideMenu,
   openSidebar = false,
   navSetup,
-  onShareClick
+  onShareClick,
 }: iNavbar) => {
   // const { navLinks, socials, logo } = navSetup;
   const { navLinks, logo } = navSetup;
@@ -30,7 +30,7 @@ const CenteredNavbar = ({
             className={combineClasses(
               classes.mobileBurgerToggle,
               "mr-3",
-              openSidebar ? classes.mobileBurgerToggle__close : " "
+              openSidebar ? classes.mobileBurgerToggle__close : " ",
             )}
             onClick={() => toggleSideMenu()}
           >
@@ -125,7 +125,7 @@ const CenteredNavbar = ({
               setOpenDD={() => setOpenDD(!openDD)}
               floating
             />
-          )
+          ),
         )}
       </div>
     </div>

@@ -102,7 +102,7 @@ const AllComponents = () => {
             key={each.href}
             className={combineClasses(
               "md:text-xl text-md font-semibold mb-3 block whitespace-nowrap md:mr-0 mr-5",
-              isActive(each.href) && "text-blue-500"
+              isActive(each.href) && "text-blue-500",
             )}
           >
             {each.component}
@@ -117,7 +117,7 @@ const AllComponents = () => {
                 className={combineClasses(
                   "block text-gray-500 font-medium py-1 pl-3 border-l",
                   isActive(each.href) &&
-                    "text-blue-500 border-blue-500 border-l-2"
+                    "text-blue-500 border-blue-500 border-l-2",
                 )}
               >
                 {each.label}
