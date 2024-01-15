@@ -19,7 +19,7 @@ const Section = React.forwardRef<HTMLElement, IProps>(
         <div className="h-[1000px]" />
       </section>
     );
-  },
+  }
 );
-
+Section.displayName = "Section";
 export default Section;

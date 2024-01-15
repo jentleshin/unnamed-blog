@@ -1,4 +1,5 @@
 import React from "react";
+import Home from "../../../pages";
 
 interface IProps {
   children?: any;
@@ -18,7 +19,7 @@ const HomeLayout = React.forwardRef<HTMLDivElement, IProps>(
         </div>
       </>
     );
-  },
+  }
 );
-
+HomeLayout.displayName = "HomeLayout";
 export default HomeLayout;
