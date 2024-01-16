@@ -14,8 +14,6 @@ import { Text, Seperator } from "../../components";
 const SimpleNavbar = ({
   openSearch,
   changeTheme,
-  toggleSideMenu,
-  openSidebar = false,
   navSetup,
   onShareClick,
 }: iNavbar) => {
@@ -28,16 +26,11 @@ const SimpleNavbar = ({
     <div
       className={combineClasses(
         classes.navbar__container,
-        "container flex flex-col items-center justify-between",
+        "container flex flex-col items-center justify-between"
       )}
     >
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center">
-          {/* <div
-            className={combineClasses(classes.mobileBurgerToggle, "mr-5", openSidebar ? classes.mobileBurgerToggle__close : ' ')}
-            onClick={() => toggleSideMenu()}>
-            <AiOutlineMenu className="dark:text-white text-black text-2xl" />
-          </div> */}
           <Link href="/" passHref legacyBehavior>
             {logo ? (
               logo.type === LogoType.IMAGE ? (
@@ -91,7 +84,7 @@ const SimpleNavbar = ({
                   setOpenDD={() => setOpenDD(!openDD)}
                   floating
                 />
-              ),
+              )
             )}
             {/* {
               socials &&
@@ -108,7 +101,7 @@ const SimpleNavbar = ({
           <div
             className={combineClasses(
               classes.search_icon_wrapper,
-              "ml-5 dark:text-white",
+              "ml-5 dark:text-white"
             )}
             onClick={() => openSearch()}
           >
@@ -128,7 +121,7 @@ const SimpleNavbar = ({
             aria-label="theme button"
             className={combineClasses(
               classes.theme_switch,
-              "pl-3 dark:text-white text-black",
+              "pl-3 dark:text-white text-black"
             )}
             onClick={changeTheme}
           >

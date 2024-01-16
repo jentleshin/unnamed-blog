@@ -46,10 +46,10 @@ const Header = ({ children }: IProps) => {
         className={combineClasses(
           "sticky top-0 z-20",
           opacity ? "opacity-1" : "opacity-0",
-          "transition-opacity ease-in-out duration-500",
+          "transition-opacity ease-in-out duration-500"
         )}
       >
-        <Text title className="text-xl md:text-3xl my-6">
+        <Text title className="my-6">
           {children}
         </Text>
       </div>

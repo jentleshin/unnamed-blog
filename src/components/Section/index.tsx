@@ -12,7 +12,7 @@ const Section = React.forwardRef<HTMLElement, IProps>(
       <section
         ref={ref}
         data-heading={heading}
-        className="flex flex-wrap w-full h-fit"
+        className="flex flex-wrap w-full"
       >
         <Header>{heading}</Header>
         {children}

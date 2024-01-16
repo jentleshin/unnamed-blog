@@ -38,9 +38,7 @@ export interface iSEO {
 
 export interface iNavbar {
   openSearch: () => void;
-  toggleSideMenu: () => void;
   changeTheme?: () => void;
-  openSidebar: boolean;
   navSetup: iNavSetup;
   onShareClick: () => void;
 }
