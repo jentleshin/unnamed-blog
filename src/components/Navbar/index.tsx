@@ -72,7 +72,8 @@ const Navbar = React.forwardRef<HTMLElement, {}>(({}, ref) => {
       <nav
         ref={ref}
         className={combineClasses(
-          classes.navbar,
+          "fixed top-0 z-10",
+          "w-full pt-6",
           "dark:bg-organic dark:text-lime bg-lime text-organic",
           "opacity-0 transition-all ease-in-out duration-500"
         )}

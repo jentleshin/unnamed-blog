@@ -1,4 +1,3 @@
-import classes from "./Navbar.module.scss";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { combineClasses, transformImagePaths } from "../../utils/utils";
@@ -25,7 +24,6 @@ const SimpleNavbar = ({
   return (
     <div
       className={combineClasses(
-        classes.navbar__container,
         "container flex flex-col items-center justify-between"
       )}
     >
@@ -100,29 +98,26 @@ const SimpleNavbar = ({
 
           <div
             className={combineClasses(
-              classes.search_icon_wrapper,
-              "ml-5 dark:text-white"
+              "w-auto flex relative items-center cursor-pointer",
+              "ml-5"
             )}
             onClick={() => openSearch()}
           >
             <button name="search-button" aria-label="search button">
-              <AiOutlineSearch className="dark:text-white text-black text-[22px]" />
+              <AiOutlineSearch className="text-[22px]" />
             </button>
           </div>
 
           <div className="" onClick={() => onShareClick()}>
             <button name="share" aria-label="share page">
-              <BsFillShareFill className="dark:text-white text-black text-[16px] mt-[7px] ml-2 mr-1" />
+              <BsFillShareFill className=" text-[16px] mt-[7px] ml-2 mr-1" />
             </button>
           </div>
 
           <button
             name="theme-switch"
             aria-label="theme button"
-            className={combineClasses(
-              classes.theme_switch,
-              "pl-3 dark:text-white text-black"
-            )}
+            className={"pl-3"}
             onClick={changeTheme}
           >
             {theme && theme === "dark" ? (
