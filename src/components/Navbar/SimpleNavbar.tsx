@@ -19,7 +19,7 @@ const SimpleNavbar = ({
   // const { navLinks, socials, logo } = navSetup;
   const { navLinks, logo } = navSetup;
   const [openDD, setOpenDD] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <div

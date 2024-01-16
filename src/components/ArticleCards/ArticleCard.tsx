@@ -5,12 +5,14 @@ import {
   transformImagePaths,
   transformPath,
 } from "../../utils/utils";
+import { LogoType, THEMES } from "../../shared/enums";
 import Avatar from "../Misc/Avatar";
 import ArticleCardCategory from "../Misc/ArticleCardCategory";
 import ArticleTags from "../Misc/ArticleTags";
 import Image from "next/image";
 import Text from "../Text";
 import Seperator from "../Seperator";
+import { useTheme } from "next-themes";
 interface IProp {
   cardType?: string;
   article: IArticleHeaderData;
@@ -27,6 +29,8 @@ const ArticleCard = ({ cardType, article, path }: IProp) => {
   const imgLoader = ({ src, width, quality }: any) => {
     return `${origin}${src}?w=${width}&q=${quality || 75}`;
   };
+
+  const { theme } = useTheme();
 
   return (
     // <div className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px]"}>
@@ -58,7 +62,11 @@ const ArticleCard = ({ cardType, article, path }: IProp) => {
             loader={imgLoader}
           />
           <Image
-            src={transformImagePaths("/public/imp_assets/chizizic/cover.svg")}
+            src={transformImagePaths(
+              theme === THEMES.DARK
+                ? "/public/imp_assets/chizizic/dark-cover.svg"
+                : "/public/imp_assets/chizizic/cover.svg"
+            )}
             alt={article.articleTitle}
             className={combineClasses(
               "opacity-0 group-hover:opacity-80",
