@@ -12,15 +12,12 @@ const tailwind = {
     container: {
       center: true,
       screens: {
-        lg: "960px",
-        xl: "1140px",
-        "2xl": "1200px",
+        lg: "100%",
+        xl: "100%",
+        "2xl": "100%",
       },
       padding: {
-        DEFAULT: "15px",
-        lg: "30px",
-        xl: "30px",
-        "2xl": "30px",
+        DEFAULT: "0px",
       },
     },
     typography: (theme) => ({}),
@@ -31,14 +28,17 @@ const tailwind = {
         beigie: "#FEE9D1",
       },
       fontFamily: {
-        body: ["Merriweather", "sans-serif"],
-        display: ["Bodoni Moda", "serif"],
-        text: ["Noto Sans", "sans-serif"],
+        body: ["Merriweather", "serif"],
+        design: ["Bodoni Moda", "serif"],
+        display: ["Noto Sans", "sans-serif"],
       },
     },
   },
   variants: {},
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("tailwind-scrollbar-hide"),
+  ],
 };
 
 module.exports = tailwind;

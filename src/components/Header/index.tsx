@@ -37,12 +37,12 @@ const Header = ({ children }: IProps) => {
   //     };
   // });
 
-  const [ref, opacity] = useOpacity<HTMLDivElement>();
+  const [wrapperRef, contentRef, opacity] = useOpacity<HTMLDivElement>();
 
   return (
     <>
       <div
-        ref={combineRefs(ref)}
+        ref={combineRefs(contentRef)}
         className={combineClasses(
           "sticky top-0 z-20",
           opacity ? "opacity-1" : "opacity-0",
@@ -53,7 +53,7 @@ const Header = ({ children }: IProps) => {
           {children}
         </Text>
       </div>
-      <Seperator className="mb-11 dark:border-lime border-organic opacity-0" />
+      {/* <Seperator className="mb-11 dark:border-lime border-organic opacity-0" /> */}
     </>
   );
 };

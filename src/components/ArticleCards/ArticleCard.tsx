@@ -13,13 +13,16 @@ import Image from "next/image";
 import Text from "../Text";
 import Seperator from "../Seperator";
 import { useTheme } from "next-themes";
+import { on } from "events";
+
 interface IProp {
   cardType?: string;
   article: IArticleHeaderData;
   path: string;
+  onClick?: () => void;
 }
 
-const ArticleCard = ({ cardType, article, path }: IProp) => {
+const ArticleCard = ({ cardType, article, path, onClick }: IProp) => {
   // set url and path
   const origin =
     typeof window !== "undefined" && window.location.origin
@@ -35,17 +38,16 @@ const ArticleCard = ({ cardType, article, path }: IProp) => {
   return (
     // <div className={"w-full lg:w-1/3 md:w-1/2 md:px-[15px] px-2 mb-[30px]"}>
     <>
-      <LinkTo
-        href={transformPath(path)}
-        passHref
+      <div
         className={combineClasses(
           "group",
           "dark:bg-lime bg-organic dark:bg-opacity-[0.02] bg-opacity-[0.04] dark:text-lime text-organic",
           "w-full h-fit",
-          "mt-0 mb-11 mx-0",
+          "mb-11",
           "flex between",
           cardType == "full" ? "flex-row-reverse justify-between" : "flex-col"
         )}
+        onClick={onClick}
       >
         <div
           className={combineClasses(
@@ -88,7 +90,7 @@ const ArticleCard = ({ cardType, article, path }: IProp) => {
           >
             {article.codeName + " ;"}
           </Text> */}
-          <Text plaintitle className="md:text-2xl italic pt-0">
+          <Text title className="md:text-2xl italic pt-0">
             {article.articleTitle}
           </Text>
           <Seperator className="max-w-0 transition-all ease-in-out duration-500 group-hover:max-w-16 text-left" />
@@ -129,7 +131,7 @@ const ArticleCard = ({ cardType, article, path }: IProp) => {
         {/* </div>
           <ArticleCardCategory category={article.category} /> */}
         {/* </div> */}
-      </LinkTo>
+      </div>
     </>
   );
 };

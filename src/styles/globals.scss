@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital@0;1&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital@0;1&family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,900;1,300;1,900&display=swap');
 @import "./utils/mixins";
 
 @tailwind base;
@@ -23,6 +22,19 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h1, 
+h2, 
+h3,
+p,
+li,
+ul {
+  word-break: break-word;
+}
+
+b {
+  font-weight: 900;
 }
 
 .line-clamp {

@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import { CREATE_SEO_CONFIG } from "../src/utils/utils";
 import { ThemeProvider } from "next-themes";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import SmoothScroll from "../src/components/SmoothScroll";
 import "@uiw/react-textarea-code-editor/dist.css";
 import "react-medium-image-zoom/dist/styles.css";
 
@@ -70,11 +69,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         </>
       ) : null}
       <ThemeProvider enableSystem={true} attribute="class">
-        <SmoothScroll>
-          <Component {...pageProps} />
-          <SpeedInsights />
-          <Footer />
-        </SmoothScroll>
+        <Component {...pageProps} />
+        <SpeedInsights />
+        {/* <Footer /> */}
       </ThemeProvider>
     </>
   );

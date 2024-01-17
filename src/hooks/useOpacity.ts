@@ -1,53 +1,64 @@
 import { useRef, useState, useEffect } from "react";
-import { combineClasses } from "../utils/utils";
-
 let sharedObserver: IntersectionObserver | null = null;
 
-const initSharedObserver = () => {
-  if (!sharedObserver) {
-    sharedObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const targetElement = entry.target;
-          const isIntersecting = entry.isIntersecting;
-          targetElement.dispatchEvent(
-            new CustomEvent("intersectChange", { detail: isIntersecting }),
-          );
-        });
-      },
-      {
-        rootMargin: `0px 0px ${-window.innerHeight / 10}px 0px`,
-        threshold: 1,
-      },
-    );
-  }
+export const useOpacityObserver = <T extends HTMLElement>(
+  initValue: T | null
+): React.RefObject<T> => {
+  const viewportRef = useRef<T>(initValue);
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (viewport && !sharedObserver) {
+      console.log("????");
+      sharedObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const targetElement = entry.target;
+            const isIntersecting = entry.isIntersecting;
+            targetElement.dispatchEvent(
+              new CustomEvent("intersectChange", { detail: isIntersecting })
+            );
+          });
+        },
+        {
+          root: viewport,
+          rootMargin: `0px 0px -100px 0px`,
+          threshold: 0,
+        }
+      );
+    }
+    console.log(viewport);
+    console.log(sharedObserver);
+    return () => {
+      sharedObserver = null;
+    };
+  });
+  return viewportRef;
 };
 
 export const useOpacity = <T extends HTMLElement>(): [
   React.RefObject<T>,
-  boolean,
+  boolean
 ] => {
   const [opacity, setOpacity] = useState(false);
-  const ref = useRef<T>(null);
+  const contentRef = useRef<T>(null);
 
   useEffect(() => {
-    initSharedObserver();
-
-    const element = ref.current;
-    if (element) {
+    const content = contentRef.current;
+    if (content) {
+      console.log("jhi");
+      console.log(sharedObserver);
       // Listen for custom visibility change events
       const handleVisibilityChange: EventListener = (e) => {
         setOpacity((e as CustomEvent).detail);
       };
-      element.addEventListener("intersectChange", handleVisibilityChange);
-      sharedObserver?.observe(element);
-
+      sharedObserver?.observe(content);
+      content.addEventListener("intersectChange", handleVisibilityChange);
       return () => {
-        sharedObserver?.unobserve(element);
-        element.removeEventListener("intersectChange", handleVisibilityChange);
+        sharedObserver?.unobserve(content);
+        content.removeEventListener("intersectChange", handleVisibilityChange);
       };
     }
-  }, [ref]);
+  }, [sharedObserver]);
 
-  return [ref, opacity];
+  return [contentRef, opacity];
 };

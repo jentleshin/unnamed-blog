@@ -11,8 +11,7 @@ import { useRef, useEffect } from "react";
 interface IBlogLayout {
   children: any;
   PAGE_SEO?: iSEO;
-  blogwithsidebar?: boolean;
-  blogcentered?: boolean;
+  blog?: boolean;
   home?: boolean;
   ads?: string[];
 }
@@ -20,8 +19,7 @@ interface IBlogLayout {
 const PageLayout = ({
   children,
   PAGE_SEO,
-  blogwithsidebar = false,
-  blogcentered = false,
+  blog = false,
   home = false,
   ads = [],
 }: IBlogLayout) => {
@@ -36,10 +34,10 @@ const PageLayout = ({
   }
 
   const navRef = useRef<HTMLDivElement>(null);
-  const homeRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const homeSection = homeRef.current
+    const mainLayout = mainRef.current
       ?.querySelector("div")
       ?.querySelectorAll("section")?.[1];
     const observer = new IntersectionObserver(
@@ -54,21 +52,27 @@ const PageLayout = ({
       {
         rootMargin: `100000px 0px ${-window.innerHeight}px 0px`,
         threshold: 0,
-      },
+      }
     );
 
-    homeSection ? observer.observe(homeSection) : null;
+    mainLayout ? observer.observe(mainLayout) : null;
     return () => {
-      homeSection ? observer.unobserve(homeSection) : null;
+      mainLayout ? observer.unobserve(mainLayout) : null;
     };
   }, []);
 
-  return (
+  return home ? (
     <>
       <NextSeo {...SEO_CONFIG} />
       <Navbar ref={navRef} />
-      <HomeLayout ref={homeRef}> {children} </HomeLayout>
+      <HomeLayout ref={mainRef}> {children} </HomeLayout>
     </>
-  );
+  ) : blog ? (
+    <>
+      <NextSeo {...SEO_CONFIG} />
+      <Navbar ref={navRef} />
+      <Centered ref={mainRef}> {children} </Centered>
+    </>
+  ) : null;
 };
 export default PageLayout;

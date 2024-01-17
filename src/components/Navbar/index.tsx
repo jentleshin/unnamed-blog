@@ -87,10 +87,10 @@ const Navbar = React.forwardRef<HTMLElement, {}>(({}, ref) => {
       </nav>
       {showSearch && <Search closeSearch={() => setShowSearch(false)} />}
 
-      <SocialShareModal
+      {/* <SocialShareModal
         closeModal={() => setOpenShareModal(false)}
         openShareModal={openShareModal}
-      />
+      /> */}
     </>
   );
 });

@@ -1,5 +1,5 @@
 /**These are necessary imports / components for the page */
-import { ImageSize, TextAlign, ListType } from "../../src/shared/enums";
+import { ImageSize, TextAlign, ListType } from "../shared/enums";
 import {
   PageLayout,
   Text,
@@ -8,19 +8,19 @@ import {
   LinkTo,
   Seperator,
   Slider,
-} from "../../src/components";
-import CodeBlock from "../../src/components/CodeBlock";
+} from "../components";
+import CodeBlock from "../components/CodeBlock";
 import {
   HowToUseImageCode,
   HowToUseList,
   HowToUseSeperator,
   HowToUseTextCode,
-} from "../../src/constants/codeBlocks";
+} from "../constants/codeBlocks";
 
-const Article = () => {
+const Sunflower = () => {
   return (
     // pass blogcentered as show below for article page centered layout
-    <PageLayout blog>
+    <>
       <Text p>
         This current article is made using <b>blogcentered</b> layout. This
         layout will be used to write your blog posts or articles.
@@ -148,8 +148,8 @@ const Article = () => {
         </a>
         .
       </div>
-    </PageLayout>
+    </>
   );
 };
 
-export default Article;
+export default Sunflower;

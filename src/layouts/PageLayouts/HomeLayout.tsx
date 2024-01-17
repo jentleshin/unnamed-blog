@@ -1,5 +1,6 @@
 import React from "react";
 import Home from "../../../pages";
+import { combineClasses } from "../../utils/utils";
 
 interface IProps {
   children?: any;
@@ -11,9 +12,13 @@ const HomeLayout = React.forwardRef<HTMLDivElement, IProps>(
       <>
         <div
           ref={ref}
-          className={
-            "dark:bg-organic dark:text-lime bg-lime text-organic md:min-h-screen transition-colors ease-in-out duration-500"
-          }
+          className={combineClasses(
+            "dark:bg-organic dark:text-lime bg-lime text-organic",
+            "h-screen w-screen",
+            "flex flex-row",
+            "transition-colors ease-in-out duration-500",
+            "p-[15px]"
+          )}
         >
           {children}
         </div>

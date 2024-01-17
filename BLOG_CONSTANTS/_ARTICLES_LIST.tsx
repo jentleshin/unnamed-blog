@@ -31,14 +31,14 @@ import { MAYUR, RUPALI } from "./_BLOG_SETUP";
  */
 
 // clear this article list and add your own
-const ARTICLES_LIST: iArticle[] = [
-  {
-    path: "/pages/tutorial/how-to-setup-blog.tsx",
+export const ARTICLES: { [key: string]: iArticle } = {
+  Ivy: {
+    path: "/src/article/how-to-setup-blog.tsx",
     featureArticle: true,
     preview: {
       author: MAYUR,
       date: "August 08 2022",
-      codeName: "ivy",
+      codeName: "Ivy",
       articleTitle: "How to setup this blog template",
       tags: "demo, blog setup",
       thumbnail: "/public/imp_assets/tutorials/how-to-setup-blog.svg",
@@ -54,13 +54,13 @@ const ARTICLES_LIST: iArticle[] = [
       author: MAYUR.name,
     },
   },
-  {
-    path: "/pages/tutorial/how-to-write-your-first-article.tsx",
+  OakTree: {
+    path: "/src/article/how-to-write-your-first-article.tsx",
     featureArticle: true,
     preview: {
       author: RUPALI,
       date: "August 08 2022",
-      codeName: "oakTree",
+      codeName: "OakTree",
       articleTitle: "How to write your first article",
       tags: "demo, first article",
       thumbnail: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
@@ -74,13 +74,13 @@ const ARTICLES_LIST: iArticle[] = [
       ogImage: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
     },
   },
-  {
-    path: "/pages/tutorial/how-to-deploy-blog.tsx",
+  Orchid: {
+    path: "/src/article/how-to-deploy-blog.tsx",
     featureArticle: true,
     preview: {
       author: RUPALI,
       date: "August 08 2022",
-      codeName: "orchid",
+      codeName: "Orchid",
       articleTitle: "How to Export and deploy on firebase",
       tags: "demo, deploy blog",
       thumbnail: "/public/imp_assets/tutorials/how-to-deploy.svg",
@@ -92,12 +92,12 @@ const ARTICLES_LIST: iArticle[] = [
       ogImage: "/public/imp_assets/tutorials/how-to-deploy.svg",
     },
   },
-  {
-    path: "/pages/tutorial/home-layout.tsx",
+  Vine: {
+    path: "/src/article/home-layout.tsx",
     preview: {
       author: RUPALI,
       date: "August 14 2022",
-      codeName: "vine",
+      codeName: "Vine",
       articleTitle: "Home Layout Example",
       tags: "demo, layout, home layout",
       thumbnail: "/public/imp_assets/tutorials/home-layouts.svg",
@@ -113,12 +113,12 @@ const ARTICLES_LIST: iArticle[] = [
       author: RUPALI.name,
     },
   },
-  {
-    path: "/pages/tutorial/blog-with-sidebar-layout.tsx",
+  Tulip: {
+    path: "/src/article/blog-with-sidebar-layout.tsx",
     preview: {
       author: MAYUR,
       date: "August 14 2022",
-      codeName: "tulip",
+      codeName: "Tulip",
       articleTitle: "Page Layout for a article with sidebar",
       tags: "demo, with sidebar, default layout",
       thumbnail: "/public/imp_assets/tutorials/blog-with-sidebar-layout.svg",
@@ -132,12 +132,12 @@ const ARTICLES_LIST: iArticle[] = [
       ogImage: "/public/imp_assets/tutorials/blog-with-sidebar-layout.svg",
     },
   },
-  {
-    path: "/pages/tutorial/blog-with-centered-layout.tsx",
+  Sunflower: {
+    path: "/src/article/blog-with-centered-layout.tsx",
     preview: {
       author: RUPALI,
       date: "August 14 2022",
-      codeName: "sunflower",
+      codeName: "Sunflower",
       articleTitle: "Page Layout for a article with centered layout",
       tags: "demo, centered, centered layout",
       thumbnail: "/public/imp_assets/tutorials/blog-with-centered-layout.svg",
@@ -151,12 +151,12 @@ const ARTICLES_LIST: iArticle[] = [
       ogImage: "/public/imp_assets/tutorials/blog-with-centered-layout.svg",
     },
   },
-  {
-    path: "/pages/tutorial/all-components.tsx",
+  Potato: {
+    path: "/src/article/all-components.tsx",
     preview: {
       author: RUPALI,
       date: "August 08 2022",
-      codeName: "pothos",
+      codeName: "Potato",
       articleTitle: "All Components",
       tags: "demo, all components",
       thumbnail: "/public/imp_assets/tutorials/all-components.svg",
@@ -168,12 +168,12 @@ const ARTICLES_LIST: iArticle[] = [
       ogImage: "/public/imp_assets/tutorials/all-components.svg",
     },
   },
-  {
-    path: "/pages/tutorial/style-guide.tsx",
+  Lily: {
+    path: "/src/article/style-guide.tsx",
     preview: {
       author: MAYUR,
       date: "August 10 2022",
-      codeName: "lily",
+      codeName: "Lily",
       articleTitle: "Style Guide",
       tags: "demo, all components, style guide, styling tutorial",
       thumbnail: "/public/imp_assets/tutorials/style-guide.svg",
@@ -186,12 +186,12 @@ const ARTICLES_LIST: iArticle[] = [
       ogImage: "/public/imp_assets/tutorials/style-guide.svg",
     },
   },
-  {
-    path: "/pages/tutorial/icons.tsx",
+  Cacti: {
+    path: "/src/article/icons.tsx",
     preview: {
       author: MAYUR,
       date: "August 13 2022",
-      codeName: "cacti",
+      codeName: "Cacti",
       articleTitle: "How to use icons",
       tags: "demo, all components, style guide, styling tutorial, icons, how to use icons in website",
       thumbnail: "/public/imp_assets/tutorials/how-to-use-icons.svg",
@@ -204,12 +204,12 @@ const ARTICLES_LIST: iArticle[] = [
       ogImage: "/public/imp_assets/tutorials/how-to-use-icons.svg",
     },
   },
-  {
-    path: "/pages/blog/your-first-article.tsx",
+  Moss: {
+    path: "/src/article/your-first-article.tsx",
     preview: {
       author: MAYUR,
       date: "August 6 2022",
-      codeName: "moss",
+      codeName: "Moss",
       articleTitle: "Your first article",
       shortIntro:
         "This is a demo file for your first article, you can copy structure of this file to create multile article.",
@@ -223,8 +223,8 @@ const ARTICLES_LIST: iArticle[] = [
       ogImage: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
     },
   },
-];
+};
 
-export const SORTED_ARTICLES_BY_DATE = ARTICLES_LIST.sort((a, b) =>
-  new Date(a.preview.date) > new Date(b.preview.date) ? -1 : 1,
+export const SORTED_ARTICLES_BY_DATE = Object.values(ARTICLES).sort((a, b) =>
+  new Date(a.preview.date) > new Date(b.preview.date) ? -1 : 1
 );

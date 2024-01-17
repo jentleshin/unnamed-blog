@@ -1,6 +1,5 @@
 import { TextAlign } from "../../shared/enums";
 import { combineClasses } from "../../utils/utils";
-import classes from "./text.module.scss";
 
 interface IProps {
   children?: any;
@@ -38,8 +37,8 @@ const Text = ({
       ui = (
         <h1
           className={combineClasses(
-            `font-display text-3xl md:text-6xl py-3`,
-            className,
+            `font-design font-bold md:text-3xl py-3`,
+            className
           )}
           style={{ color: color, textAlign: textAlign }}
           id={id}
@@ -51,8 +50,12 @@ const Text = ({
       ui = (
         <h2
           className={combineClasses(
-            `font-display text-xl md:text-3xl py-3`,
-            className,
+            `font-display font-extrabold`,
+            `text-2xl md:text-2xl`,
+            `leading-10 md:leading-10`,
+            `tracking-wider`,
+            `py-3`,
+            className
           )}
           style={{ color: color, textAlign: textAlign }}
           id={id}
@@ -64,8 +67,8 @@ const Text = ({
       ui = (
         <h3
           className={combineClasses(
-            `font-text font-semibold text-xl md:text-3xl py-4`,
-            className,
+            `font-body font-bold text-xl md:text-3xl`,
+            className
           )}
           style={{ color: color, textAlign: textAlign }}
           id={id}
@@ -73,38 +76,16 @@ const Text = ({
           {children}
         </h3>
       );
-    } else if (texttitle) {
-      ui = (
-        <p
-          className={combineClasses(
-            `font-text font-semibold md:text-xl text-sm md:leading-8 leading-relaxed py-3`,
-            className,
-          )}
-          style={{ color: color, textAlign: textAlign }}
-          id={id}
-        >
-          {children}
-        </p>
-      );
     } else if (p) {
       ui = (
         <p
           className={combineClasses(
-            `font-text md:text-base text-sm md:leading-8 leading-relaxed py-2`,
-            className,
-          )}
-          style={{ color: color, textAlign: textAlign }}
-          id={id}
-        >
-          {children}
-        </p>
-      );
-    } else if (token) {
-      ui = (
-        <p
-          className={combineClasses(
-            `font-text md:text-sm text-sm py-1 opacity-60 uppercase`,
-            className,
+            `font-body font-light`,
+            `text-lg md:text-lg`,
+            `leading-10 md:leading-10`,
+            `tracking-wider`,
+            `py-3`,
+            className
           )}
           style={{ color: color, textAlign: textAlign }}
           id={id}
@@ -115,19 +96,41 @@ const Text = ({
     } else if (quote) {
       ui = (
         <blockquote
-          className={combineClasses(classes.quoted_text, className)}
+          className={combineClasses(
+            `dark:bg-lime bg-organic dark:bg-opacity-[0.02] bg-opacity-[0.04]`,
+            `font-body font-light`,
+            `text-lg md:text-lg`,
+            `leading-10 md:leading-10`,
+            `tracking-wider`,
+            `my-3 px-[30px]`,
+            `py-3 px-[30px]`,
+            className
+          )}
           style={{ color: color, textAlign: textAlign }}
           id={id}
         >
           <q>{children}</q>
         </blockquote>
       );
+    } else if (token) {
+      ui = (
+        <p
+          className={combineClasses(
+            `font-text md:text-sm text-sm py-1 opacity-60 uppercase`,
+            className
+          )}
+          style={{ color: color, textAlign: textAlign }}
+          id={id}
+        >
+          {children}
+        </p>
+      );
     } else {
       ui = (
         <p
           className={combineClasses(
-            `font-text mb-3 text-lg leading-relaxed`,
-            className,
+            `font-text md:text-lg leading-relaxed`,
+            className
           )}
           style={{ color: color, textAlign: textAlign }}
           id={id}
