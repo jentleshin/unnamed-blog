@@ -30,7 +30,7 @@ const tailwind = {
       fontFamily: {
         body: ["Merriweather", "serif"],
         design: ["Bodoni Moda", "serif"],
-        display: ["Noto Sans", "sans-serif"],
+        display: ["Noto Sans Display", "sans-serif"],
       },
     },
   },

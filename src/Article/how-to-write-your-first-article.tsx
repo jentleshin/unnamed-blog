@@ -11,11 +11,9 @@ import {
 } from "../components";
 import CodeBlock from "../components/CodeBlock";
 import { Article_Entry_inList } from "../constants/codeBlocks";
-
 const OakTree = () => {
   return (
     <>
-      <Text title>How to write your first article.</Text>
       <Text quote>
         *note: All the files you will create or interact with are in
       </Text>

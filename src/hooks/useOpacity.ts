@@ -8,7 +8,6 @@ export const useOpacityObserver = <T extends HTMLElement>(
   useEffect(() => {
     const viewport = viewportRef.current;
     if (viewport && !sharedObserver) {
-      console.log("????");
       sharedObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -26,8 +25,6 @@ export const useOpacityObserver = <T extends HTMLElement>(
         }
       );
     }
-    console.log(viewport);
-    console.log(sharedObserver);
     return () => {
       sharedObserver = null;
     };
@@ -45,9 +42,6 @@ export const useOpacity = <T extends HTMLElement>(): [
   useEffect(() => {
     const content = contentRef.current;
     if (content) {
-      console.log("jhi");
-      console.log(sharedObserver);
-      // Listen for custom visibility change events
       const handleVisibilityChange: EventListener = (e) => {
         setOpacity((e as CustomEvent).detail);
       };

@@ -9,9 +9,10 @@ import Lily from "./style-guide";
 import Cacti from "./icons";
 import Moss from "./your-first-article";
 import { useEffect } from "react";
-
+import { iArticle } from "../shared/interfaces";
+import ArticleCard from "../components/ArticleCards/ArticleCard";
 interface IProps {
-  value?: string;
+  value?: iArticle;
 }
 
 const PlantMap: { [key: string]: () => JSX.Element } = {
@@ -30,8 +31,17 @@ const PlantMap: { [key: string]: () => JSX.Element } = {
 export const Article = ({ value }: IProps) => {
   useEffect(() => {}, [value]);
   if (value) {
-    const Plant = PlantMap[value];
-    return Plant ? <Plant /> : null;
+    const Plant = PlantMap[value.preview.codeName];
+    return (
+      <>
+        <ArticleCard
+          article={value.preview}
+          onClick={() => {}}
+          cardType="full"
+        />
+        {Plant ? <Plant /> : null}
+      </>
+    );
   } else {
     return null;
   }

@@ -9,9 +9,10 @@ const ArticleTags = ({
   center?: boolean;
 }) => {
   return (
-    <div
-      className={combineClasses("flex flex-wrap", center && "justify-center")}
-    >
+    // <div
+    //   className={combineClasses("flex flex-wrap", center && "justify-center")}
+    // >
+    <>
       {tags.split(",").map((each, i) => (
         <Text
           token
@@ -21,7 +22,8 @@ const ArticleTags = ({
           #{each.trim()}
         </Text>
       ))}
-    </div>
+      {/* </div> */}
+    </>
   );
 };
 

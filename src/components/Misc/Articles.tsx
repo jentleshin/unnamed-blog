@@ -1,6 +1,6 @@
 import { SORTED_ARTICLES_BY_DATE } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST";
 import { iArticle } from "../../shared/interfaces";
-import ArticleCard from "../ArticleCards/ArticleCard";
+import ArticleCardCompact from "../ArticleCards/ArticleCardCompact";
 import LinkTo from "../LinkTo";
 
 interface IProp {
@@ -16,13 +16,17 @@ const Articles = ({ onSelectArticle }: IProp) => {
     <>
       {SORTED_ARTICLES_BY_DATE.length
         ? SORTED_ARTICLES_BY_DATE.slice(0, articlesToDisplay).map((each, i) => (
-            <ArticleCard
-              article={each.preview}
-              path={each.path}
-              key={each.path + i}
-              onClick={() => onSelectArticle(each.preview.codeName)}
-              cardType="compact"
-            />
+            <>
+              <ArticleCardCompact
+                article={each.preview}
+                key={i}
+                onClick={() => onSelectArticle(each.preview.codeName)}
+              />
+              <div
+                key={`sep__${i}`}
+                className="dark:bg-lime bg-organic h-[1px]"
+              />
+            </>
           ))
         : null}
 

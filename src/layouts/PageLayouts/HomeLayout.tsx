@@ -13,11 +13,11 @@ const HomeLayout = React.forwardRef<HTMLDivElement, IProps>(
         <div
           ref={ref}
           className={combineClasses(
-            "dark:bg-organic dark:text-lime bg-lime text-organic",
+            " dark:text-lime bg-transparent text-organic",
             "h-screen w-screen",
             "flex flex-row",
             "transition-colors ease-in-out duration-500",
-            "p-[15px]"
+            "p-[30px]"
           )}
         >
           {children}

@@ -37,8 +37,11 @@ const Text = ({
       ui = (
         <h1
           className={combineClasses(
-            `font-design font-bold md:text-3xl py-3`,
-            className
+            className,
+            `font-design font-bold`,
+            `text-3xl md:text-3xl`,
+            `leading-10 md:leading-10`,
+            `py-3`
           )}
           style={{ color: color, textAlign: textAlign }}
           id={id}
@@ -50,12 +53,12 @@ const Text = ({
       ui = (
         <h2
           className={combineClasses(
+            className,
             `font-display font-extrabold`,
             `text-2xl md:text-2xl`,
             `leading-10 md:leading-10`,
             `tracking-wider`,
-            `py-3`,
-            className
+            `py-3`
           )}
           style={{ color: color, textAlign: textAlign }}
           id={id}
@@ -102,7 +105,7 @@ const Text = ({
             `text-lg md:text-lg`,
             `leading-10 md:leading-10`,
             `tracking-wider`,
-            `my-3 px-[30px]`,
+            `my-3`,
             `py-3 px-[30px]`,
             className
           )}
@@ -114,16 +117,22 @@ const Text = ({
       );
     } else if (token) {
       ui = (
-        <p
+        <span
           className={combineClasses(
-            `font-text md:text-sm text-sm py-1 opacity-60 uppercase`,
+            `font-display font-extrabold`,
+            `text-lg md:text-lg`,
+            `leading-10 md:leading-10`,
+            `tracking-wider`,
+            `py-3`,
+            `opacity-60`,
+            `uppercase`,
             className
           )}
           style={{ color: color, textAlign: textAlign }}
           id={id}
         >
           {children}
-        </p>
+        </span>
       );
     } else {
       ui = (

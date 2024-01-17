@@ -18,11 +18,10 @@ import { on } from "events";
 interface IProp {
   cardType?: string;
   article: IArticleHeaderData;
-  path: string;
   onClick?: () => void;
 }
 
-const ArticleCard = ({ cardType, article, path, onClick }: IProp) => {
+const ArticleCard = ({ cardType, article, onClick }: IProp) => {
   // set url and path
   const origin =
     typeof window !== "undefined" && window.location.origin
@@ -40,47 +39,34 @@ const ArticleCard = ({ cardType, article, path, onClick }: IProp) => {
     <>
       <div
         className={combineClasses(
-          "group",
+          "group relative",
           "dark:bg-lime bg-organic dark:bg-opacity-[0.02] bg-opacity-[0.04] dark:text-lime text-organic",
           "w-full h-fit",
-          "mb-11",
-          "flex between",
-          cardType == "full" ? "flex-row-reverse justify-between" : "flex-col"
+          "mb-[30px]",
+          "flex",
+          cardType == "full" ? "flex-col" : "flex-row-reverse"
         )}
         onClick={onClick}
       >
-        <div
-          className={combineClasses(
-            "relative",
-            cardType == "full" ? "w-1/3 min-w-[200px]" : "h-[200px]"
-          )}
-        >
-          <Image
-            src={transformImagePaths(article.thumbnail)}
-            alt={article.articleTitle}
-            layout="fill"
-            quality={100}
-            objectFit="cover"
-            loader={imgLoader}
-          />
-          <Image
-            src={transformImagePaths(
-              theme === THEMES.DARK
-                ? "/public/imp_assets/chizizic/dark-cover.svg"
-                : "/public/imp_assets/chizizic/cover.svg"
-            )}
-            alt={article.articleTitle}
+        {cardType == "full" && (
+          <div
             className={combineClasses(
-              "opacity-0 group-hover:opacity-80",
-              "transition-all ease-in-out duration-500"
+              "relative",
+              cardType == "full" ? "h-[200px]" : "w-1/3 min-w-[200px]"
             )}
-            layout="fill"
-            quality={100}
-            objectFit="cover"
-            loader={imgLoader}
-          />
-        </div>
-        <div className={combineClasses("px-[30px] py-[30px]")}>
+          >
+            <Image
+              src={transformImagePaths(article.thumbnail)}
+              alt={article.articleTitle}
+              quality={100}
+              fill={true}
+              loader={imgLoader}
+              sizes="50vw"
+              className={combineClasses("object-cover")}
+            />
+          </div>
+        )}
+        <div className={combineClasses("px-[30px] py-[12px]")}>
           {/* <Text
             subtitle
             className={combineClasses(
@@ -90,20 +76,29 @@ const ArticleCard = ({ cardType, article, path, onClick }: IProp) => {
           >
             {article.codeName + " ;"}
           </Text> */}
-          <Text title className="md:text-2xl italic pt-0">
-            {article.articleTitle}
-          </Text>
+          <Text title>{article.articleTitle}</Text>
           <Seperator className="max-w-0 transition-all ease-in-out duration-500 group-hover:max-w-16 text-left" />
-          <Text
-            p
-            className={combineClasses("text-sm font-normal mt-2 md:mt-1")}
-          >
-            {article.shortIntro.slice(0, 100)} ...
-          </Text>
+          <Text p>{article.shortIntro.slice(0, 100)} ...</Text>
           <ArticleTags tags={article.tags} />
           <Text token>{article.date}</Text>
         </div>
-
+        <Image
+          src={transformImagePaths(
+            theme === THEMES.DARK
+              ? "/public/imp_assets/chizizic/dark-cover.svg"
+              : "/public/imp_assets/chizizic/cover.svg"
+          )}
+          alt={article.articleTitle}
+          quality={100}
+          fill={true}
+          loader={imgLoader}
+          sizes="50vw"
+          className={combineClasses(
+            "object-cover",
+            "opacity-0 group-hover:opacity-80",
+            "transition-all ease-in-out duration-500"
+          )}
+        />
         {/* <div
           className={combineClasses(
             classes.article_card_footer,

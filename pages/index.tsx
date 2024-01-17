@@ -20,8 +20,6 @@ import { useOpacityObserver } from "../src/hooks/useOpacity";
 const Home = () => {
   const [selectArticle, setSelectArticle] = useState<string>("");
   const viewportRef = useOpacityObserver<HTMLDivElement>(null);
-  console.log("ji");
-  console.log(viewportRef.current);
   return (
     <PageLayout home PAGE_SEO={DEFAULT_SEO}>
       <ReactLenis
@@ -32,7 +30,7 @@ const Home = () => {
       >
         <Articles onSelectArticle={setSelectArticle} />
       </ReactLenis>
-      <div className="dark:bg-lime bg-organic w-[1px] mx-[15px]"></div>
+      <div className="dark:bg-lime bg-organic w-[1px] mx-[30px]" />
       <div ref={viewportRef} className="flex-1">
         <ReactLenis
           className={combineClasses(
@@ -40,9 +38,7 @@ const Home = () => {
             "overflow-y-scroll scroll-auto scrollbar-hide"
           )}
         >
-          {selectArticle && (
-            <Article value={ARTICLES[selectArticle].preview.codeName} />
-          )}
+          {selectArticle && <Article value={ARTICLES[selectArticle]} />}
         </ReactLenis>
       </div>
       {/* <Section
