@@ -24,10 +24,6 @@ interface IProp {
 
 const ArticleCardCompact = ({ article, onClick, selected }: IProp) => {
   // set url and path
-  useEffect(() => {
-    console.log("selected");
-    console.log(selected);
-  }, [selected]);
   const origin =
     typeof window !== "undefined" && window.location.origin
       ? window.location.origin

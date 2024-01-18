@@ -1,3 +1,4 @@
+"use client";
 import { useRef, useState, useEffect } from "react";
 let sharedObserver: IntersectionObserver | null = null;
 
@@ -27,8 +28,9 @@ export const useOpacityObserver = <T extends HTMLElement>(
     }
     return () => {
       sharedObserver = null;
+      console.log("useOpacityObserver unmounted");
     };
-  });
+  }, [viewportRef]);
   return viewportRef;
 };
 
@@ -50,9 +52,10 @@ export const useOpacity = <T extends HTMLElement>(): [
       return () => {
         sharedObserver?.unobserve(content);
         content.removeEventListener("intersectChange", handleVisibilityChange);
+        console.log("useOpacity unmounted");
       };
     }
-  }, [sharedObserver]);
+  }, [contentRef, sharedObserver]);
 
   return [contentRef, opacity];
 };
