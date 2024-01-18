@@ -7,23 +7,26 @@ interface IProp {
   onSelectArticle: (articleId: string) => void;
   selectArticle: string;
 }
-
 const Articles = ({ onSelectArticle, selectArticle }: IProp) => {
   const restArticles = SORTED_ARTICLES_BY_DATE.filter(
     (article: iArticle) => !article.featureArticle
   );
   const articlesToDisplay = 9;
+  const articles = SORTED_ARTICLES_BY_DATE.slice(0, articlesToDisplay);
+
   return (
     <>
-      {SORTED_ARTICLES_BY_DATE.length
-        ? SORTED_ARTICLES_BY_DATE.slice(0, articlesToDisplay).map((each, i) => (
+      {articles.length > 0
+        ? articles.map((each, i) => (
             <React.Fragment key={each.preview.codeName}>
               <ArticleCardCompact
                 article={each.preview}
                 onClick={() => onSelectArticle(each.preview.codeName)}
-                selected={selectArticle == each.preview.codeName}
+                selected={selectArticle === each.preview.codeName}
               />
-              <div className="dark:bg-lime bg-organic h-[0.5px]" />
+              {i !== articles.length - 1 && (
+                <div className="dark:bg-lime bg-organic h-[0.5px]" />
+              )}
             </React.Fragment>
           ))
         : null}
