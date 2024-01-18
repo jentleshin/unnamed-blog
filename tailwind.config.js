@@ -38,7 +38,6 @@ const tailwind = {
   plugins: [
     require("@tailwindcss/typography"),
     require("tailwind-scrollbar-hide"),
-    require("@tailwindcss/line-clamp"),
   ],
 };
 
