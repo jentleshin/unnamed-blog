@@ -29,7 +29,7 @@ const Article = () => {
   ];
   return (
     // pass blogwithsidebar as show below for article page with sidebar layout
-    <PageLayout blogwithsidebar ads={ads}>
+    <>
       <Text p>
         This current article is made using <b>blogwithsidebar</b> layout. This
         layout will be used to write your blog posts or articles.
@@ -161,7 +161,7 @@ const Article = () => {
         </a>
         .
       </div>
-    </PageLayout>
+    </>
   );
 };
 

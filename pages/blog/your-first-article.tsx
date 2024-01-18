@@ -12,7 +12,7 @@ import {
 const Article = () => {
   return (
     // pass blogwithsidebar as show below for article page with sidebar layout
-    <PageLayout blogwithsidebar>
+    <>
       {/* Replace the below content with your content */}
       This is a demo file for your first article, you can copy code / structure
       of this file into new file and replace content with your content to create
@@ -33,7 +33,7 @@ const Article = () => {
         .
       </div>
       {/* Replace the above content with your content */}
-    </PageLayout>
+    </>
   );
 };
 

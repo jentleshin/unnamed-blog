@@ -20,7 +20,7 @@ import {
 const Article = () => {
   return (
     // pass blogcentered as show below for article page centered layout
-    <PageLayout blog>
+    <>
       <Text p>
         This current article is made using <b>blogcentered</b> layout. This
         layout will be used to write your blog posts or articles.
@@ -148,7 +148,7 @@ const Article = () => {
         </a>
         .
       </div>
-    </PageLayout>
+    </>
   );
 };
 
