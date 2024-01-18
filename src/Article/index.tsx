@@ -34,12 +34,9 @@ export const Article = ({ value }: IProps) => {
     const Plant = PlantMap[value.preview.codeName];
     return (
       <>
-        <ArticleCard
-          article={value.preview}
-          onClick={() => {}}
-          cardType="full"
-        />
+        <ArticleCard article={value.preview} onClick={() => {}} />
         {Plant ? <Plant /> : null}
+        <div className="pb-[720px]" />
       </>
     );
   } else {

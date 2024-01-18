@@ -11,7 +11,13 @@ const CodeBlock = ({
   className?: string;
 }) => {
   return (
-    <div className={combineClasses("bg-blue-500 md:p-5 p-2", className)}>
+    <div
+      className={combineClasses(
+        `dark:bg-lime bg-organic dark:bg-opacity-[0.05] bg-opacity-[0.05]`,
+        "p-[12px] my-3",
+        className
+      )}
+    >
       <div className="shadow-lg">
         <Highlight {...defaultProps} theme={theme} code={code} language="tsx">
           {({ className, style, tokens, getLineProps, getTokenProps }) => (

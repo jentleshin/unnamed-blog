@@ -58,30 +58,20 @@ const SimpleNavbar = ({
         <div className="flex items-center">
           <Text subtitle className="items-center lg:flex hidden">
             {navLinks.map((each: iNavLink, i: any) =>
-              each.type !== "dropdown" ? (
-                !each.newTab ? (
-                  <LinkTo href={each.path} key={i} passHref className="mx-2">
-                    {each.label}
-                  </LinkTo>
-                ) : (
-                  <a
-                    href={each.path}
-                    key={each.path + 1}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="d-block mx-2 flex-wrap"
-                  >
-                    {each.label}
-                  </a>
-                )
+              !each.newTab ? (
+                <LinkTo href={each.path} key={i} passHref className="mx-2">
+                  {each.label}
+                </LinkTo>
               ) : (
-                <NavCatergoryDD
-                  key={i}
-                  label={each.label}
-                  openDD={openDD}
-                  setOpenDD={() => setOpenDD(!openDD)}
-                  floating
-                />
+                <a
+                  href={each.path}
+                  key={each.path + 1}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="d-block mx-2 flex-wrap"
+                >
+                  {each.label}
+                </a>
               )
             )}
             {/* {
@@ -128,7 +118,6 @@ const SimpleNavbar = ({
           </button>
         </div>
       </div>
-      <Seperator className="mt-6"></Seperator>
     </div>
   );
 };

@@ -33,46 +33,39 @@ const PageLayout = ({
     SEO_CONFIG = CREATE_SEO_CONFIG({ ...DEFAULT_SEO });
   }
 
-  const navRef = useRef<HTMLDivElement>(null);
-  const mainRef = useRef<HTMLDivElement>(null);
+  // const navRef = useRef<HTMLDivElement>(null);
+  // const mainRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const mainLayout = mainRef.current
-      ?.querySelector("div")
-      ?.querySelectorAll("section")?.[1];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const { isIntersecting } = entry;
-          if (navRef.current) {
-            navRef.current.style.opacity = isIntersecting ? "1" : "0";
-          }
-        });
-      },
-      {
-        rootMargin: `100000px 0px ${-window.innerHeight}px 0px`,
-        threshold: 0,
-      }
-    );
+  // useEffect(() => {
+  //   const mainLayout = mainRef.current
+  //     ?.querySelector("div")
+  //     ?.querySelectorAll("section")?.[1];
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         const { isIntersecting } = entry;
+  //         if (navRef.current) {
+  //           navRef.current.style.opacity = isIntersecting ? "1" : "0";
+  //         }
+  //       });
+  //     },
+  //     {
+  //       rootMargin: `100000px 0px ${-window.innerHeight}px 0px`,
+  //       threshold: 0,
+  //     }
+  //   );
 
-    mainLayout ? observer.observe(mainLayout) : null;
-    return () => {
-      mainLayout ? observer.unobserve(mainLayout) : null;
-    };
-  }, []);
+  //   mainLayout ? observer.observe(mainLayout) : null;
+  //   return () => {
+  //     mainLayout ? observer.unobserve(mainLayout) : null;
+  //   };
+  // }, []);
 
-  return home ? (
+  return (
     <>
       <NextSeo {...SEO_CONFIG} />
-      <Navbar ref={navRef} />
-      <HomeLayout ref={mainRef}> {children} </HomeLayout>
+      <HomeLayout>{children}</HomeLayout>
     </>
-  ) : blog ? (
-    <>
-      <NextSeo {...SEO_CONFIG} />
-      <Navbar ref={navRef} />
-      <Centered ref={mainRef}> {children} </Centered>
-    </>
-  ) : null;
+  );
 };
 export default PageLayout;

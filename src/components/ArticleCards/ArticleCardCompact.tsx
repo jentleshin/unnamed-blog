@@ -14,14 +14,20 @@ import Text from "../Text";
 import Seperator from "../Seperator";
 import { useTheme } from "next-themes";
 import { on } from "events";
+import { useEffect, useState } from "react";
 
 interface IProp {
   article: IArticleHeaderData;
   onClick?: () => void;
+  selected?: boolean;
 }
 
-const ArticleCardCompact = ({ article, onClick }: IProp) => {
+const ArticleCardCompact = ({ article, onClick, selected }: IProp) => {
   // set url and path
+  useEffect(() => {
+    console.log("selected");
+    console.log(selected);
+  }, [selected]);
   const origin =
     typeof window !== "undefined" && window.location.origin
       ? window.location.origin
@@ -43,7 +49,7 @@ const ArticleCardCompact = ({ article, onClick }: IProp) => {
         )}
         onClick={onClick}
       >
-        <div className={combineClasses("px-[30px] py-[12px]")}>
+        <div className={combineClasses("px-[12px]")}>
           {/* <Text
             subtitle
             className={combineClasses(
@@ -54,8 +60,22 @@ const ArticleCardCompact = ({ article, onClick }: IProp) => {
             {article.codeName + " ;"}
           </Text> */}
           {/* <Text token>{article.date}</Text> */}
-          <Text title>{article.articleTitle}</Text>
-          <Text p>{article.shortIntro.slice(0, 50)} ...</Text>
+          <Text
+            subtitle
+            className={combineClasses(
+              "md:text-base pb-[0px] text-ellipsis overflow-hidden whitespace-nowrap"
+            )}
+          >
+            {article.articleTitle}
+          </Text>
+          <Text
+            p
+            className={combineClasses(
+              "md:text-sm pt-[0px] opacity-80 text-ellipsis overflow-hidden whitespace-nowrap"
+            )}
+          >
+            {article.shortIntro}
+          </Text>
           {/* <ArticleTags tags={article.tags} /> */}
         </div>
         <Image
@@ -68,10 +88,10 @@ const ArticleCardCompact = ({ article, onClick }: IProp) => {
           quality={100}
           fill={true}
           loader={imgLoader}
-          sizes="50vw"
+          sizes="33vw"
           className={combineClasses(
             "object-cover",
-            "opacity-0 group-hover:opacity-80",
+            selected ? "opacity-80" : "opacity-0",
             "transition-all ease-in-out duration-500",
             "-z-10"
           )}

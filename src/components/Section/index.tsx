@@ -15,14 +15,16 @@ interface IChildProps {
 const ChildComponent = ({ child, isSticky }: IChildProps) => {
   const [contentRef, opacity] = useOpacity<HTMLDivElement>();
 
-  const className = combineClasses(
-    "transition-opacity ease-in-out duration-500",
-    opacity ? "opacity-1" : "opacity-0",
-    isSticky ? "sticky top-0 z-20" : ""
-  );
-
   return (
-    <div ref={contentRef} className={className}>
+    <div
+      ref={contentRef}
+      className={combineClasses(
+        "w-full",
+        "transition-opacity ease-in-out duration-500",
+        opacity ? "opacity-1" : "opacity-0",
+        isSticky ? "sticky top-0 z-20" : ""
+      )}
+    >
       {child}
     </div>
   );
@@ -36,7 +38,7 @@ const Section = ({ children }: IProps) => {
       {childrenArray.map((child, index) => (
         <ChildComponent key={index} child={child} isSticky={index === 0} />
       ))}
-      <div className="h-[100px]" />
+      <div className="w-full h-[120px]" />
     </section>
   );
 };

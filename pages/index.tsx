@@ -15,32 +15,30 @@ import { useRouter } from "next/router";
 import classes from "../Pages.module.scss";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import Article from "../src/Article";
-import { useOpacityObserver } from "../src/hooks/useOpacity";
 
 const Home = () => {
   const [selectArticle, setSelectArticle] = useState<string>("");
-  const viewportRef = useOpacityObserver<HTMLDivElement>(null);
   return (
     <PageLayout home PAGE_SEO={DEFAULT_SEO}>
       <ReactLenis
         className={combineClasses(
-          "flex-1",
+          "h-full w-full",
           "overflow-y-auto scroll-auto scrollbar-hide"
         )}
       >
-        <Articles onSelectArticle={setSelectArticle} />
+        <Articles
+          onSelectArticle={setSelectArticle}
+          selectArticle={selectArticle}
+        />
       </ReactLenis>
-      <div className="dark:bg-lime bg-organic w-[1px] mx-[30px]" />
-      <div ref={viewportRef} className="flex-1">
-        <ReactLenis
-          className={combineClasses(
-            "h-full w-full",
-            "overflow-y-scroll scroll-auto scrollbar-hide"
-          )}
-        >
-          {selectArticle && <Article value={ARTICLES[selectArticle]} />}
-        </ReactLenis>
-      </div>
+      <ReactLenis
+        className={combineClasses(
+          "h-full w-full",
+          "overflow-y-scroll scroll-auto scrollbar-hide"
+        )}
+      >
+        {selectArticle && <Article value={ARTICLES[selectArticle]} />}
+      </ReactLenis>
       {/* <Section
           ref={sectionRefs.onboarding}
           heading={sectionHeadings.onboarding}

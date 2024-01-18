@@ -89,13 +89,12 @@ export const PRIMARY_NAV: iNavSetup = {
   navLinks: [
     {
       // for categories don't add path and add type: dropdown and pass path empty
-      label: "Archive",
-      type: "dropdown",
-      path: "",
+      label: "People",
+      path: "/#people",
     },
     {
-      label: "Demo",
-      path: "/#demo",
+      label: "Contact",
+      path: "/#contact",
     },
   ],
   // sideNavLinks are the links which appear when you open the side menu after clicking the burger menu icon.

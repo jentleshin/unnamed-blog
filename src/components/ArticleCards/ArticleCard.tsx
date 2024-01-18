@@ -16,12 +16,11 @@ import { useTheme } from "next-themes";
 import { on } from "events";
 
 interface IProp {
-  cardType?: string;
   article: IArticleHeaderData;
   onClick?: () => void;
 }
 
-const ArticleCard = ({ cardType, article, onClick }: IProp) => {
+const ArticleCard = ({ article, onClick }: IProp) => {
   // set url and path
   const origin =
     typeof window !== "undefined" && window.location.origin
@@ -39,33 +38,26 @@ const ArticleCard = ({ cardType, article, onClick }: IProp) => {
     <>
       <div
         className={combineClasses(
-          "group relative",
-          "dark:bg-lime bg-organic dark:bg-opacity-[0.02] bg-opacity-[0.04] dark:text-lime text-organic",
+          "relative",
+          "dark:bg-lime bg-organic dark:bg-opacity-[0.05] bg-opacity-[0.05] dark:text-lime text-organic",
           "w-full h-fit",
-          "mb-[30px]",
-          "flex",
-          cardType == "full" ? "flex-col" : "flex-row-reverse"
+          "mb-[120px]",
+          "flex flex-col"
         )}
         onClick={onClick}
       >
-        {cardType == "full" && (
-          <div
-            className={combineClasses(
-              "relative",
-              cardType == "full" ? "h-[200px]" : "w-1/3 min-w-[200px]"
-            )}
-          >
-            <Image
-              src={transformImagePaths(article.thumbnail)}
-              alt={article.articleTitle}
-              quality={100}
-              fill={true}
-              loader={imgLoader}
-              sizes="50vw"
-              className={combineClasses("object-cover")}
-            />
-          </div>
-        )}
+        <div className={combineClasses("relative aspect-[16/9]")}>
+          <Image
+            src={transformImagePaths(article.thumbnail)}
+            alt={article.articleTitle}
+            quality={100}
+            fill={true}
+            loader={imgLoader}
+            sizes="50vw"
+            className={combineClasses("object-cover")}
+          />
+        </div>
+
         <div className={combineClasses("px-[30px] py-[12px]")}>
           {/* <Text
             subtitle
@@ -76,29 +68,20 @@ const ArticleCard = ({ cardType, article, onClick }: IProp) => {
           >
             {article.codeName + " ;"}
           </Text> */}
+          <Text token className="pt-0">
+            {article.date}
+          </Text>
           <Text title>{article.articleTitle}</Text>
           <Seperator className="max-w-0 transition-all ease-in-out duration-500 group-hover:max-w-16 text-left" />
-          <Text p>{article.shortIntro.slice(0, 100)} ...</Text>
-          <ArticleTags tags={article.tags} />
-          <Text token>{article.date}</Text>
+          <Text p className="pb-0">
+            {article.shortIntro.slice(0, 100)}
+          </Text>
+          {article.tags.split(",").map((each, i) => (
+            <Text token key={i} className="pt-0 mr-2 inline-block">
+              #{each.trim()}
+            </Text>
+          ))}
         </div>
-        <Image
-          src={transformImagePaths(
-            theme === THEMES.DARK
-              ? "/public/imp_assets/chizizic/dark-cover.svg"
-              : "/public/imp_assets/chizizic/cover.svg"
-          )}
-          alt={article.articleTitle}
-          quality={100}
-          fill={true}
-          loader={imgLoader}
-          sizes="50vw"
-          className={combineClasses(
-            "object-cover",
-            "opacity-0 group-hover:opacity-80",
-            "transition-all ease-in-out duration-500"
-          )}
-        />
         {/* <div
           className={combineClasses(
             classes.article_card_footer,

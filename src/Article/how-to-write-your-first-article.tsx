@@ -14,36 +14,55 @@ import { Article_Entry_inList } from "../constants/codeBlocks";
 const OakTree = () => {
   return (
     <>
-      <Text quote>
-        *note: All the files you will create or interact with are in
-      </Text>
-      <List type={ListType.disc}>
-        <li>
-          <Text p>
-            <b>BLOG_CONSTANTS folder</b> <br />
-            inside this we have our _BLOG_SETUP.tsx file where we set our
-            authors, navbar and other details and we have _ARTICLES_LIST.tsx
-            file where we maintain our article list.
-          </Text>
-        </li>
-        <li>
-          <Text p>
-            <b>blog folder</b> <br />
-            Inside this we will create out blog files or sub folders for your
-            article files like this current file is in{" "}
-            {"pages -> blog -> tutorial"}
-          </Text>
-        </li>
-        <li>
-          <Text p>
-            <b>images folder</b> <br />
-            In this we will save all our images to use in the articles, like the
-            og-image.jpg file is stored in {"public -> images"} folder.
-          </Text>
-        </li>
-      </List>
+      <Section>
+        <Text subtitle>0. File position</Text>
+        <Text quote>
+          *note: All the files you will create or interact with are in...
+        </Text>
+        <List type={ListType.disc}>
+          <li>
+            <Text p>
+              <b>BLOG_CONSTANTS folder</b> <br />
+              inside this we have our _BLOG_SETUP.tsx file where we set our
+              authors, navbar and other details and we have _ARTICLES_LIST.tsx
+              file where we maintain our article list.
+            </Text>
+          </li>
+          <li>
+            <Text p>
+              <b>blog folder</b> <br />
+              Inside this we will create out blog files or sub folders for your
+              article files like this current file is in{" "}
+              {"pages -> blog -> tutorial"}
+            </Text>
+          </li>
+          <li>
+            <Text p>
+              <b>images folder</b> <br />
+              In this we will save all our images to use in the articles, like
+              the og-image.jpg file is stored in {"public -> images"} folder.
+            </Text>
+          </li>
+        </List>
+      </Section>
       <Section>
         <Text subtitle>1. Creating the article file.</Text>
+        <Text p>
+          First create a file inside <b>blog</b> folder in <b>pages</b>{" "}
+          (/pages/blog/). You can also create a sub folder inside blog folder.
+          For SEO, the best practice is to name the file and folders in all
+          lower case seperated by hyphen <b>"-"</b> and end with <b>".tsx"</b>
+          . <br /> example: <b>"your-first-article.tsx"</b>. This will create a{" "}
+          <b>tsx</b> file.
+        </Text>
+        <Text p>
+          First create a file inside <b>blog</b> folder in <b>pages</b>{" "}
+          (/pages/blog/). You can also create a sub folder inside blog folder.
+          For SEO, the best practice is to name the file and folders in all
+          lower case seperated by hyphen <b>"-"</b> and end with <b>".tsx"</b>
+          . <br /> example: <b>"your-first-article.tsx"</b>. This will create a{" "}
+          <b>tsx</b> file.
+        </Text>
         <Text p>
           First create a file inside <b>blog</b> folder in <b>pages</b>{" "}
           (/pages/blog/). You can also create a sub folder inside blog folder.
@@ -60,7 +79,7 @@ const OakTree = () => {
           details of your article in <b>ARTICLES_LIST</b> array as follows.
         </Text>
 
-        {/* <CodeBlock code={Article_Entry_inList} className="w-[100px]" /> */}
+        <CodeBlock code={Article_Entry_inList} />
         <Text p>
           In our article details we have 4 important properties{" "}
           <b>path, featureArticle, preview, and seo</b>.
@@ -216,23 +235,22 @@ const OakTree = () => {
           </b>{" "}
           page.
         </Text>
+        <Text quote>
+          For any any queries related to this project / template feel free to
+          connect with us at <u>webexpe13@gmail.com</u>. You can also post any
+          comments on our{" "}
+          <a
+            href="https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss/discussions"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <u>
+              <i>github discussions</i>
+            </u>
+          </a>
+          .
+        </Text>
       </Section>
-
-      <div>
-        For any any queries related to this project / template feel free to
-        connect with us at <u>webexpe13@gmail.com</u>. You can also post any
-        comments on our{" "}
-        <a
-          href="https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss/discussions"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <u>
-            <i>github discussions</i>
-          </u>
-        </a>
-        .
-      </div>
     </>
   );
 };

@@ -5,9 +5,10 @@ import LinkTo from "../LinkTo";
 
 interface IProp {
   onSelectArticle: (articleId: string) => void;
+  selectArticle: string;
 }
 
-const Articles = ({ onSelectArticle }: IProp) => {
+const Articles = ({ onSelectArticle, selectArticle }: IProp) => {
   const restArticles = SORTED_ARTICLES_BY_DATE.filter(
     (article: iArticle) => !article.featureArticle
   );
@@ -21,6 +22,7 @@ const Articles = ({ onSelectArticle }: IProp) => {
                 article={each.preview}
                 key={i}
                 onClick={() => onSelectArticle(each.preview.codeName)}
+                selected={selectArticle == each.preview.codeName}
               />
               <div
                 key={`sep__${i}`}

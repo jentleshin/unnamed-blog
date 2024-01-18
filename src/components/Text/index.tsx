@@ -1,5 +1,6 @@
 import { TextAlign } from "../../shared/enums";
 import { combineClasses } from "../../utils/utils";
+import { useTheme } from "next-themes";
 
 interface IProps {
   children?: any;
@@ -37,11 +38,11 @@ const Text = ({
       ui = (
         <h1
           className={combineClasses(
-            className,
             `font-design font-bold`,
-            `text-3xl md:text-3xl`,
+            `text-4xl md:text-4xl`,
             `leading-10 md:leading-10`,
-            `py-3`
+            `py-3`,
+            className
           )}
           style={{ color: color, textAlign: textAlign }}
           id={id}
@@ -53,12 +54,12 @@ const Text = ({
       ui = (
         <h2
           className={combineClasses(
-            className,
             `font-display font-extrabold`,
             `text-2xl md:text-2xl`,
             `leading-10 md:leading-10`,
             `tracking-wider`,
-            `py-3`
+            `py-3`,
+            className
           )}
           style={{ color: color, textAlign: textAlign }}
           id={id}
@@ -100,7 +101,8 @@ const Text = ({
       ui = (
         <blockquote
           className={combineClasses(
-            `dark:bg-lime bg-organic dark:bg-opacity-[0.02] bg-opacity-[0.04]`,
+            `relative`,
+            `dark:bg-lime bg-organic dark:bg-opacity-[0.05] bg-opacity-[0.05]`,
             `font-body font-light`,
             `text-lg md:text-lg`,
             `leading-10 md:leading-10`,
@@ -112,19 +114,18 @@ const Text = ({
           style={{ color: color, textAlign: textAlign }}
           id={id}
         >
-          <q>{children}</q>
+          {children}
         </blockquote>
       );
     } else if (token) {
       ui = (
         <span
           className={combineClasses(
-            `font-display font-extrabold`,
-            `text-lg md:text-lg`,
+            `font-design font-extrabold`,
+            `text-sm md:text-sm`,
             `leading-10 md:leading-10`,
             `tracking-wider`,
             `py-3`,
-            `opacity-60`,
             `uppercase`,
             className
           )}
