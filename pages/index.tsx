@@ -1,3 +1,5 @@
+"use client";
+
 /**These are necessary imports / components for the page */
 import { PageLayout, Text, LinkTo } from "../src/components";
 import ArticleCard from "../src/components/ArticleCards/ArticleCard";
@@ -39,36 +41,6 @@ const Home = () => {
       >
         {selectArticle && <Article value={ARTICLES[selectArticle]} />}
       </ReactLenis>
-      {/* <Section
-          ref={sectionRefs.onboarding}
-          heading={sectionHeadings.onboarding}
-        >
-          <div className="w-full">
-            <img
-              src={transformImagePaths(
-                "/public/imp_assets/chizizic/sphere.svg",
-              )}
-              alt={"sphere"}
-              className="w-1/2 mx-auto object-cover"
-            />
-          </div>
-        </Section>
-        <Section ref={sectionRefs.home} heading={sectionHeadings.home}>
-          <div className="text-left">
-            <Text texttitle className="mt-6 italic md:w-1/2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </Text>
-          </div>
-        </Section>
-        <Section ref={sectionRefs.featured} heading={sectionHeadings.featured}>
-          <FeaturedArticleSection />
-        </Section> */}
-      {/* <Section ref={sectionRefs.archive} heading={sectionHeadings.archive}>
-          <HomeNonFeatureArticles />
-        </Section> */}
     </PageLayout>
   );
 };
