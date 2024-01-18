@@ -1,245 +1,233 @@
 /**These are necessary imports / components for the page */
-import { ImageSize, TextAlign, ListType } from "../shared/enums";
-import {
-  PageLayout,
-  Text,
-  List,
-  Image,
-  LinkTo,
-  Seperator,
-  Slider,
-} from "../components";
+import { ImageSize, ListType } from "../shared/enums";
+import { Text, List, Image, LinkTo, Section } from "../components";
 import CodeBlock from "../components/CodeBlock";
-import {
-  AuthorSetup,
-  NavbarSetup,
-  NavbarSetupType,
-  NavbarSetup_NAVLINKS,
-  NavbarSetup_Socials,
-} from "../constants/codeBlocks";
-
+import { Article_Entry_inList } from "../constants/codeBlocks";
 const Ivy = () => {
   return (
     <>
-      <div className="container px-3 pb-[20px] md:mt-[50px] pt-20 md:pt-0">
-        <Text title className="text-3xl">
-          Blog Setup
+      <Section>
+        <Text subtitle>0. File position</Text>
+        <Text quote>
+          *note: All the files you will create or interact with are in...
         </Text>
-        <hr className="mt-5" />
-        <Text subtitle className="mt-10">
-          1. Installing Node, VS Code and downloading the project on your
-          computer.
-        </Text>
-        <List type={ListType.disc} className="mt-5">
-          <li className="">
-            You will need <b>node js</b> installed in your computer <br />
-            You can install node via{" "}
-            <a
-              href="https://nodejs.org/en/download/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              https://nodejs.org/en/download/
-            </a>{" "}
-            or you can look up any tutorial to install node js on your computer.
+        <List type={ListType.disc}>
+          <li>
+            <Text p>
+              <b>BLOG_CONSTANTS folder</b> <br />
+              inside this we have our _BLOG_SETUP.tsx file where we set our
+              authors, navbar and other details and we have _ARTICLES_LIST.tsx
+              file where we maintain our article list.
+            </Text>
           </li>
-          <li className="">
-            Next You will need a code editor like <b>VsCode / Sublime text</b>{" "}
-            to write your blog articles. <br />I will suggest using{" "}
-            <b>
-              {" "}
+          <li>
+            <Text p>
+              <b>blog folder</b> <br />
+              Inside this we will create out blog files or sub folders for your
+              article files like this current file is in{" "}
+              {"pages -> blog -> tutorial"}
+            </Text>
+          </li>
+          <li>
+            <Text p>
+              <b>images folder</b> <br />
+              In this we will save all our images to use in the articles, like
+              the og-image.jpg file is stored in {"public -> images"} folder.
+            </Text>
+          </li>
+        </List>
+      </Section>
+      <Section>
+        <Text subtitle>1. Creating the article file.</Text>
+        <Text p>
+          First create a file inside <b>blog</b> folder in <b>pages</b>{" "}
+          (/pages/blog/). You can also create a sub folder inside blog folder.
+          For SEO, the best practice is to name the file and folders in all
+          lower case seperated by hyphen <b>"-"</b> and end with <b>".tsx"</b>
+          . <br /> example: <b>"your-first-article.tsx"</b>. This will create a{" "}
+          <b>tsx</b> file.
+        </Text>
+        <Text p>
+          First create a file inside <b>blog</b> folder in <b>pages</b>{" "}
+          (/pages/blog/). You can also create a sub folder inside blog folder.
+          For SEO, the best practice is to name the file and folders in all
+          lower case seperated by hyphen <b>"-"</b> and end with <b>".tsx"</b>
+          . <br /> example: <b>"your-first-article.tsx"</b>. This will create a{" "}
+          <b>tsx</b> file.
+        </Text>
+        <Text p>
+          First create a file inside <b>blog</b> folder in <b>pages</b>{" "}
+          (/pages/blog/). You can also create a sub folder inside blog folder.
+          For SEO, the best practice is to name the file and folders in all
+          lower case seperated by hyphen <b>"-"</b> and end with <b>".tsx"</b>
+          . <br /> example: <b>"your-first-article.tsx"</b>. This will create a{" "}
+          <b>tsx</b> file.
+        </Text>
+      </Section>
+      <Section>
+        <Text subtitle>2. Adding your article details in ARTICLES_LIST</Text>
+        <Text p>
+          Go to <b>/BLOG_CONSTANTS/_ARTICLES_LIST.tsx</b> file. Here we will add
+          details of your article in <b>ARTICLES_LIST</b> array as follows.
+        </Text>
+
+        <CodeBlock code={Article_Entry_inList} />
+        <Text p>
+          In our article details we have 4 important properties{" "}
+          <b>path, featureArticle, preview, and seo</b>.
+        </Text>
+
+        <List type={ListType.disc}>
+          <li>
+            <Text p>
+              <b>path</b>
+              <br />
+              As show in the above image, path contains the file path of our
+              article.
+              <br /> If you have{" "}
               <a
-                href="https://code.visualstudio.com/download"
+                href="https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {" "}
-                VS Code
-              </a>
-            </b>
-            .
+                Path Intellisense
+              </a>{" "}
+              installed in your VS Code, it will be ease to add path, just hit{" "}
+              <b>"/"</b> and then auto suggestions will come up, just follow the
+              auto suggestions and set the path of the article file.
+            </Text>
           </li>
+          <li>
+            <Text p>
+              <b>featureArticle</b> <br />
+              You can set it <b>true or false</b> as shown in the above image.
+              If true the article card will be of full width as shown in the
+              image below.
+            </Text>
+            <Text quote>
+              *note : adding featureArticle property is optional
+            </Text>
 
-          <li className="">
-            Download / clone the blog template from our github page to a folder
-            on your computer.
-            <a
-              href="https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss"
-              className="pl-2 font-semibold"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Image
+              src="/public/imp_assets/tutorials/feature-article-example.png"
+              alt="feature article example | webexpe.com"
+              caption="feature article exmaple"
+              size={ImageSize.DEFAULT}
+            />
+          </li>
+          <li>
+            <Text p>
+              <b>preview</b> <br />
+              This will display the details of the article in the article cards
+              on main home page and article's header on the article page
+            </Text>
+            <List type={ListType.disc}>
+              <li>
+                <Text p>
+                  <b>author</b> <br />
+                  Paste the author variable imported from _BLOG_SETUP as shown
+                  in the image.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>date : </b> <br />
+                  Write the article date in quotes i.e. as a string.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>articleTitle</b> <br />
+                  Write the article title in quotes i.e. as a string.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>tags</b> <br />
+                  Write tags and seperate with commas.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>thumbnail</b> <br />
+                  Save the image file in public-images folder and paste the
+                  image path. This will be displayed in article cards on home
+                  page. For thumpbails the recommended size is <b>540x300px</b>.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>shortIntro</b> <br />A short intro for your article that
+                  will be shown on article cards.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>category : </b>
+                  If the article in under some category, write the category
+                  name.
+                </Text>
+              </li>
+            </List>
+            <Text p>
+              Check the above image for example of check{" "}
+              /BLOG_CONSTANTS/_ARTICLES_LIST.tsx file.
+            </Text>
+          </li>
+          <li>
+            <Text p>
+              <b>seo</b> <br />
+              SEO details for your article page. As shown in the above image seo
+              contains 5 important properties{" "}
+              <b>
+                title, description, keywords, ogImage, twitterHandle, author
+              </b>
+              .
+            </Text>
+            <Text quote>
+              <b>*note : </b> <b>seo</b> is optional as we have already passed
+              <b>preview</b> we will create default seo with that but if you
+              want to pass any extra keywords or different page title,
+              description etc we can write that in <b>seo : {"{}"}</b> object.
+            </Text>
+          </li>
+        </List>
+      </Section>
+      <Section>
+        <Text subtitle>3. Writing the article.</Text>
+        <Text p>
+          Now we can go to our created file <b>your-first-article.tsx</b> and
+          write our article. To write our article we will use different
+          components as shown in
+          <b>
+            <LinkTo
+              href="/pages/tutorial/blog-with-sidebar-layout.tsx"
+              passHref
             >
-              https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss
-            </a>
-            <br />
-            If you are using Git you can clone the code or click the{" "}
-            <b>use template</b> button to generate your own repo.
-            <Image
-              className="mt-3"
-              src="/public/imp_assets/tutorials/download-code.png"
-              alt="nextjs-simple-blog-template"
-              size={ImageSize.DEFAULT}
-            />
-          </li>
-          <li className="">
-            Open the blog project in VS code. <br /> Open terminal in VS code
-            using ther <b>Terminal button</b> on tool bar of the VS Code window
-            or press <b>ctrl + ~</b> or <b>cmd + ~</b>.
-          </li>
-          <li className="mb-20">
-            In Terminal run <b>npm install</b>. This will install all the
-            required packages.
-            <Image
-              className="my-4"
-              src="/public/imp_assets/tutorials/project-install.png"
-              alt="nextjs-simple-blog-template"
-              size={ImageSize.DEFAULT}
-            />
-            After the installation is done run <b>npm start</b> in the terminal,
-            it will start your project on http://localhost:3000/.
-            <br />
-            If you are facing any difficulty, write a comment on our discussion
-            board{" "}
-            <b>
-              <i>
-                <a
-                  href="https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss/discussions/6"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  LINK
-                </a>
-              </i>
-            </b>
-            <br />
-            or write to us at{" "}
-            <a href="mailto:webexpe13@gmail.com">webexpe13@gmail.com</a>
-          </li>
-          <li className="mb-20">
-            If everything goes well you will see a demo blog with few demo
-            articles which will walk you through simple tutorials on how to use
-            layouts and different components to write articles.
-          </li>
-        </List>
-        <Seperator dots />
-        <Text subtitle className="mt-10">
-          2. Setting up authors.
+              {" "}
+              Blog with sidebar layout
+            </LinkTo>
+          </b>{" "}
+          or{" "}
+          <b>
+            <LinkTo
+              href="/pages/tutorial/blog-with-centered-layout.tsx"
+              passHref
+            >
+              {" "}
+              Blog with centered layout
+            </LinkTo>
+          </b>{" "}
+          example. You can also checkout all the available components to write
+          your article in{" "}
+          <b>
+            <LinkTo href="/pages/tutorial/all-components.tsx" passHref>
+              All Components Demo
+            </LinkTo>
+          </b>{" "}
+          page.
         </Text>
-        <Text p>
-          Before we start writing articles we need to setup authors and navbar
-          so that it can be used throughtout the application.
-        </Text>
-        <Text p>
-          Goto <b>_BLOG_SETUP.tsx</b> in <b>BLOG_CONSTANTS</b> folder. Here you
-          will see some example authors you can refer. <br />
-          The <b>export const</b> is used to make the item/variable available
-          throughtout the project. <br />
-          You can add as many authors you want just make sure you keep the
-          format as shown.
-        </Text>
-        <CodeBlock code={AuthorSetup} className="my-5" />
-        <Seperator />
-        <Text subtitle className="mt-10">
-          3. Setting up Main Navbar and Side Nav.
-        </Text>
-        <Text p>
-          Goto <b>_BLOG_SETUP.tsx</b> file in <b>BLOG_CONSTANTS</b> folder. Here
-          you will see example to setup your navbar. <br />
-          We have 5 important items to set in navbar setup,{" "}
-          <b>type, logo, navLinks, sideNavLinks, socials</b>
-        </Text>
-        <CodeBlock code={NavbarSetup} className="my-5" />
-        <List type={ListType.disc} className="mt-5">
-          <li>
-            <b>type</b>
-            <br />
-            We have two types,{" "}
-            <span className="bg-grey font-black">
-              NavbarType.DEFAULT | NavbarType.CENTERED
-            </span>
-            <CodeBlock code={NavbarSetupType} className="my-5" />
-          </li>
-          <li>
-            <b>logo</b>
-            <br />
-            You can pass image or text as logo, max logo image height 40px. Save
-            the logo file in {"public -> images"} folder and paste the path as
-            shown below <br />
-            If the logo is text : <b> type: LogoType.Text</b> <br />
-            If the logo is image : <b> type: LogoType.IMAGE</b> <br />
-            <CodeBlock
-              code={`
-    export const PRIMARY_NAV = {
-        ...
-        logo: {
-            type: LogoType.IMAGE,
-            logo: '/images/logo.png',
-            logoLight: '/images/logoLight.png'
-        }
-        ...
-    }
-    // or
-    export const PRIMARY_NAV = {
-        ...
-        logo: {
-            type: LogoType.TEXT,
-            logo: 'Next Blog',
-        }
-        ...
-    }
-    `}
-              className="my-5"
-            />
-          </li>
-          <li>
-            <b>navLinks</b>
-            <br />
-            These are the main nav links. The given code block shows hows to
-            setup primary links for your navbar.
-            <CodeBlock code={NavbarSetup_NAVLINKS} className="my-5" />
-          </li>
-          <li>
-            <b>sideNavLinks</b>
-            <br />
-            These are the links that will be visible on the side menu. please
-            make sure you are following the example format which is same as the
-            above image. <br />
-            <br />
-            <b>
-              * note: you can see some extra links like{" "}
-              <b>Icons and some Demo Article links</b> these are only visible
-              during development or when you run the project locally on your
-              computer.
-            </b>
-            <br />
-            <br />
-            These are pages with icons and examples of how to use them. <br />
-            These pages also include sample blog articles and the smaple
-            components and how to use it. Open the demo article files in your
-            code editor and you can see how many components are used with porper
-            explanations.
-          </li>
-          <li>
-            <b>socials</b>
-            <br />
-            These are for your social media links. The given code block shows
-            hows to setup social media links for your navbar. <br />
-            You can get the icons from{" "}
-            <b>
-              <LinkTo href="/pages/tutorial/icons.tsx" passHref={true}>
-                Icons
-              </LinkTo>
-            </b>
-            <CodeBlock code={NavbarSetup_Socials} className="my-5" />
-          </li>
-        </List>
-        <Seperator />
-        <Text p>
-          And thats it, you are ready with the basic setup required to kick
-          start your blog.
-        </Text>
-
-        <div className="px-4 py-3 dark:bg-slate-800 bg-blue-200 rounded mt-10 !text-lg leading-relaxed ">
+        <Text quote>
           For any any queries related to this project / template feel free to
           connect with us at <u>webexpe13@gmail.com</u>. You can also post any
           comments on our{" "}
@@ -253,8 +241,8 @@ const Ivy = () => {
             </u>
           </a>
           .
-        </div>
-      </div>
+        </Text>
+      </Section>
     </>
   );
 };

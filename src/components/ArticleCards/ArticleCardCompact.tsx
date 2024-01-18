@@ -8,9 +8,8 @@ import {
 import { LogoType, THEMES } from "../../shared/enums";
 import Avatar from "../Misc/Avatar";
 import ArticleCardCompactCategory from "../Misc/ArticleCardCategory";
-import ArticleTags from "../Misc/ArticleTags";
 import Image from "next/image";
-import Text from "../Text";
+import Display from "../Text/Display";
 import Seperator from "../Seperator";
 import { useTheme } from "next-themes";
 import { on } from "events";
@@ -45,8 +44,8 @@ const ArticleCardCompact = ({ article, onClick, selected }: IProp) => {
         )}
         onClick={onClick}
       >
-        <div className={combineClasses("px-[12px]")}>
-          {/* <Text
+        <div className={combineClasses("p-[12px]")}>
+          {/* <Display
             subtitle
             className={combineClasses(
               classes.featured_article__code,
@@ -54,24 +53,12 @@ const ArticleCardCompact = ({ article, onClick, selected }: IProp) => {
             )}
           >
             {article.codeName + " ;"}
-          </Text> */}
-          {/* <Text token>{article.date}</Text> */}
-          <Text
-            subtitle
-            className={combineClasses(
-              "md:text-base pb-[0px] text-ellipsis overflow-hidden whitespace-nowrap"
-            )}
-          >
-            {article.articleTitle}
-          </Text>
-          <Text
-            p
-            className={combineClasses(
-              "md:text-sm pt-[0px] opacity-80 text-ellipsis overflow-hidden whitespace-nowrap"
-            )}
-          >
-            {article.shortIntro}
-          </Text>
+          </Display> */}
+          <Display token>{article.date}</Display>
+
+          <Display subtitle>{article.articleTitle}</Display>
+          <Display p>{article.shortIntro}</Display>
+
           {/* <ArticleTags tags={article.tags} /> */}
         </div>
         <Image

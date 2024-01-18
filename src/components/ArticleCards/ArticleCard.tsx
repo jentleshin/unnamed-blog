@@ -8,9 +8,9 @@ import {
 import { LogoType, THEMES } from "../../shared/enums";
 import Avatar from "../Misc/Avatar";
 import ArticleCardCategory from "../Misc/ArticleCardCategory";
-import ArticleTags from "../Misc/ArticleTags";
 import Image from "next/image";
-import Text from "../Text";
+import Display from "../Text/Display";
+import Text from "../Text/Text";
 import Seperator from "../Seperator";
 import { useTheme } from "next-themes";
 import { on } from "events";
@@ -39,7 +39,6 @@ const ArticleCard = ({ article, onClick }: IProp) => {
       <div
         className={combineClasses(
           "relative",
-          "dark:bg-lime bg-organic dark:bg-opacity-[0.05] bg-opacity-[0.05] dark:text-lime text-organic",
           "w-full h-fit",
           "mb-[120px]",
           "flex flex-col"
@@ -58,57 +57,21 @@ const ArticleCard = ({ article, onClick }: IProp) => {
           />
         </div>
 
-        <div className={combineClasses("px-[30px] py-[12px]")}>
-          {/* <Text
-            subtitle
-            className={combineClasses(
-              classes.featured_article__code,
-              "pt-0 pb-0 -mb-2"
-            )}
-          >
-            {article.codeName + " ;"}
-          </Text> */}
-          <Text token className="pt-0">
-            {article.date}
-          </Text>
-          <Text title>{article.articleTitle}</Text>
-          <Seperator className="max-w-0 transition-all ease-in-out duration-500 group-hover:max-w-16 text-left" />
-          <Text p className="pb-0">
-            {article.shortIntro.slice(0, 100)}
-          </Text>
-          {article.tags.split(",").map((each, i) => (
-            <Text token key={i} className="pt-0 mr-2 inline-block">
-              #{each.trim()}
-            </Text>
-          ))}
+        <div>
+          <Display token>{article.date}</Display>
+          <Display title className={combineClasses("pt-0 pb-0 -mb-2")}>
+            {article.codeName} ;
+          </Display>
+          <Display title>{article.articleTitle}</Display>
+          <Display p>{article.shortIntro.slice(0, 100)}</Display>
+          <div className="flex flex-row -mt-3">
+            {article.tags.split(",").map((each, i) => (
+              <Display token key={i} className="mr-2">
+                #{each.trim()}
+              </Display>
+            ))}
+          </div>
         </div>
-        {/* <div
-          className={combineClasses(
-            classes.article_card_footer,
-            "mt-4 mb-3 flex items-center px-3"
-          )}
-        > */}
-        {/* <div className={"flex items-center"}>
-            <Avatar
-              author={article.author}
-              className="w-[40px] h-[40px] mr-3 text-xl"
-            />
-            <LinkTo
-              href={"/blog?author=" + article.author.name}
-              passHref
-              className={combineClasses(
-                classes.author_name,
-                "text-sm font-medium"
-              )}
-            >
-              {article.author.name}
-            </LinkTo> */}
-        {/* <p className={combineClasses(classes.author_name, 'text-sm font-medium')}>
-              {article.author.name}
-            </p> */}
-        {/* </div>
-          <ArticleCardCategory category={article.category} /> */}
-        {/* </div> */}
       </div>
     </>
   );

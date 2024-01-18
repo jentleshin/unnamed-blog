@@ -1,14 +1,6 @@
 /**These are necessary imports / components for the page */
-import { ImageSize, TextAlign, ListType } from "../shared/enums";
-import {
-  Text,
-  List,
-  Image,
-  LinkTo,
-  Seperator,
-  Slider,
-  Section,
-} from "../components";
+import { ImageSize, ListType } from "../shared/enums";
+import { Text, List, Image, LinkTo, Section } from "../components";
 import CodeBlock from "../components/CodeBlock";
 import { Article_Entry_inList } from "../constants/codeBlocks";
 const OakTree = () => {

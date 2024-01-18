@@ -1,416 +1,249 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import {
-  Text,
-  LinkTo,
-  Slider,
-  Seperator,
-  Image,
-  List,
-  Accordian,
-  VideoPlayer,
-} from "../components";
-import { ListType, ImageSize } from "../shared/enums";
-import { combineClasses } from "../utils/utils";
+/**These are necessary imports / components for the page */
+import { ImageSize, ListType } from "../shared/enums";
+import { Text, List, Image, LinkTo, Section } from "../components";
 import CodeBlock from "../components/CodeBlock";
-import {
-  HowToUseList,
-  HowToUseSeperator,
-  HowToUsePageLayout,
-  HowToUseImageCode,
-  HowToUseTextCode,
-  HowToUseLinkTo,
-  HowToUseSlider,
-  HowToUseAccordian,
-  HowToUseVideo,
-} from "../constants/codeBlocks";
-
-interface iSideBtnLinks {
-  component: string;
-  types?: {
-    label: string;
-    href: string;
-  }[];
-  href?: string;
-}
-
+import { Article_Entry_inList } from "../constants/codeBlocks";
 const Potato = () => {
-  const router = useRouter();
-  const routerIncludesHash = router.asPath.includes("#");
-  const [activeHash, setActiveHash] = useState("");
-  const cardBBorder =
-    "border-b-[8px] border-blue-500 bg-white dark:bg-slate-800 shadow-md md:rounded-lg px-3 pb-2 pt-1 mb-8";
-
-  useEffect(() => {
-    if (routerIncludesHash) {
-      const split = router.asPath.split("#");
-      setActiveHash(split[split.length - 1]);
-    }
-  }, [router]);
-
-  const isActive = (href: string) => href === "#" + activeHash;
-
-  // all side btn links
-  const sideBtns: iSideBtnLinks[] = [
-    {
-      component: "Page Layouts",
-      href: "#pageLayouts",
-    },
-    {
-      component: "Text",
-      href: "#text",
-    },
-    {
-      component: "Image",
-      href: "#image",
-    },
-    {
-      component: "List",
-      href: "#list",
-    },
-    {
-      component: "Section seperator",
-      href: "#seperator",
-    },
-    {
-      component: "LinkTo",
-      href: "#linkto",
-    },
-    {
-      component: "Image Slider",
-      href: "#imageslider",
-    },
-    {
-      component: "Accordian",
-      href: "#accordian",
-    },
-    {
-      component: "Video Player",
-      href: "#videoPlayer",
-    },
-  ];
-
-  const sideBtnsComponents = () => {
-    return sideBtns.map((each: any, i: any) => (
-      <div key={each.component + i}>
-        {each.types ? (
-          <p className="text-xl font-semibold mb-3">{each.component}</p>
-        ) : (
-          <LinkTo
-            href={each.href}
-            key={each.href}
-            className={combineClasses(
-              "md:text-xl text-md font-semibold mb-3 block whitespace-nowrap md:mr-0 mr-5",
-              isActive(each.href) && "text-blue-500"
-            )}
-          >
-            {each.component}
-          </LinkTo>
-        )}
-        <div className="mb-3">
-          {each.types &&
-            each.types.map((each: any) => (
-              <LinkTo
-                href={each.href}
-                key={each.href}
-                className={combineClasses(
-                  "block text-gray-500 font-medium py-1 pl-3 border-l",
-                  isActive(each.href) &&
-                    "text-blue-500 border-blue-500 border-l-2"
-                )}
-              >
-                {each.label}
-              </LinkTo>
-            ))}
-        </div>
-      </div>
-    ));
-  };
-
   return (
-    <section className="container md:pt-10 pt-20 px-0 md:px-[15px]">
-      <div className="md:px-0 px-3">
-        <Text title className="text-blue-600">
-          All Components
+    <>
+      <Section>
+        <Text subtitle>0. File position</Text>
+        <Text quote>
+          *note: All the files you will create or interact with are in...
         </Text>
-        <hr className="my-5" />
-        <Text subtitle>
-          List of all components, its types and how to use it.
-        </Text>
-      </div>
-
-      <div className="flex md:flex-nowrap flex-wrap relative items-start mt-8">
-        {/* side btns */}
-        <aside className="md:w-1/5 w-full md:sticky md:top-[90px] ">
-          <div className="md:rounded-lg md:p-3 md:block px-2 py-3 md:pb-0 bg-white dark:bg-slate-800 shadow-md mb-5 flex overflow-auto">
-            {sideBtnsComponents()}
-            <LinkTo
-              href="/pages/tutorial/style-guide.tsx"
-              className="md:hidden block whitespace-nowrap font-semibold"
-            >
-              Style Guide
-            </LinkTo>
-          </div>
-          <div className="md:rounded-lg md:p-3 bg-white dark:bg-slate-800 shadow-md overflow-auto md:text-xl text-md font-semibold whitespace-nowrap md:block hidden">
-            <LinkTo href="/pages/tutorial/style-guide.tsx">Style Guide</LinkTo>
-          </div>
-        </aside>
-
-        {/* components */}
-        <aside className="md:w-4/5 w-full md:px-[15px]">
-          <section className={cardBBorder} id="pageLayouts">
-            <Text
-              subtitle
-              className="mb-5 pb-3 border-b md:!text-3xl font-bold"
-            >
-              Page Layouts.
-            </Text>
-            We have 3 page layouts{" "}
-            <u>
-              <LinkTo href="/pages/tutorial/home-layout.tsx">Home</LinkTo>
-            </u>
-            ,{" "}
-            <u>
-              <LinkTo href="/pages/tutorial/blog-with-sidebar-layout.tsx">
-                Blog with sidebar
-              </LinkTo>
-            </u>{" "}
-            and{" "}
-            <u>
-              <LinkTo href="/pages/tutorial/blog-with-centered-layout.tsx">
-                Blog centered
-              </LinkTo>
-            </u>
-            . <br />
-            <b>How to use</b>
-            <CodeBlock code={HowToUsePageLayout} />
-          </section>
-
-          <section className={cardBBorder} id="text">
-            <Text
-              subtitle
-              className="mb-5 pb-3 border-b md:!text-3xl font-bold"
-            >
-              Text
-            </Text>
-            Text is used to write Paragraphs, Title, Sub title or Quotes in the
-            article. <br />
-            <br />
-            <b>Demo</b>
-            <Text p>p.Paragraph Example.</Text>
-            <Text title className="inline">
-              h1.Title Example.
-            </Text>
-            <Text subtitle>h2.Subtitle example.</Text>
-            <Text quote>Quoted text example.</Text>
+        <List type={ListType.disc}>
+          <li>
             <Text p>
-              <b>Note:</b> By default we have some standard styles applied to
-              the Text component, so if you need to override like text size,
-              weight you can do as follows: <br />{" "}
-              <b>
-                {
-                  '<Text p className="!text-[20px] !font-bold">Overide text size and weight</Text>'
-                }
-              </b>{" "}
-              <br /> by adding <b>!</b> in front of the classes we can change
-              the default styles like here font size will be changed to 22px and
-              font weight will change to bold for paragraph{" "}
-            </Text>{" "}
-            <br />
-            <b>How to use</b>
-            <CodeBlock code={HowToUseTextCode} className="my-5" />
-            you can find more tailwind font classes on the official docs{" "}
-            <LinkTo
-              href="https://tailwindcss.com/docs/font-size"
-              className="underline"
-              external
-            >
-              here
-            </LinkTo>
-            .
-          </section>
-
-          <section className={cardBBorder} id="image">
-            <Text
-              subtitle
-              className="mb-5 pb-3 border-b md:!text-3xl font-bold"
-            >
-              Image
+              <b>BLOG_CONSTANTS folder</b> <br />
+              inside this we have our _BLOG_SETUP.tsx file where we set our
+              authors, navbar and other details and we have _ARTICLES_LIST.tsx
+              file where we maintain our article list.
             </Text>
-            To add image in your project, first save the image file in{" "}
-            <b>{`public --> images`}</b> folder and then add the image path in
-            image tag's src. For demo check <b>/pages/all-components.tsx</b>{" "}
-            file in code. <br />
-            <br />
-            <b>Demo</b>
-            <div className="flex flex-wrap">
-              <Image
-                src="/public/imp_assets/tutorials/demo-image.jpg"
-                alt="how to use Image | webexpe.com"
-                caption="Default size image with caption"
-                className="my-5"
-              />
-              <Image
-                src="/public/imp_assets/tutorials/demo-image.jpg"
-                alt="how to use Image | webexpe.com"
-                caption="Full size image with caption"
-                size={ImageSize.FUll}
-                className="mb-5"
-              />
-              <Image
-                src="/public/imp_assets/tutorials/demo-image.jpg"
-                alt="how to use Image | webexpe.com"
-                caption="Medium size image with caption"
-                size={ImageSize.MEDIUM}
-                className="mb-5"
-              />
-              <Image
-                src="/public/imp_assets/tutorials/demo-image.jpg"
-                alt="how to use Image | webexpe.com"
-                caption="Small size image with caption"
-                size={ImageSize.SMALL}
-                className="mb-5"
-              />
-              <Image
-                src="/public/imp_assets/tutorials/demo-image.jpg"
-                alt="how to use Image | webexpe.com"
-                caption="XS size image with caption"
-                size={ImageSize.XS}
-                className="mb-5"
-              />
-            </div>
-            <b>How to use</b>
-            <CodeBlock code={HowToUseImageCode} className="my-5" />
-          </section>
-
-          <section className={cardBBorder} id="list">
-            <Text
-              subtitle
-              className="mb-5 pb-3 border-b md:!text-3xl font-bold"
-            >
-              List
+          </li>
+          <li>
+            <Text p>
+              <b>blog folder</b> <br />
+              Inside this we will create out blog files or sub folders for your
+              article files like this current file is in{" "}
+              {"pages -> blog -> tutorial"}
             </Text>
-            <b>Demo</b>
-            <div className="flex flex-wrap justify-between mt-3">
-              <List type={ListType.disc} className="md:w-1/3">
-                <li>List with disc</li>
-                <li>Item </li>
-                <li>Item </li>
-              </List>
-              <List type={ListType.number} className="md:w-1/3">
-                <li>List with number</li>
-                <li>Item </li>
-                <li>Item </li>
-              </List>
-              <List type={ListType.none} className="md:w-1/3">
-                <li>List without any marker</li>
-                <li>Item </li>
-                <li>Item </li>
-              </List>
-            </div>
-            <b>How to use</b>
-            <CodeBlock code={HowToUseList} className="my-5" />
-          </section>
-
-          <section className={cardBBorder} id="seperator">
-            <Text
-              subtitle
-              className="mb-5 pb-3 border-b md:!text-3xl font-bold"
-            >
-              Section Seperators
+          </li>
+          <li>
+            <Text p>
+              <b>images folder</b> <br />
+              In this we will save all our images to use in the articles, like
+              the og-image.jpg file is stored in {"public -> images"} folder.
             </Text>
-            <b>{"<Seperator dots/>"}</b> or <b>{"<Seperator line />"}</b> these
-            are used to add a section divider as shown below. <br /> <br />
-            <b>Demo</b>
-            <Seperator dots />
-            <Seperator line />
-            <b>How to use</b>
-            <CodeBlock code={HowToUseSeperator} className="my-5" />
-          </section>
+          </li>
+        </List>
+      </Section>
+      <Section>
+        <Text subtitle>1. Creating the article file.</Text>
+        <Text p>
+          First create a file inside <b>blog</b> folder in <b>pages</b>{" "}
+          (/pages/blog/). You can also create a sub folder inside blog folder.
+          For SEO, the best practice is to name the file and folders in all
+          lower case seperated by hyphen <b>"-"</b> and end with <b>".tsx"</b>
+          . <br /> example: <b>"your-first-article.tsx"</b>. This will create a{" "}
+          <b>tsx</b> file.
+        </Text>
+        <Text p>
+          First create a file inside <b>blog</b> folder in <b>pages</b>{" "}
+          (/pages/blog/). You can also create a sub folder inside blog folder.
+          For SEO, the best practice is to name the file and folders in all
+          lower case seperated by hyphen <b>"-"</b> and end with <b>".tsx"</b>
+          . <br /> example: <b>"your-first-article.tsx"</b>. This will create a{" "}
+          <b>tsx</b> file.
+        </Text>
+        <Text p>
+          First create a file inside <b>blog</b> folder in <b>pages</b>{" "}
+          (/pages/blog/). You can also create a sub folder inside blog folder.
+          For SEO, the best practice is to name the file and folders in all
+          lower case seperated by hyphen <b>"-"</b> and end with <b>".tsx"</b>
+          . <br /> example: <b>"your-first-article.tsx"</b>. This will create a{" "}
+          <b>tsx</b> file.
+        </Text>
+      </Section>
+      <Section>
+        <Text subtitle>2. Adding your article details in ARTICLES_LIST</Text>
+        <Text p>
+          Go to <b>/BLOG_CONSTANTS/_ARTICLES_LIST.tsx</b> file. Here we will add
+          details of your article in <b>ARTICLES_LIST</b> array as follows.
+        </Text>
 
-          <section className={cardBBorder} id="linkto">
-            <Text
-              subtitle
-              className="mb-5 pb-3 border-b md:!text-3xl font-bold"
-            >
-              LinkTo
-            </Text>
-            <b>{'<LinkTo href="url" />'}</b> <br />
-            This is used to link between your blog pages or external pages.
-            <br /> <br />
-            <b>How to use</b>
-            <CodeBlock code={HowToUseLinkTo} className="my-5" />
-          </section>
+        <CodeBlock code={Article_Entry_inList} />
+        <Text p>
+          In our article details we have 4 important properties{" "}
+          <b>path, featureArticle, preview, and seo</b>.
+        </Text>
 
-          <section className={cardBBorder} id="imageslider">
-            <Text
-              subtitle
-              className="mb-5 pb-3 border-b md:!text-3xl font-bold"
-            >
-              Image Slider
-            </Text>
-            <b>Demo</b>
-            <Slider
-              className="mb-5"
-              images={[
-                "/public/imp_assets/tutorials/demo-image.jpg",
-                "/public/imp_assets/tutorials/demo-image.jpg",
-                "/public/imp_assets/tutorials/demo-image.jpg",
-                "/public/imp_assets/tutorials/demo-image.jpg",
-              ]}
-            />
-            <b>How to use</b>
-            <CodeBlock code={HowToUseSlider} className="my-5" />
-          </section>
-
-          <section className={cardBBorder} id="accordian">
-            <Text
-              subtitle
-              className="mb-5 pb-3 border-b md:!text-3xl font-bold"
-            >
-              Accordian
-            </Text>
-            <b>Demo</b>
-            <Accordian title="Accordian Title" keepOpen>
-              Accordian content
-            </Accordian>
-            <b>How to use</b>
-            <CodeBlock code={HowToUseAccordian} className="mb-5 mt-3" />
-          </section>
-
-          <section className={cardBBorder} id="videoPlayer">
-            <Text
-              subtitle
-              className="mb-5 pb-3 border-b md:!text-3xl font-bold"
-            >
-              Video Player
-            </Text>
-            <b>Demo</b>
-            <VideoPlayer url="/public/videos/mov_bbb.mp4" />
-            <b>How to use</b>
-            <CodeBlock code={HowToUseVideo} className="mb-5 mt-3" />
-          </section>
-
-          <div className="px-4 py-3 dark:bg-slate-800 bg-blue-200 rounded my-5">
-            <Text p className="!text-lg leading-relaxed mb-0">
-              For any any queries related to this project / template feel free
-              to connect with us at <u>webexpe13@gmail.com</u>. You can also
-              post any comments on our{" "}
+        <List type={ListType.disc}>
+          <li>
+            <Text p>
+              <b>path</b>
+              <br />
+              As show in the above image, path contains the file path of our
+              article.
+              <br /> If you have{" "}
               <a
-                href="https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss/discussions"
+                href="https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <u>
-                  <i>github discussions</i>
-                </u>
-              </a>
+                Path Intellisense
+              </a>{" "}
+              installed in your VS Code, it will be ease to add path, just hit{" "}
+              <b>"/"</b> and then auto suggestions will come up, just follow the
+              auto suggestions and set the path of the article file.
+            </Text>
+          </li>
+          <li>
+            <Text p>
+              <b>featureArticle</b> <br />
+              You can set it <b>true or false</b> as shown in the above image.
+              If true the article card will be of full width as shown in the
+              image below.
+            </Text>
+            <Text quote>
+              *note : adding featureArticle property is optional
+            </Text>
+
+            <Image
+              src="/public/imp_assets/tutorials/feature-article-example.png"
+              alt="feature article example | webexpe.com"
+              caption="feature article exmaple"
+              size={ImageSize.DEFAULT}
+            />
+          </li>
+          <li>
+            <Text p>
+              <b>preview</b> <br />
+              This will display the details of the article in the article cards
+              on main home page and article's header on the article page
+            </Text>
+            <List type={ListType.disc}>
+              <li>
+                <Text p>
+                  <b>author</b> <br />
+                  Paste the author variable imported from _BLOG_SETUP as shown
+                  in the image.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>date : </b> <br />
+                  Write the article date in quotes i.e. as a string.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>articleTitle</b> <br />
+                  Write the article title in quotes i.e. as a string.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>tags</b> <br />
+                  Write tags and seperate with commas.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>thumbnail</b> <br />
+                  Save the image file in public-images folder and paste the
+                  image path. This will be displayed in article cards on home
+                  page. For thumpbails the recommended size is <b>540x300px</b>.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>shortIntro</b> <br />A short intro for your article that
+                  will be shown on article cards.
+                </Text>
+              </li>
+              <li>
+                <Text p>
+                  <b>category : </b>
+                  If the article in under some category, write the category
+                  name.
+                </Text>
+              </li>
+            </List>
+            <Text p>
+              Check the above image for example of check{" "}
+              /BLOG_CONSTANTS/_ARTICLES_LIST.tsx file.
+            </Text>
+          </li>
+          <li>
+            <Text p>
+              <b>seo</b> <br />
+              SEO details for your article page. As shown in the above image seo
+              contains 5 important properties{" "}
+              <b>
+                title, description, keywords, ogImage, twitterHandle, author
+              </b>
               .
             </Text>
-          </div>
-        </aside>
-      </div>
-    </section>
+            <Text quote>
+              <b>*note : </b> <b>seo</b> is optional as we have already passed
+              <b>preview</b> we will create default seo with that but if you
+              want to pass any extra keywords or different page title,
+              description etc we can write that in <b>seo : {"{}"}</b> object.
+            </Text>
+          </li>
+        </List>
+      </Section>
+      <Section>
+        <Text subtitle>3. Writing the article.</Text>
+        <Text p>
+          Now we can go to our created file <b>your-first-article.tsx</b> and
+          write our article. To write our article we will use different
+          components as shown in
+          <b>
+            <LinkTo
+              href="/pages/tutorial/blog-with-sidebar-layout.tsx"
+              passHref
+            >
+              {" "}
+              Blog with sidebar layout
+            </LinkTo>
+          </b>{" "}
+          or{" "}
+          <b>
+            <LinkTo
+              href="/pages/tutorial/blog-with-centered-layout.tsx"
+              passHref
+            >
+              {" "}
+              Blog with centered layout
+            </LinkTo>
+          </b>{" "}
+          example. You can also checkout all the available components to write
+          your article in{" "}
+          <b>
+            <LinkTo href="/pages/tutorial/all-components.tsx" passHref>
+              All Components Demo
+            </LinkTo>
+          </b>{" "}
+          page.
+        </Text>
+        <Text quote>
+          For any any queries related to this project / template feel free to
+          connect with us at <u>webexpe13@gmail.com</u>. You can also post any
+          comments on our{" "}
+          <a
+            href="https://github.com/webexpe13/blog-template-using-nextjs-typescript-tailwindcss/discussions"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <u>
+              <i>github discussions</i>
+            </u>
+          </a>
+          .
+        </Text>
+      </Section>
+    </>
   );
 };
 

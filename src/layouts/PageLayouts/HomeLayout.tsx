@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Home from "../../../pages";
 import { combineClasses } from "../../utils/utils";
 import { useOpacityObserver } from "../../hooks/useOpacity";
-import Text from "../../components/Text";
+import { Display } from "../../components";
 import Navbar from "../../components/Navbar";
 interface IProps {
   children?: any;
@@ -27,17 +27,17 @@ const HomeLayout = React.forwardRef<HTMLDivElement, IProps>(
           <div className="col-span-3 dark:bg-lime bg-organic h-[0.5px]"></div>
           <div className="col-span-3 flex items-center">
             <Navbar />
-            {/* <Text title className="uppercase">
+            {/* <Display title className="uppercase">
               The Greenery/AI Company
-            </Text> */}
+            </Display> */}
           </div>
           <div className="col-span-3 dark:bg-lime bg-organic h-[0.5px] mb-[24px]"></div>
           <div className={combineClasses("pr-[24px]")}>
-            <Text token>List</Text>
+            <Display token>List</Display>
           </div>
           <div className="row-span-2 dark:bg-lime bg-organic w-[0.5px]"></div>
           <div className={combineClasses("pl-[24px]")}>
-            <Text token>Content</Text>
+            <Display token>Content</Display>
           </div>
 
           <div

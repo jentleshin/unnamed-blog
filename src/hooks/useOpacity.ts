@@ -28,7 +28,6 @@ export const useOpacityObserver = <T extends HTMLElement>(
     }
     return () => {
       sharedObserver = null;
-      console.log("useOpacityObserver unmounted");
     };
   }, [viewportRef]);
   return viewportRef;
@@ -52,7 +51,6 @@ export const useOpacity = <T extends HTMLElement>(): [
       return () => {
         sharedObserver?.unobserve(content);
         content.removeEventListener("intersectChange", handleVisibilityChange);
-        console.log("useOpacity unmounted");
       };
     }
   }, [contentRef, sharedObserver]);

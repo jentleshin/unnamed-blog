@@ -33,29 +33,6 @@ export const combineRefs =
   };
 
 /**
- * Changes Dark / Light Theme
- */
-// export const changeTheme = (): void => {
-//   const lsTheme = localStorage.getItem("theme");
-//   localStorage.setItem(
-//     "theme",
-//     lsTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT
-//   );
-
-//   if (
-//     localStorage.theme === "dark" ||
-//     (!("theme" in localStorage) &&
-//       window.matchMedia("(prefers-color-scheme: dark)").matches)
-//   ) {
-//     document.documentElement.classList.add("dark");
-//   } else {
-//     document.documentElement.classList.remove("dark");
-//   }
-
-//   location.reload();
-// };
-
-/**
  * Returns Device Type tablet , mobile, desktop
  * @returns string
  */
@@ -66,7 +43,7 @@ export const getDeviceType = (): string => {
   }
   if (
     /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
-      ua,
+      ua
     )
   ) {
     return "mobile";

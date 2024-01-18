@@ -3,9 +3,9 @@ import {
   Text,
   LinkTo,
   Slider,
-  Seperator,
   Image,
   List,
+  Section,
 } from "../components";
 import { ListType, ImageSize, TextAlign } from "../shared/enums";
 import { combineClasses } from "../utils/utils";
@@ -13,11 +13,9 @@ import { combineClasses } from "../utils/utils";
 const Lily = () => {
   return (
     <>
-      <section className="container md:pt-10 pt-20">
-        <Text title className="text-blue-600">
-          Style Guide
-        </Text>
-        <div className="px-4 py-3 dark:bg-slate-800 bg-blue-200 rounded my-5">
+      <Section>
+        <Text title>Style Guide</Text>
+        <Text p>
           We have used{" "}
           <LinkTo href="https://tailwindcss.com/" external>
             <b>Tailwind CSS</b>
@@ -31,50 +29,62 @@ const Lily = () => {
           tailwind docs, but in this guide we will show some classes and styling
           you might be using frequently with some of the components, rest you
           can go crazy with the help of the official docs.
-        </div>
+        </Text>
+      </Section>
+      <Section>
         <Text subtitle className="md:!font-bold">
           Styling Texts
         </Text>
-        <b>Text</b> component is used to add text with some default styling in
-        your article. You can see the{" "}
-        <LinkTo
-          href="/pages/tutorial/all-components.tsx/#text"
-          className="underline"
-        >
-          demo and guide here
-        </LinkTo>
-        . <br />
-        With tailwind css utility classes we can change font size, font weight,
-        color, and other text manipulation utilities classes shown in{" "}
-        <LinkTo href="https://tailwindcss.com/docs/font-size" external>
-          <b> tailwind css text docs</b>
-        </LinkTo>
-        , by adding the classes in <b>className=""</b> attribute. <br />
-        <b>Example:</b>
-        <br />{" "}
-        <b>
-          {
-            '<Text className="text-[20px] text-blue-500 font-bold">Lorem ipsum dummy text</Text>'
-          }
-        </b>{" "}
-        <br />
-        You can override default styles by adding <b>"!"</b> in front of classes
-        like <b>{`className="!font-bold md:!text-[50px] md:!font-semibold"`}</b>
-        .
-        <Seperator />
+        <Text p>
+          <b>Text</b> component is used to add text with some default styling in
+          your article. You can see the{" "}
+          <LinkTo
+            href="/pages/tutorial/all-components.tsx/#text"
+            className="underline"
+          >
+            demo and guide here
+          </LinkTo>
+          . <br />
+        </Text>
+        <Text p>
+          With tailwind css utility classes we can change font size, font
+          weight, color, and other text manipulation utilities classes shown in{" "}
+          <LinkTo href="https://tailwindcss.com/docs/font-size" external>
+            <b> tailwind css text docs</b>
+          </LinkTo>
+          , by adding the classes in <b>className=""</b> attribute. <br />
+        </Text>
+        <Text quote>
+          <b>Example:</b>
+          <br />{" "}
+          <b>
+            {
+              '<Text className="text-[20px] text-blue-500 font-bold">Lorem ipsum dummy text</Text>'
+            }
+          </b>{" "}
+          <br />
+          You can override default styles by adding <b>"!"</b> in front of
+          classes like{" "}
+          <b>{`className="!font-bold md:!text-[50px] md:!font-semibold"`}</b>.
+        </Text>
+      </Section>
+      <Section>
         <Text subtitle className="md:!font-bold">
           Spacing - Paddings and Margins
         </Text>
-        To add padding and margins follow the guide given{" "}
-        <LinkTo
-          href="https://tailwindcss.com/docs/padding"
-          external
-          className="underline"
-        >
-          here
-        </LinkTo>
-        .
-        <Seperator />
+        <Text p>
+          To add padding and margins follow the guide given
+          <LinkTo
+            href="https://tailwindcss.com/docs/padding"
+            external
+            className="underline"
+          >
+            here
+          </LinkTo>
+          .
+        </Text>
+      </Section>
+      <Section>
         <Text subtitle className="md:!font-bold">
           Background color and images
         </Text>
@@ -98,7 +108,6 @@ const Lily = () => {
           here
         </LinkTo>
         .
-        <Seperator />
         <Text subtitle className="md:!font-bold">
           Light and Dark mode
         </Text>
@@ -113,7 +122,8 @@ const Lily = () => {
           here
         </LinkTo>
         .
-        <Seperator />
+      </Section>
+      <Section>
         <Text subtitle className="md:!font-bold">
           Mobile responsive styles.
         </Text>
@@ -130,7 +140,6 @@ const Lily = () => {
         <b>className="text-[14px] md:text-[18px] lg:text=[28px]"</b>. <br />{" "}
         When we dont give any prefix the style gets applied to all scrren sizes
         like <b>className="text-[14px]"</b>.
-        <Seperator />
         <div className="px-4 py-3 dark:bg-slate-800 bg-blue-200 rounded my-5">
           These are some the basics you need to know about changing the styling
           with tailwind css, go to the official docs for more info and if you
@@ -145,7 +154,7 @@ const Lily = () => {
           </a>
           .
         </div>
-      </section>
+      </Section>
     </>
   );
 };

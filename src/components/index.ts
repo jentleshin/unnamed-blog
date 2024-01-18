@@ -1,7 +1,8 @@
 import dynamic from "next/dynamic";
 
 export const PageLayout = dynamic(() => import("../layouts/PageLayouts"));
-export const Text = dynamic(() => import("./Text"));
+export const Text = dynamic(() => import("./Text/Text"));
+export const Display = dynamic(() => import("./Text/Display"));
 export const Image = dynamic(() => import("./ArticleImage"));
 export const Seperator = dynamic(() => import("./Seperator"));
 export const List = dynamic(() => import("./List"));
