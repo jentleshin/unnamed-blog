@@ -1,4 +1,3 @@
-import Header from "../Header";
 import { useOpacity } from "../../hooks/useOpacity";
 import React from "react";
 import { combineRefs, combineClasses } from "../../utils/utils";

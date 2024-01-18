@@ -59,11 +59,7 @@ const Search = ({ closeSearch }: ISearch) => {
           <div className="flex flex-wrap">
             {searchResults?.length > 0 &&
               searchResults?.map((article, i) => (
-                <ArticleCard
-                  article={article.preview}
-                  key={i}
-                  path={article.path}
-                />
+                <ArticleCard article={article.preview} key={i} />
               ))}
           </div>
         )}
