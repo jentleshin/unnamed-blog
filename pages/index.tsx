@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import classes from "../Pages.module.scss";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import Article from "../src/Article";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Home = () => {
   const [selectArticle, setSelectArticle] = useState<string>("");
@@ -35,11 +36,26 @@ const Home = () => {
       </ReactLenis>
       <ReactLenis
         className={combineClasses(
+          "relative",
           "h-full w-full",
           "overflow-y-scroll scroll-auto scrollbar-hide"
         )}
       >
-        {selectArticle && <Article value={ARTICLES[selectArticle]} />}
+        <AnimatePresence mode="popLayout">
+          {selectArticle && (
+            <motion.div
+              key={selectArticle}
+              initial={{ translateX: -900, opacity: 0 }}
+              animate={{ translateX: 0, opacity: 1 }}
+              exit={{ translateX: +900, opacity: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              <div>
+                <Article value={ARTICLES[selectArticle]} />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </ReactLenis>
     </PageLayout>
   );
