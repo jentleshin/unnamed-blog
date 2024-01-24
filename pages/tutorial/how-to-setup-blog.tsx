@@ -20,7 +20,7 @@ import {
 
 const BlogSetup = () => {
   return (
-    <PageLayout home>
+    <PageLayout page="">
       <div className="container px-3 pb-[20px] md:mt-[50px] pt-20 md:pt-0">
         <Text title className="text-3xl">
           Blog Setup

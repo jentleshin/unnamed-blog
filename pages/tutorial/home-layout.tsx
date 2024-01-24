@@ -12,7 +12,7 @@ import CodeBlock from "../../src/components/CodeBlock";
 
 const HomeLayoutExample = () => {
   return (
-    <PageLayout home>
+    <PageLayout page="">
       <section className={"container pt-20 md:pt-10"}>
         <Text className="!md:text-5xl" title>
           Default Home Layout example.

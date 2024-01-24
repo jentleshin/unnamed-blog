@@ -50,7 +50,7 @@ const BlogIndexPage = ({
   };
 
   return (
-    <PageLayout home>
+    <PageLayout page="">
       <div
         className={combineClasses(
           "container mt-10 md:pt-0 px-0 md:px-3",
