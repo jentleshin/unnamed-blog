@@ -8,7 +8,8 @@ import { BsFillMoonFill, BsFillSunFill, BsFillShareFill } from "react-icons/bs";
 import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import NavCatergoryDD from "../Misc/NavCategoryDD";
 import { iNavbar, iNavLink, iNavSocials } from "../../shared/interfaces";
-import { Text, Seperator } from "../../components";
+import { Display } from "../../components";
+import { useChangePage } from "../../hooks/useAnimation";
 
 const SimpleNavbar = ({
   openSearch,
@@ -20,6 +21,7 @@ const SimpleNavbar = ({
   const { navLinks, logo } = navSetup;
   const [openDD, setOpenDD] = useState(false);
   const { theme } = useTheme();
+  const [currentPage, changePage, isPageChanged] = useChangePage();
 
   return (
     <div
@@ -44,9 +46,9 @@ const SimpleNavbar = ({
                 />
               ) : (
                 <a>
-                  <Text subtitle className="">
+                  <Display title className="">
                     {logo.logo}
-                  </Text>
+                  </Display>
                 </a>
               )
             ) : (
@@ -56,35 +58,17 @@ const SimpleNavbar = ({
         </div>
 
         <div className="flex items-center">
-          <Text subtitle className="items-center lg:flex hidden">
-            {navLinks.map((each: iNavLink, i: any) =>
-              !each.newTab ? (
-                <LinkTo href={each.path} key={i} passHref className="mx-2">
-                  {each.label}
-                </LinkTo>
-              ) : (
-                <a
-                  href={each.path}
-                  key={each.path + 1}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="d-block mx-2 flex-wrap"
-                >
-                  {each.label}
-                </a>
-              )
-            )}
-            {/* {
-              socials &&
-              <div className="ml-5 pt-1">
-                {
-                  socials.map((each: iNavSocials, i: any) => (
-                    <a href={each.link} key={i} target="_blank" rel="noopener noreferrer" className='text-[18px] inline-block mr-4'>{each.icon}</a>
-                  ))
-                }
-              </div>
-            } */}
-          </Text>
+          <div className="m-[24px]" onClick={() => changePage("archive")}>
+            <button name="archive" aria-label="archive page">
+              <Display plaintitle>Archive</Display>
+            </button>
+          </div>
+
+          <div className="m-[24px]" onClick={() => changePage("project")}>
+            <button name="project" aria-label="project page">
+              <Display plaintitle>Project</Display>
+            </button>
+          </div>
 
           <div
             className={combineClasses(
@@ -98,7 +82,7 @@ const SimpleNavbar = ({
             </button>
           </div>
 
-          <div className="" onClick={() => onShareClick()}>
+          <div onClick={() => onShareClick()}>
             <button name="share" aria-label="share page">
               <BsFillShareFill className=" text-[16px] mt-[7px] ml-2 mr-1" />
             </button>

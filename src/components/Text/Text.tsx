@@ -55,7 +55,7 @@ const Text = ({
             `leading-10 md:leading-10`,
             `tracking-wider`,
             `my-6`,
-            `sticky top-0 z-20`,
+            `sticky -top-1 z-10`,
             `bg-lime dark:bg-organic`,
             className
           )}

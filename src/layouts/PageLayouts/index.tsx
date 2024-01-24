@@ -7,18 +7,11 @@ import HomeLayout from "./HomeLayout";
 interface IBlogLayout {
   children: any;
   PAGE_SEO?: iSEO;
-  blog?: boolean;
-  home?: boolean;
+  page?: string;
   ads?: string[];
 }
 
-const PageLayout = ({
-  children,
-  PAGE_SEO,
-  blog = false,
-  home = false,
-  ads = [],
-}: IBlogLayout) => {
+const PageLayout = ({ children, PAGE_SEO, page, ads = [] }: IBlogLayout) => {
   const ARTICLE_DETAILS = useArticleDetails();
   let SEO_CONFIG = {};
   if (ARTICLE_DETAILS && ARTICLE_DETAILS.seo) {
@@ -29,11 +22,16 @@ const PageLayout = ({
     SEO_CONFIG = CREATE_SEO_CONFIG({ ...DEFAULT_SEO });
   }
 
-  return (
+  return page == "article" ? (
     <>
       <NextSeo {...SEO_CONFIG} />
       <HomeLayout>{children}</HomeLayout>
     </>
-  );
+  ) : page == "project" ? (
+    <>
+      <NextSeo {...SEO_CONFIG} />
+      <HomeLayout>{children}</HomeLayout>
+    </>
+  ) : null;
 };
 export default PageLayout;

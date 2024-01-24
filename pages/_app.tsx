@@ -2,7 +2,6 @@ import "../src/styles/globals.scss";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";
-
 import { NextSeo } from "next-seo";
 import Footer from "../src/components/Footer";
 import Script from "next/script";
@@ -13,6 +12,7 @@ import { ThemeProvider } from "next-themes";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@uiw/react-textarea-code-editor/dist.css";
 import "react-medium-image-zoom/dist/styles.css";
+import { RecoilRoot } from "recoil";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [mounted, setMounted] = useState(false);
@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   if (!mounted && env === "development") return null;
   return (
-    <>
+    <RecoilRoot>
       <NextSeo {...SEO_CONFIG} />
       <Head>
         <link rel="icon" href="/favicon.ico" />
@@ -73,7 +73,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <SpeedInsights />
         {/* <Footer /> */}
       </ThemeProvider>
-    </>
+    </RecoilRoot>
   );
 }
 

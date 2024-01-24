@@ -83,7 +83,7 @@ export const PRIMARY_NAV: iNavSetup = {
   // },
   logo: {
     type: LogoType.TEXT,
-    logo: "  ",
+    logo: "THE GREENERY",
   },
   // navLinks are the main navbar links that apper on top of every page
   navLinks: [

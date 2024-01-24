@@ -66,7 +66,10 @@ const Display = ({
       ui = (
         <h3
           className={combineClasses(
-            `font-body font-bold text-xl md:text-3xl`,
+            `font-display font-light`,
+            `text-xs md:text-xs`,
+            `tracking-wider`,
+            `uppercase`,
             `line-clamp-2`,
             className
           )}

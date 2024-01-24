@@ -1,28 +1,22 @@
 "use client";
 
 /**These are necessary imports / components for the page */
-import { PageLayout, Text, LinkTo } from "../src/components";
-import ArticleCard from "../src/components/ArticleCards/ArticleCard";
-import {
-  ARTICLES,
-  SORTED_ARTICLES_BY_DATE,
-} from "../BLOG_CONSTANTS/_ARTICLES_LIST";
+import { PageLayout } from "../src/components";
+import { ARTICLES } from "../BLOG_CONSTANTS/_ARTICLES_LIST";
 import { DEFAULT_SEO } from "../BLOG_CONSTANTS/_BLOG_SETUP";
-import FeaturedArticleSection from "../src/components/Misc/FeaturedArticleSection";
 import Articles from "../src/components/Misc/Articles";
-import { combineClasses, transformImagePaths } from "../src/utils/utils";
-import Section from "../src/components/Section";
-import { useRef, useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import classes from "../Pages.module.scss";
+import { combineClasses } from "../src/utils/utils";
+import { useState } from "react";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import Article from "../src/Article";
 import { motion, AnimatePresence } from "framer-motion";
+import { useChangeArticle } from "../src/hooks/useAnimation";
 
 const Home = () => {
-  const [selectArticle, setSelectArticle] = useState<string>("");
+  const [currentArticle, changeArticle, isArticleChanged] = useChangeArticle();
+
   return (
-    <PageLayout home PAGE_SEO={DEFAULT_SEO}>
+    <PageLayout page={"article"} PAGE_SEO={DEFAULT_SEO}>
       <ReactLenis
         className={combineClasses(
           "h-full w-full",
@@ -30,8 +24,8 @@ const Home = () => {
         )}
       >
         <Articles
-          onSelectArticle={setSelectArticle}
-          selectArticle={selectArticle}
+          onSelectArticle={changeArticle}
+          selectArticle={currentArticle}
         />
       </ReactLenis>
       <ReactLenis
@@ -42,18 +36,20 @@ const Home = () => {
         )}
       >
         <AnimatePresence mode="popLayout">
-          {selectArticle && (
-            <motion.div
-              key={selectArticle}
-              initial={{ translateX: -900, opacity: 0 }}
-              animate={{ translateX: 0, opacity: 1 }}
-              exit={{ translateX: +900, opacity: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-            >
-              <div>
-                <Article value={ARTICLES[selectArticle]} />
-              </div>
-            </motion.div>
+          {isArticleChanged ? (
+            currentArticle && (
+              <motion.div
+                key={currentArticle}
+                initial={{ translateX: "-100%", opacity: 0 }}
+                animate={{ translateX: "0%", opacity: 1 }}
+                exit={{ translateX: "100%", opacity: 0 }}
+                transition={{ type: "spring", bounce: 0 }}
+              >
+                <Article value={ARTICLES[currentArticle]} />
+              </motion.div>
+            )
+          ) : (
+            <Article value={ARTICLES[currentArticle]} />
           )}
         </AnimatePresence>
       </ReactLenis>
