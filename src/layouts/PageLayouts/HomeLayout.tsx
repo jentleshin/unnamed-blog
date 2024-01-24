@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
-import Home from "../../../pages";
+import React from "react";
+import { ARTICLES } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST";
 import { combineClasses } from "../../utils/utils";
-import { useOpacityObserver } from "../../hooks/useOpacity";
 import { Display } from "../../components";
 import Navbar from "../../components/Navbar";
 import { motion, AnimatePresence } from "framer-motion";
-import { relative } from "path";
 import {
   useToggleView,
   useChangeArticle,
@@ -17,14 +15,10 @@ interface IProps {
 }
 
 const HomeLayout = ({ children }: IProps) => {
-  const viewportRef = useOpacityObserver<HTMLDivElement>(null);
   const childrenArray = React.Children.toArray(children);
   const [isFullView, toggleView, isViewChanged] = useToggleView();
   const [currentArticle, changeArticle, isArticleChanged] = useChangeArticle();
   const [currentPage, changePage, isPageChanged] = useChangePage();
-  useEffect(() => {
-    console.log("currentArticle", currentArticle);
-  }, [currentArticle]);
 
   return (
     <>
@@ -71,17 +65,21 @@ const HomeLayout = ({ children }: IProps) => {
                       className="grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,auto)_minmax(0,1fr)]"
                     >
                       <Display plaintitle>
-                        {currentArticle ? currentArticle : "Content"}
+                        {currentArticle
+                          ? `${currentArticle}; ${ARTICLES[currentArticle].preview.articleTitle}`
+                          : "Content"}
                       </Display>
-                      <div ref={viewportRef}>{childrenArray[1]}</div>
+                      {childrenArray[1]}
                     </motion.div>
                   )
                 ) : (
                   <div className="grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,auto)_minmax(0,1fr)]">
                     <Display plaintitle>
-                      {currentArticle ? currentArticle : "Content"}
+                      {currentArticle
+                        ? `${currentArticle}; ${ARTICLES[currentArticle].preview.articleTitle}`
+                        : "Content"}
                     </Display>
-                    <div ref={viewportRef}>{childrenArray[1]}</div>
+                    {childrenArray[1]}
                   </div>
                 )}
               </motion.div>
@@ -122,9 +120,11 @@ const HomeLayout = ({ children }: IProps) => {
             )}
           >
             <Display plaintitle>
-              {currentArticle ? currentArticle : "Content"}
+              {currentArticle
+                ? `${currentArticle} ; ${ARTICLES[currentArticle].preview.articleTitle}`
+                : "Content"}
             </Display>
-            <div ref={viewportRef}>{childrenArray[1]}</div>
+            {childrenArray[1]}
           </motion.div>
         </div>
       )}
