@@ -87,7 +87,6 @@ const HomeLayout = ({ children }: IProps) => {
           </AnimatePresence>
         </div>
       </div>
-
       {/* ------------------------------------------------------------------------- */}
       <AnimatePresence>
         {isFullView && (
