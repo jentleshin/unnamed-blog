@@ -19,7 +19,7 @@ const TermsAndConditions = () => {
     author: "Mayur Nalwala, Rupali Yadav",
   };
   return (
-    <PageLayout PAGE_SEO={PAGE_SEO} home>
+    <PageLayout PAGE_SEO={PAGE_SEO} page="">
       <div className="container px-3 pb-[20px] mt-10 pt-14 md:pt-0">
         <Text title className="text-3xl">
           Privacy Policy

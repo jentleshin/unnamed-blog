@@ -59,7 +59,7 @@ const Icons = () => {
     author: "Mayur Nalwala, Rupali Yadav",
   };
   return (
-    <PageLayout PAGE_SEO={PAGE_SEO} home>
+    <PageLayout PAGE_SEO={PAGE_SEO} page="">
       <div className="container pb-5 md:mt-[50px] pt-20 md:pt-0">
         <Text title className="text-3xl">
           Icons

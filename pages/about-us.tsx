@@ -20,7 +20,7 @@ const AboutUs = () => {
     author: "Mayur Nalwala, Rupali Yadav",
   };
   return (
-    <PageLayout PAGE_SEO={PAGE_SEO} home>
+    <PageLayout PAGE_SEO={PAGE_SEO} page="">
       <section className="container px-3 md:pb-20 md:pt-10 pt-20">
         <div className="">
           <a

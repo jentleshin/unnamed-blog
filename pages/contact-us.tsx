@@ -20,7 +20,7 @@ const ContactUs = () => {
     author: "Mayur Nalwala, Rupali Yadav",
   };
   return (
-    <PageLayout PAGE_SEO={PAGE_SEO} home>
+    <PageLayout PAGE_SEO={PAGE_SEO} page="">
       <section className="container px-3 pb-10 md:pt-20 pt-[80px]">
         <Text title className="!text-5xl !font-light">
           Contact Us
