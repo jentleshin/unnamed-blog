@@ -4,9 +4,7 @@ import { combineClasses } from "../../utils/utils";
 import { Display } from "../../components";
 import Navbar from "../../components/Navbar";
 import { motion, AnimatePresence } from "framer-motion";
-import { updateUIStateChange, updateReadyState } from "../../hooks/atom";
-import { useRecoilState } from "recoil";
-import { useAnimateReady } from "../../hooks/useAnimation";
+import { useUIState } from "../../hooks/useUIState";
 
 interface IProps {
   children?: any;
@@ -14,7 +12,8 @@ interface IProps {
 
 const HomeLayout = ({ children }: IProps) => {
   const childrenArray = React.Children.toArray(children);
-  const [allReady, UIState, toggleUIState] = useAnimateReady("c1");
+  const [{ UIStateChange, UIStateReady, UIStateCurrent }, setUIState] =
+    useUIState("c3");
 
   return (
     <>
@@ -125,7 +124,9 @@ const HomeLayout = ({ children }: IProps) => {
       )} */}
       <div
         className={combineClasses("fixed right-[24px] bottom-[24px]", "z-30")}
-        onClick={() => toggleUIState({ toggle: "view", value: "" })}
+        onClick={() =>
+          setUIState({ change: "view", value: !UIStateCurrent.view })
+        }
       >
         <Display plaintitle>full page</Display>
       </div>

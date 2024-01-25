@@ -8,10 +8,11 @@ import { combineClasses } from "../src/utils/utils";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import Article from "../src/Article";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAnimateReady } from "../src/hooks/useAnimation";
+import { useUIState } from "../src/hooks/useUIState";
 
 const Home = () => {
-  const [allReady, UIState, toggleUIState] = useAnimateReady("c2");
+  const [{ UIStateChange, UIStateReady, UIStateCurrent }, setUIState] =
+    useUIState("c2");
 
   return (
     <PageLayout page={"article"} PAGE_SEO={DEFAULT_SEO}>
@@ -23,7 +24,7 @@ const Home = () => {
       >
         <Articles
           onSelectArticle={() =>
-            toggleUIState({ toggle: "article", value: "lily" })
+            setUIState({ change: "article", value: "lily" })
           }
           selectArticle={"lily"}
         />
