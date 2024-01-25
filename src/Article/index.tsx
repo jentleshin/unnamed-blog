@@ -11,6 +11,7 @@ import Moss from "./your-first-article";
 import { useEffect } from "react";
 import { iArticle } from "../shared/interfaces";
 import ArticleCard from "../components/ArticleCards/ArticleCard";
+import React from "react";
 interface IProps {
   value?: iArticle;
 }
@@ -28,20 +29,22 @@ const PlantMap: { [key: string]: () => JSX.Element } = {
   Moss,
 };
 
-export const Article = ({ value }: IProps) => {
-  useEffect(() => {}, [value]);
-  if (value) {
-    const Plant = PlantMap[value.preview.codeName];
-    return (
-      <>
-        <ArticleCard article={value.preview} onClick={() => {}} />
-        {Plant ? <Plant /> : null}
-        <div className="pb-[720px]" />
-      </>
-    );
-  } else {
-    return null;
+export const Article = React.forwardRef<HTMLElement, IProps>(
+  ({ value }, ref) => {
+    if (value) {
+      const Plant = PlantMap[value.preview.codeName];
+      return (
+        <>
+          <ArticleCard article={value.preview} onClick={() => {}} />
+          {Plant ? <Plant /> : null}
+          <div className="pb-[720px]" />
+        </>
+      );
+    } else {
+      return null;
+    }
   }
-};
+);
 
+Article.displayName = "Article";
 export default Article;

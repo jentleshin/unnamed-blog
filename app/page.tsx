@@ -1,19 +1,17 @@
 "use client";
-
 /**These are necessary imports / components for the page */
 import { PageLayout } from "../src/components";
 import { ARTICLES } from "../BLOG_CONSTANTS/_ARTICLES_LIST";
 import { DEFAULT_SEO } from "../BLOG_CONSTANTS/_BLOG_SETUP";
 import Articles from "../src/components/Misc/Articles";
 import { combineClasses } from "../src/utils/utils";
-import { useState } from "react";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import Article from "../src/Article";
 import { motion, AnimatePresence } from "framer-motion";
-import { useChangeArticle } from "../src/hooks/useAnimation";
+import { useAnimateReady } from "../src/hooks/useAnimation";
 
 const Home = () => {
-  const [currentArticle, changeArticle, isArticleChanged] = useChangeArticle();
+  const [allReady, UIState, toggleUIState] = useAnimateReady("c2");
 
   return (
     <PageLayout page={"article"} PAGE_SEO={DEFAULT_SEO}>
@@ -24,8 +22,10 @@ const Home = () => {
         )}
       >
         <Articles
-          onSelectArticle={changeArticle}
-          selectArticle={currentArticle}
+          onSelectArticle={() =>
+            toggleUIState({ toggle: "article", value: "lily" })
+          }
+          selectArticle={"lily"}
         />
       </ReactLenis>
       <ReactLenis
@@ -35,7 +35,7 @@ const Home = () => {
           "overflow-y-scroll scroll-auto scrollbar-hide"
         )}
       >
-        <AnimatePresence mode="popLayout">
+        {/* <AnimatePresence mode="popLayout">
           {isArticleChanged ? (
             currentArticle && (
               <motion.div
@@ -51,7 +51,7 @@ const Home = () => {
           ) : (
             <Article value={ARTICLES[currentArticle]} />
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </ReactLenis>
     </PageLayout>
   );

@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ARTICLES } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST";
 import { combineClasses } from "../../utils/utils";
 import { Display } from "../../components";
 import Navbar from "../../components/Navbar";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  useToggleView,
-  useChangeArticle,
-  useChangePage,
-} from "../../hooks/useAnimation";
+import { updateUIStateChange, updateReadyState } from "../../hooks/atom";
+import { useRecoilState } from "recoil";
+import { useAnimateReady } from "../../hooks/useAnimation";
 
 interface IProps {
   children?: any;
@@ -16,9 +14,7 @@ interface IProps {
 
 const HomeLayout = ({ children }: IProps) => {
   const childrenArray = React.Children.toArray(children);
-  const [isFullView, toggleView, isViewChanged] = useToggleView();
-  const [currentArticle, changeArticle, isArticleChanged] = useChangeArticle();
-  const [currentPage, changePage, isPageChanged] = useChangePage();
+  const [allReady, UIState, toggleUIState] = useAnimateReady("c1");
 
   return (
     <>
@@ -41,7 +37,7 @@ const HomeLayout = ({ children }: IProps) => {
             "grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)]"
           )}
         >
-          <AnimatePresence mode="popLayout">
+          {/* <AnimatePresence mode="popLayout">
             {currentPage && (
               <motion.div
                 key={currentPage}
@@ -57,7 +53,7 @@ const HomeLayout = ({ children }: IProps) => {
                   {childrenArray[0]}
                 </div>
 
-                {isViewChanged ? (
+                {(UIState=="view") ? (
                   !isFullView && (
                     <motion.div
                       layoutId="content"
@@ -84,11 +80,11 @@ const HomeLayout = ({ children }: IProps) => {
                 )}
               </motion.div>
             )}
-          </AnimatePresence>
+          </AnimatePresence> */}
         </div>
       </div>
       {/* ------------------------------------------------------------------------- */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {isFullView && (
           <motion.div
             key="background"
@@ -99,8 +95,8 @@ const HomeLayout = ({ children }: IProps) => {
             className="fixed top-0 left-0 w-full h-full dark:bg-organic bg-lime"
           />
         )}
-      </AnimatePresence>
-      {isFullView && (
+      </AnimatePresence> */}
+      {/* {isFullView && (
         <div
           className={combineClasses(
             "fixed top-0 left-0",
@@ -126,10 +122,10 @@ const HomeLayout = ({ children }: IProps) => {
             {childrenArray[1]}
           </motion.div>
         </div>
-      )}
+      )} */}
       <div
         className={combineClasses("fixed right-[24px] bottom-[24px]", "z-30")}
-        onClick={toggleView}
+        onClick={() => toggleUIState({ toggle: "view", value: "" })}
       >
         <Display plaintitle>full page</Display>
       </div>

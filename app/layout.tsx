@@ -9,7 +9,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="dark:bg-organic bg-lime">
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
