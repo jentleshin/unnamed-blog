@@ -5,7 +5,7 @@ import { useEffect } from "react";
 export const useUIState = (
   componentId: string
 ): [
-  { UIStateReady: boolean; UIStateChange: any; UIStateCurrent: any },
+  { UIStateChange: any; UIStateReady: string; UIStateCurrent: any },
   (newValue: any) => void
 ] => {
   const [{ UIStateChange, UIStateCurrent }, setUIState] =
@@ -14,6 +14,7 @@ export const useUIState = (
 
   useEffect(() => {
     console.log(`${componentId} ready`);
+    console.log(`${componentId} ${UIStateChange}`);
     toggleUIStateReady(componentId);
   }, [UIStateChange]);
 

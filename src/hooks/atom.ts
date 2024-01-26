@@ -31,10 +31,6 @@ const ready = atom<IReady>({
   default: { c1: false, c2: false, c3: false },
 });
 
-interface IupdateUIState {
-  UIStateCurrent: any;
-  UIStateChange: any;
-}
 export const UpdateUIState = selector<any>({
   key: "UpdateUIState",
   get: ({ get }) => {
