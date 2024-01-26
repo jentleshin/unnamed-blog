@@ -1,5 +1,4 @@
 "use client";
-import "../src/styles/globals.scss";
 import Head from "next/head";
 import { NextSeo } from "next-seo";
 import Footer from "../src/components/Footer";
