@@ -26,9 +26,7 @@ const Home = () => {
         )}
       >
         <Articles
-          onSelectArticle={(value: TArticles) =>
-            setUiState({ root: "article", after: value })
-          }
+          onSelectArticle={(value: TArticles) => setUiState("article", value)}
           selectArticle={currentArticle}
         />
       </ReactLenis>

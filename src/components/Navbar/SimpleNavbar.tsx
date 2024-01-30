@@ -60,7 +60,7 @@ const SimpleNavbar = ({
         <div className="flex items-center">
           <div
             className="m-[24px]"
-            onClick={() => setUiState({ root: "page", after: "article" })}
+            onClick={() => setUiState("page", "article")}
           >
             <button name="archive" aria-label="archive page">
               <Display plaintitle>Archive</Display>
@@ -69,7 +69,7 @@ const SimpleNavbar = ({
 
           <div
             className="m-[24px]"
-            onClick={() => setUiState({ root: "page", after: "project" })}
+            onClick={() => setUiState("page", "project")}
           >
             <button name="project" aria-label="project page">
               <Display plaintitle>Project</Display>
