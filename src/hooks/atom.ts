@@ -1,69 +1,102 @@
-import { atom, selector } from "recoil";
-import { DefaultValue } from "recoil";
-type TUIStateChange = "page" | "view" | "article";
-const UIStateChange = atom<TUIStateChange>({
-  key: "UIStateChange", // unique ID (with respect to other atoms/selectors)
-  default: "page",
+import { DefaultValue, GetRecoilValue, atom, selector } from "recoil";
+import { ARTICLES, PROJECTS } from "../../BLOG_CONSTANTS/_ARTICLES_LIST";
+import { TArticles, TProjects } from "../shared/interfaces";
+
+const createArticleObject = <T extends Record<string, any>>(
+  articles: T
+): {
+  [K in keyof T as `${string & K}`]: null;
+} => {
+  return Object.keys(articles).reduce((obj, key) => {
+    return {
+      ...obj,
+      [key]: null,
+    };
+  }, {} as any);
+};
+
+const ArticleObject = createArticleObject(ARTICLES);
+const ProjectObject = createArticleObject(PROJECTS);
+export type TUITree = {
+  page: "article" | "onboarding" | "project";
+  article: TArticles;
+  project: TProjects;
+  onboarding: null;
+} & typeof ArticleObject &
+  typeof ProjectObject;
+export type TUINode = keyof TUITree;
+export type TUpdateUIState = {
+  root: TUINode;
+  after: TUINode;
+  before?: TUINode;
+};
+export type TUILastChange = {
+  root: TUINode;
+  before: TUINode;
+};
+export type TUIState = {
+  tree: TUITree;
+  lastChange: TUILastChange;
+};
+
+export const UIState = atom<TUIState>({
+  key: "UIState",
+  default: {
+    tree: {
+      page: "article",
+      article: "Vine",
+      project: "Amazon",
+      onboarding: null,
+      ...ArticleObject,
+      ...ProjectObject,
+    },
+    lastChange: {
+      root: "page",
+      before: "article",
+    },
+  },
 });
 
-interface IUIStateCurrent {
-  page: string;
-  view: boolean;
-  article: string;
-}
-const UIStateCurrent = atom<IUIStateCurrent>({
-  key: "UIStateCurrent",
-  default: { page: "article", view: false, article: "" },
+// const readTree = (get: GetRecoilValue, acc: TUIPath): TUIPath => {
+//   const newValue = get(UIState).tree[acc[acc.length - 1]];
+//   if (newValue) {
+//     return readTree(get, [...acc, newValue]);
+//   } else {
+//     return acc;
+//   }
+// };
+export const UITree = selector<TUITree>({
+  key: "UITree",
+  get: ({ get }) => get(UIState).tree,
+});
+export const UILastChange = selector<TUILastChange>({
+  key: "UILastChange",
+  get: ({ get }) => get(UIState).lastChange,
 });
 
-type TUIStateReady = boolean;
-const UIStateReady = atom<TUIStateReady>({
-  key: "UIStateReady",
-  default: false,
-});
-interface IReady {
-  c1: boolean;
-  c2: boolean;
-  c3: boolean;
-}
-const ready = atom<IReady>({
-  key: "ready",
-  default: { c1: false, c2: false, c3: false },
-});
-
-export const UpdateUIState = selector<any>({
+export const UpdateUIState = selector<TUpdateUIState>({
   key: "UpdateUIState",
   get: ({ get }) => {
-    return {
-      UIStateChange: get(UIStateChange),
-      UIStateCurrent: get(UIStateCurrent),
-    };
+    const { root, before } = get(UILastChange);
+    const after = get(UITree)[root] as TUINode;
+    return { root, before, after };
   },
-  set: (
-    { get, set },
-    { change, value }: { change: "page" | "view" | "article"; value: string }
-  ) => {
-    const uiStateChange = get(UIStateChange);
-    const uiStateCurrent = get(UIStateCurrent);
-    change !== uiStateChange && set(UIStateChange, change);
-    value !== uiStateCurrent[change] &&
-      set(UIStateCurrent, { ...uiStateCurrent, [change]: value });
-  },
-});
-
-export const UpdateUIStateReady = selector<any>({
-  key: "UpdateUIStateReady",
-  get: ({ get }) => get(UIStateReady),
-  set: ({ get, set }, componentId: any) => {
-    const current = get(ready);
-    const updated = { ...current, [componentId]: true };
-    const all = Object.values(updated).every((status) => status);
-    if (all) {
-      console.log("===========all ready==========");
-      set(UIStateReady, !get(UIStateReady));
-      set(ready, { c1: false, c2: false, c3: false });
-    } else {
-      set(ready, updated);
+  set: ({ set, get }, newValue) => {
+    if (!(newValue instanceof DefaultValue)) {
+      const { root, after } = newValue;
+      const before = get(UITree)[root] as TUINode;
+      if (after !== before) {
+        set(UIState, {
+          tree: {
+            ...get(UITree),
+            [root]: after,
+          },
+          lastChange: {
+            root: root,
+            before: before,
+          },
+        });
+      }
     }
   },
 });

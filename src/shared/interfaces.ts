@@ -8,10 +8,22 @@ export interface IAuthor {
   social?: iNavSocials[];
 }
 
+export type TArticles =
+  | "Ivy"
+  | "OakTree"
+  | "Orchid"
+  | "Vine"
+  | "Tulip"
+  | "Sunflower"
+  | "Potato"
+  | "Lily"
+  | "Cacti"
+  | "Moss";
+
 export interface IArticleHeaderData {
   author: IAuthor;
   date: string;
-  codeName: string;
+  codeName: TArticles;
   articleTitle: string;
   tags: string;
   thumbnail: string;
@@ -20,6 +32,26 @@ export interface IArticleHeaderData {
 }
 
 export interface iArticle {
+  path: string;
+  featureArticle?: boolean;
+  preview: IArticleHeaderData;
+  seo?: iSEO;
+}
+
+export type TProjects = "Amazon" | "Zen";
+
+export interface IProjectHeaderData {
+  author: IAuthor;
+  date: string;
+  codeName: TProjects;
+  articleTitle: string;
+  tags: string;
+  thumbnail: string;
+  shortIntro: string;
+  category?: string;
+}
+
+export interface iProject {
   path: string;
   featureArticle?: boolean;
   preview: IArticleHeaderData;

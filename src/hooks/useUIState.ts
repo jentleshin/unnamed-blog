@@ -1,31 +1,67 @@
-import { UpdateUIState, UpdateUIStateReady } from "./atom";
-import { useRecoilState } from "recoil";
-import { useEffect } from "react";
+import { useRecoilState, useRecoilValue, SetterOrUpdater } from "recoil";
+import { UpdateUIState, UITree } from "./atom";
+import { useState, useEffect, useRef } from "react";
+import { TUITree, TUINode, TUpdateUIState } from "./atom";
 
-export const useUIState = (
-  componentId: string
+type TSetUIState = (rootUiNode: TUINode, leafUiNode: TUINode) => void;
+type TAnimateState = "init" | "exit" | "stop";
+type TUIStateCurrent = TUITree[TUINode];
+type TOnExitCallback = () => void;
+type TUIStateAnimate = {
+  status: TAnimateState;
+  init: boolean;
+  exit: boolean;
+  value: TUINode;
+  onInitCallback: TOnExitCallback;
+};
+
+export const useUiState = (
+  uiNode: TUINode
 ): [
-  { UIStateChange: any; UIStateReady: string; UIStateCurrent: any },
-  (newValue: any) => void
+  {
+    uiStateCurrent: TUIStateCurrent;
+    uiStateAnimate: TUIStateAnimate;
+  },
+  SetterOrUpdater<TUpdateUIState>
 ] => {
-  const [{ UIStateChange, UIStateCurrent }, setUIState] =
-    useRecoilState(UpdateUIState);
-  const [UIStateReady, toggleUIStateReady] = useRecoilState(UpdateUIStateReady);
-
+  const uiTree = useRecoilValue(UITree);
+  const [uiState, setUiState] = useRecoilState(UpdateUIState);
+  const uiStateRef = useRef<TUpdateUIState>(uiState);
+  const [animateState, setAnimateState] = useState<TAnimateState>("stop");
+  const updateAnimateState = (
+    newAnimateState: TAnimateState,
+    newUiState: TUpdateUIState
+  ) => {
+    uiStateRef.current = newUiState;
+    setAnimateState(newAnimateState);
+  };
   useEffect(() => {
-    console.log(`${componentId} ready`);
-    console.log(`${componentId} ${UIStateChange}`);
-    toggleUIStateReady(componentId);
-  }, [UIStateChange]);
+    console.log("uiState", uiState);
+    if (uiState.root === uiNode) {
+      updateAnimateState("exit", uiState);
+      const timer = setTimeout(() => {
+        updateAnimateState("init", uiState);
+      }, 10);
+      return () => {
+        clearTimeout(timer);
+      };
+    } else {
+      updateAnimateState("stop", uiState);
+    }
+  }, [uiState]);
 
-  useEffect(() => {
-    console.log(`${componentId} readySignal: ${UIStateReady}`);
-  }, [UIStateReady]);
-  useEffect(() => {
-    console.log(
-      `${componentId} currentState: ${JSON.stringify(UIStateCurrent)}`
-    );
-  }, [UIStateCurrent]);
-
-  return [{ UIStateChange, UIStateReady, UIStateCurrent }, setUIState];
+  const uiStateCurrent: TUIStateCurrent = uiTree[uiNode]; //TODO: change to generic type
+  const uiStateAnimate: TUIStateAnimate = {
+    status: animateState,
+    init: animateState === "init",
+    exit: animateState === "exit",
+    value:
+      animateState === "exit"
+        ? (uiStateRef.current.before as TUINode)
+        : uiStateRef.current.after,
+    onInitCallback: () => {
+      updateAnimateState("stop", uiState);
+    },
+  };
+  return [{ uiStateCurrent, uiStateAnimate }, setUiState];
 };

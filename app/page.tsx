@@ -8,11 +8,14 @@ import { combineClasses } from "../src/utils/utils";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import Article from "../src/Article";
 import { motion, AnimatePresence } from "framer-motion";
-import { useUIState } from "../src/hooks/useUIState";
+import { useUiState } from "../src/hooks/useUIState";
+import { TArticles } from "../src/shared/interfaces";
 
 const Home = () => {
-  const [{ UIStateChange, UIStateReady, UIStateCurrent }, setUIState] =
-    useUIState("c2");
+  const [
+    { uiStateCurrent: currentArticle, uiStateAnimate: animateArticle },
+    setUiState,
+  ] = useUiState("article");
 
   return (
     <PageLayout page={"article"} PAGE_SEO={DEFAULT_SEO}>
@@ -23,10 +26,10 @@ const Home = () => {
         )}
       >
         <Articles
-          onSelectArticle={() =>
-            setUIState({ change: "article", value: "lily" })
+          onSelectArticle={(value: TArticles) =>
+            setUiState({ root: "article", after: value })
           }
-          selectArticle={"lily"}
+          selectArticle={currentArticle}
         />
       </ReactLenis>
       <ReactLenis
@@ -36,23 +39,24 @@ const Home = () => {
           "overflow-y-scroll scroll-auto scrollbar-hide"
         )}
       >
-        {/* <AnimatePresence mode="popLayout">
-          {isArticleChanged ? (
-            currentArticle && (
-              <motion.div
-                key={currentArticle}
-                initial={{ translateX: "-100%", opacity: 0 }}
-                animate={{ translateX: "0%", opacity: 1 }}
-                exit={{ translateX: "100%", opacity: 0 }}
-                transition={{ type: "spring", bounce: 0 }}
-              >
-                <Article value={ARTICLES[currentArticle]} />
-              </motion.div>
-            )
-          ) : (
-            <Article value={ARTICLES[currentArticle]} />
-          )}
-        </AnimatePresence> */}
+        {/* {changeArticle.isRoot ? ( */}
+        <AnimatePresence mode="popLayout">
+          <motion.div
+            key={`${animateArticle.status}`}
+            className={`${animateArticle.status}`}
+            initial={
+              animateArticle.init ? { translateX: "-100%", opacity: 0 } : {}
+            }
+            animate={{ translateX: "0%", opacity: 1 }}
+            exit={animateArticle.exit ? { translateX: "100%", opacity: 0 } : {}}
+            transition={{ type: "spring", bounce: 0, duration: 0.5 }}
+            onAnimationComplete={() => {
+              animateArticle.init && animateArticle.onInitCallback();
+            }}
+          >
+            <Article value={ARTICLES[animateArticle.value as TArticles]} />
+          </motion.div>
+        </AnimatePresence>
       </ReactLenis>
     </PageLayout>
   );

@@ -1,18 +1,14 @@
 import { SORTED_ARTICLES_BY_DATE } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST";
-import { iArticle } from "../../shared/interfaces";
+import { TArticles } from "../../shared/interfaces";
 import ArticleCardCompact from "../ArticleCards/ArticleCardCompact";
 import React from "react";
 
 interface IProp {
-  onSelectArticle: (articleId: string) => void;
-  selectArticle: string;
+  onSelectArticle: (articleId: TArticles) => void;
+  selectArticle: string | null;
 }
 const Articles = ({ onSelectArticle, selectArticle }: IProp) => {
-  const restArticles = SORTED_ARTICLES_BY_DATE.filter(
-    (article: iArticle) => !article.featureArticle
-  );
-  const articlesToDisplay = 9;
-  const articles = SORTED_ARTICLES_BY_DATE.slice(0, articlesToDisplay);
+  const articles = SORTED_ARTICLES_BY_DATE;
 
   return (
     <>

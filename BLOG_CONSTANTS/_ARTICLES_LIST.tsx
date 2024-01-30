@@ -1,4 +1,9 @@
-import { iArticle } from "../src/shared/interfaces";
+import {
+  TArticles,
+  TProjects,
+  iArticle,
+  iProject,
+} from "../src/shared/interfaces";
 
 // Import author profiles, just type the name you have set in _BLOG_SETUP inside the curly brackets
 import { MAYUR, RUPALI } from "./_BLOG_SETUP";
@@ -30,8 +35,7 @@ import { MAYUR, RUPALI } from "./_BLOG_SETUP";
 }
  */
 
-// clear this article list and add your own
-export const ARTICLES: { [key: string]: iArticle } = {
+export const ARTICLES: Record<TArticles, iArticle> = {
   Ivy: {
     path: "/src/article/how-to-setup-blog.tsx",
     featureArticle: true,
@@ -220,6 +224,51 @@ export const ARTICLES: { [key: string]: iArticle } = {
     seo: {
       keywords:
         "demo, all components, style guide, styling, css, tailwind css, tailwind, webexpe, webexpe.com, styling tutorial, icons, how to use icons in website",
+      ogImage: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
+    },
+  },
+};
+
+export const PROJECTS: Record<TProjects, iProject> = {
+  Amazon: {
+    path: "/src/article/how-to-setup-blog.tsx",
+    featureArticle: true,
+    preview: {
+      author: MAYUR,
+      date: "August 08 2022",
+      codeName: "Ivy",
+      articleTitle: "How to setup this blog template",
+      tags: "demo, blog setup",
+      thumbnail: "/public/imp_assets/tutorials/how-to-setup-blog.svg",
+      shortIntro: "These are the steps to setup your blog",
+      category: "tutorial",
+    },
+    seo: {
+      title: "How to setup this blog template",
+      description: "These are the steps to setup your blog",
+      keywords: "demo, blog setup",
+      ogImage: "/public/imp_assets/tutorials/how-to-setup-blog.svg",
+      twitterHandle: "@mayur_nalwala",
+      author: MAYUR.name,
+    },
+  },
+  Zen: {
+    path: "/src/article/how-to-write-your-first-article.tsx",
+    featureArticle: true,
+    preview: {
+      author: RUPALI,
+      date: "August 08 2022",
+      codeName: "OakTree",
+      articleTitle: "How to write your first article",
+      tags: "demo, first article",
+      thumbnail: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
+      shortIntro:
+        "This a step by step guide on how to write your first article.",
+      category: "tutorial",
+    },
+    seo: {
+      keywords:
+        "demo, centered, centered layout, blog page layout, blog page design with centered layout, writing first article, webexpe, webexpe.com",
       ogImage: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
     },
   },

@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { ARTICLES } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST";
 import { combineClasses } from "../../utils/utils";
 import { Display } from "../../components";
 import Navbar from "../../components/Navbar";
 import { motion, AnimatePresence } from "framer-motion";
-import { useUIState } from "../../hooks/useUIState";
+import { useUiState } from "../../hooks/useUIState";
 
 interface IProps {
   children?: any;
@@ -12,9 +12,7 @@ interface IProps {
 
 const HomeLayout = ({ children }: IProps) => {
   const childrenArray = React.Children.toArray(children);
-  const [{ UIStateChange, UIStateReady, UIStateCurrent }, setUIState] =
-    useUIState("c3");
-
+  const [fullView, setFullView] = useState(false);
   return (
     <>
       <div
@@ -36,23 +34,23 @@ const HomeLayout = ({ children }: IProps) => {
             "grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)]"
           )}
         >
-          {/* <AnimatePresence mode="popLayout">
-            {currentPage && (
-              <motion.div
-                key={currentPage}
-                initial={{ translateX: "-100%", opacity: 0 }}
-                animate={{ translateX: "0%", opacity: 1 }}
-                exit={{ translateX: "100%", opacity: 0 }}
-                transition={{ type: "spring", bounce: 0 }}
-                className="grid gap-[24px] grid-cols-[minmax(0,1fr)_minmax(0,2fr)] grid-rows-[minmax(0,1fr)]"
-              >
-                <div className="grid gap-[24px] grid-cols-[minmax(0,1fr)_minmax(0,auto)] grid-rows-[minmax(0,auto)_minmax(0,1fr)]">
-                  <Display plaintitle>List</Display>
-                  <div className="row-span-2 dark:bg-lime bg-organic w-[0.5px]" />
-                  {childrenArray[0]}
-                </div>
+          <AnimatePresence mode="popLayout">
+            {/* {currentPage && ( */}
+            <div
+              // key={currentPage}
+              // initial={{ translateX: "-100%", opacity: 0 }}
+              // animate={{ translateX: "0%", opacity: 1 }}
+              // exit={{ translateX: "100%", opacity: 0 }}
+              // transition={{ type: "spring", bounce: 0 }}
+              className="grid gap-[24px] grid-cols-[minmax(0,1fr)_minmax(0,2fr)] grid-rows-[minmax(0,1fr)]"
+            >
+              <div className="grid gap-[24px] grid-cols-[minmax(0,1fr)_minmax(0,auto)] grid-rows-[minmax(0,auto)_minmax(0,1fr)]">
+                <Display plaintitle>List</Display>
+                <div className="row-span-2 dark:bg-lime bg-organic w-[0.5px]" />
+                {childrenArray[0]}
+              </div>
 
-                {(UIState=="view") ? (
+              {/* {(UIState=="view") ? (
                   !isFullView && (
                     <motion.div
                       layoutId="content"
@@ -67,19 +65,19 @@ const HomeLayout = ({ children }: IProps) => {
                       {childrenArray[1]}
                     </motion.div>
                   )
-                ) : (
-                  <div className="grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,auto)_minmax(0,1fr)]">
-                    <Display plaintitle>
-                      {currentArticle
+                ) : ( */}
+              <div className="grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,auto)_minmax(0,1fr)]">
+                <Display plaintitle>
+                  {/* {currentArticle
                         ? `${currentArticle}; ${ARTICLES[currentArticle].preview.articleTitle}`
-                        : "Content"}
-                    </Display>
-                    {childrenArray[1]}
-                  </div>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence> */}
+                        : "Content"} */}
+                </Display>
+                {childrenArray[1]}
+              </div>
+              {/* )} */}
+            </div>
+            {/* )} */}
+          </AnimatePresence>
         </div>
       </div>
       {/* ------------------------------------------------------------------------- */}
@@ -124,9 +122,7 @@ const HomeLayout = ({ children }: IProps) => {
       )} */}
       <div
         className={combineClasses("fixed right-[24px] bottom-[24px]", "z-30")}
-        onClick={() =>
-          setUIState({ change: "view", value: !UIStateCurrent.view })
-        }
+        onClick={() => setFullView(!fullView)}
       >
         <Display plaintitle>full page</Display>
       </div>

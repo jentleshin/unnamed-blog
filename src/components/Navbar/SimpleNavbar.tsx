@@ -9,7 +9,7 @@ import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import NavCatergoryDD from "../Misc/NavCategoryDD";
 import { iNavbar, iNavLink, iNavSocials } from "../../shared/interfaces";
 import { Display } from "../../components";
-import { useUIState } from "../../hooks/useUIState";
+import { useUiState } from "../../hooks/useUIState";
 
 const SimpleNavbar = ({
   openSearch,
@@ -21,8 +21,7 @@ const SimpleNavbar = ({
   const { navLinks, logo } = navSetup;
   const [openDD, setOpenDD] = useState(false);
   const { theme } = useTheme();
-  const [{ UIStateChange, UIStateReady, UIStateCurrent }, setUIState] =
-    useUIState("c1");
+  const [_, setUiState] = useUiState("page");
 
   return (
     <div
@@ -61,7 +60,7 @@ const SimpleNavbar = ({
         <div className="flex items-center">
           <div
             className="m-[24px]"
-            onClick={() => setUIState({ change: "page", value: "article" })}
+            onClick={() => setUiState({ root: "page", after: "article" })}
           >
             <button name="archive" aria-label="archive page">
               <Display plaintitle>Archive</Display>
@@ -70,7 +69,7 @@ const SimpleNavbar = ({
 
           <div
             className="m-[24px]"
-            onClick={() => setUIState({ change: "page", value: "project" })}
+            onClick={() => setUiState({ root: "page", after: "project" })}
           >
             <button name="project" aria-label="project page">
               <Display plaintitle>Project</Display>
