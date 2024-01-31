@@ -1,22 +1,17 @@
-import LinkTo from "../LinkTo";
-import { IArticleHeaderData } from "../../shared/interfaces";
 import {
-  combineClasses,
-  transformImagePaths,
-  transformPath,
-} from "../../utils/utils";
-import { LogoType, THEMES } from "../../shared/enums";
+  IArticleHeaderData,
+  IProjectHeaderData,
+} from "../../shared/interfaces";
+import { combineClasses, transformImagePaths } from "../../utils/utils";
+import { THEMES } from "../../shared/enums";
 import Avatar from "../Misc/Avatar";
 import ArticleCardCompactCategory from "../Misc/ArticleCardCategory";
 import Image from "next/image";
 import Display from "../Text/Display";
-import Seperator from "../Seperator";
 import { useTheme } from "next-themes";
-import { on } from "events";
-import { useEffect, useState } from "react";
 
 interface IProp {
-  article: IArticleHeaderData;
+  article: IArticleHeaderData | IProjectHeaderData;
   onClick?: () => void;
   selected?: boolean;
 }

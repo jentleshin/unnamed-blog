@@ -8,7 +8,11 @@ export interface IAuthor {
   social?: iNavSocials[];
 }
 
+export type TPages = "article" | "onboarding" | "project";
 export type TViews = "full" | "list";
+export type TContents = TArticles | TProjects;
+export type iContent = iArticle | iProject;
+export type IContentHeaderData = IArticleHeaderData | IProjectHeaderData;
 
 export type TArticles =
   | "Ivy"
@@ -21,31 +25,12 @@ export type TArticles =
   | "Lily"
   | "Cacti"
   | "Moss";
-
-export interface IArticleHeaderData {
-  author: IAuthor;
-  date: string;
-  codeName: TArticles;
-  articleTitle: string;
-  tags: string;
-  thumbnail: string;
-  shortIntro: string;
-  category?: string;
-}
-
-export interface iArticle {
-  path: string;
-  featureArticle?: boolean;
-  preview: IArticleHeaderData;
-  seo?: iSEO;
-}
-
 export type TProjects = "Amazon" | "Zen";
 
-export interface IProjectHeaderData {
+interface IContentHeaderDataBase {
   author: IAuthor;
   date: string;
-  codeName: TProjects;
+  codeName: TContents;
   articleTitle: string;
   tags: string;
   thumbnail: string;
@@ -53,11 +38,27 @@ export interface IProjectHeaderData {
   category?: string;
 }
 
-export interface iProject {
+export interface IArticleHeaderData extends IContentHeaderDataBase {
+  codeName: TArticles;
+}
+
+export interface IProjectHeaderData extends IContentHeaderDataBase {
+  codeName: TProjects;
+}
+
+interface iContentBase {
   path: string;
   featureArticle?: boolean;
-  preview: IProjectHeaderData;
+  preview: IContentHeaderDataBase;
   seo?: iSEO;
+}
+
+export interface iArticle extends iContentBase {
+  preview: IArticleHeaderData;
+}
+
+export interface iProject extends iContentBase {
+  preview: IProjectHeaderData;
 }
 
 export interface iSEO {

@@ -67,6 +67,7 @@ const HomeLayout = ({ children }: IProps) => {
             </div>
             <UIMotion
               layout
+              uiStateAnimate={animatePage}
               layoutId="content"
               drawLayout={(currentView as TViews) === "list"}
               className="grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)]"
@@ -103,6 +104,7 @@ const HomeLayout = ({ children }: IProps) => {
               layout
               layoutId="content"
               drawLayout={(currentView as TViews) === "full"}
+              uiStateAnimate={animatePage}
               className="col-start-2 grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)]"
             >
               <Content

@@ -1,31 +1,48 @@
-import { SORTED_ARTICLES_BY_DATE } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST";
-import { TArticles } from "../../shared/interfaces";
-import ArticleCardCompact from "../ArticleCards/ArticleCardCompact";
 import React from "react";
+import { SORTED_ARTICLES_BY_DATE } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST";
+import { SORTED_PROJECTS_BY_DATE } from "../../../BLOG_CONSTANTS/_ARTICLES_LIST";
+import { TContents, iContent } from "../../shared/interfaces";
+import ArticleCardCompact from "../ArticleCards/ArticleCardCompact";
 
-interface IProp {
-  onSelectArticle: (articleId: TArticles) => void;
-  selectArticle: string | null;
+interface iCommonProps {
+  onSelectContent: (contentId: TContents) => void;
+  selectContent: TContents;
 }
-const Articles = ({ onSelectArticle, selectArticle }: IProp) => {
-  const articles = SORTED_ARTICLES_BY_DATE;
+
+interface IProjectProp extends iCommonProps {
+  article?: false;
+  project: true;
+}
+
+interface IArticleProp extends iCommonProps {
+  article: true;
+  project?: false;
+}
+
+type IProp = IProjectProp | IArticleProp;
+
+const isArticleProp = (prop: IProp): prop is IArticleProp =>
+  prop.article === true;
+
+const Articles: React.FC<IProp> = (props) => {
+  const contents: iContent[] = isArticleProp(props)
+    ? SORTED_ARTICLES_BY_DATE
+    : SORTED_PROJECTS_BY_DATE;
 
   return (
     <>
-      {articles.length > 0
-        ? articles.map((each, i) => (
-            <React.Fragment key={each.preview.codeName}>
-              <ArticleCardCompact
-                article={each.preview}
-                onClick={() => onSelectArticle(each.preview.codeName)}
-                selected={selectArticle === each.preview.codeName}
-              />
-              {i !== articles.length - 1 && (
-                <div className="dark:bg-lime bg-organic h-[0.5px]" />
-              )}
-            </React.Fragment>
-          ))
-        : null}
+      {contents.map((each, i) => (
+        <React.Fragment key={each.preview.codeName}>
+          <ArticleCardCompact
+            article={each.preview}
+            onClick={() => props.onSelectContent(each.preview.codeName)}
+            selected={props.selectContent === each.preview.codeName}
+          />
+          {i !== contents.length - 1 && (
+            <div className="dark:bg-lime bg-organic h-[0.5px]" />
+          )}
+        </React.Fragment>
+      ))}
     </>
   );
 };

@@ -11,12 +11,12 @@ import Potato from "./all-components";
 import Lily from "./style-guide";
 import Cacti from "./icons";
 import Moss from "./your-first-article";
-import { useEffect } from "react";
-import { iArticle, iProject } from "../shared/interfaces";
+import { TArticles, TProjects } from "../shared/interfaces";
 import ArticleCard from "../components/ArticleCards/ArticleCard";
 import React from "react";
+import { CONTENTS } from "../../BLOG_CONSTANTS/_ARTICLES_LIST";
 interface IProps {
-  value?: iArticle | iProject;
+  code: TArticles | TProjects;
 }
 
 const PlantMap: { [key: string]: () => JSX.Element } = {
@@ -35,19 +35,15 @@ const PlantMap: { [key: string]: () => JSX.Element } = {
 };
 
 export const Article = React.forwardRef<HTMLElement, IProps>(
-  ({ value }, ref) => {
-    if (value) {
-      const Plant = PlantMap[value.preview.codeName];
-      return (
-        <>
-          <ArticleCard article={value.preview} onClick={() => {}} />
-          {Plant ? <Plant /> : null}
-          <div className="pb-[720px]" />
-        </>
-      );
-    } else {
-      return null;
-    }
+  ({ code }, ref) => {
+    const Plant = PlantMap[code];
+    return (
+      <>
+        <ArticleCard article={CONTENTS[code].preview} />
+        <Plant />
+        <div className="pb-[720px]" />
+      </>
+    );
   }
 );
 

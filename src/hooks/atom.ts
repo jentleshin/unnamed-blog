@@ -1,6 +1,6 @@
 import { DefaultValue, atom, selector } from "recoil";
 import { ARTICLES, PROJECTS } from "../../BLOG_CONSTANTS/_ARTICLES_LIST";
-import { TArticles, TProjects, TViews } from "../shared/interfaces";
+import { TPages, TArticles, TProjects, TViews } from "../shared/interfaces";
 
 const createArticleObject = <T extends Record<string, any>>(
   articles: T
@@ -23,7 +23,7 @@ const ViewObject = {
 };
 export type TUIState = {
   view: TViews;
-  page: "article" | "onboarding" | "project";
+  page: TPages;
   article: TArticles;
   project: TProjects;
   onboarding: null;

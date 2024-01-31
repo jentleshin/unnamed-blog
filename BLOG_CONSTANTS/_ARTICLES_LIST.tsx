@@ -274,6 +274,12 @@ export const PROJECTS: Record<TProjects, iProject> = {
   },
 };
 
+export const CONTENTS = { ...ARTICLES, ...PROJECTS };
+
 export const SORTED_ARTICLES_BY_DATE = Object.values(ARTICLES).sort((a, b) =>
+  new Date(a.preview.date) > new Date(b.preview.date) ? -1 : 1
+);
+
+export const SORTED_PROJECTS_BY_DATE = Object.values(PROJECTS).sort((a, b) =>
   new Date(a.preview.date) > new Date(b.preview.date) ? -1 : 1
 );

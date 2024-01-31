@@ -9,6 +9,7 @@ type TUIStateCurrent = TUIState[TUINode];
 type TOnExitCallback = () => void;
 export type TUIStateAnimate = {
   status: TAnimateState;
+  stop: boolean;
   init: boolean;
   exit: boolean;
   value: TUINode;
@@ -52,6 +53,7 @@ export const useUiState = (
   const uiStateCurrent: TUIStateCurrent = uiState[uiNode];
   const uiStateAnimate: TUIStateAnimate = {
     status: animateState,
+    stop: animateState === "stop",
     init: animateState === "init",
     exit: animateState === "exit",
     value: animateStateValueRef.current as TUINode,

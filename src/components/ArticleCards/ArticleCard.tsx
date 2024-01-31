@@ -1,29 +1,17 @@
-import LinkTo from "../LinkTo";
 import {
   IArticleHeaderData,
   IProjectHeaderData,
 } from "../../shared/interfaces";
-import {
-  combineClasses,
-  transformImagePaths,
-  transformPath,
-} from "../../utils/utils";
-import { LogoType, THEMES } from "../../shared/enums";
-import Avatar from "../Misc/Avatar";
-import ArticleCardCategory from "../Misc/ArticleCardCategory";
+import { combineClasses, transformImagePaths } from "../../utils/utils";
 import Image from "next/image";
 import Display from "../Text/Display";
-import Text from "../Text/Text";
-import Seperator from "../Seperator";
 import { useTheme } from "next-themes";
-import { on } from "events";
 
 interface IProp {
   article: IArticleHeaderData | IProjectHeaderData;
-  onClick?: () => void;
 }
 
-const ArticleCard = ({ article, onClick }: IProp) => {
+const ArticleCard = ({ article }: IProp) => {
   // set url and path
   const origin =
     typeof window !== "undefined" && window.location.origin
@@ -46,7 +34,6 @@ const ArticleCard = ({ article, onClick }: IProp) => {
           "mb-[120px]",
           "flex flex-col"
         )}
-        onClick={onClick}
       >
         <div className={combineClasses("relative aspect-[16/9]")}>
           <Image

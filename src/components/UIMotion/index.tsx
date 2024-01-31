@@ -4,6 +4,7 @@ import { TUIStateAnimate } from "../../hooks/useUIState";
 interface ICommonProps {
   children: React.ReactNode;
   className?: string;
+  uiStateAnimate: TUIStateAnimate;
 }
 
 interface ILayoutProps {
@@ -15,7 +16,6 @@ interface ILayoutProps {
 // Define props when layout is false
 interface INonLayoutProps {
   layout?: false;
-  uiStateAnimate: TUIStateAnimate;
   initial: Object;
   animate: Object;
   exit: Object;
@@ -26,11 +26,11 @@ type IProps = ICommonProps & (ILayoutProps | INonLayoutProps);
 const UIMotion = (props: IProps) => {
   let ui = <></>;
   if (props.layout) {
-    const { layoutId, drawLayout, children, className } = props;
+    const { uiStateAnimate, layoutId, drawLayout, children, className } = props;
     ui = drawLayout ? (
       <motion.div
         className={className}
-        layoutId={layoutId}
+        layoutId={uiStateAnimate.stop ? layoutId : undefined}
         transition={{ type: "spring", bounce: 0, duration: 1 }}
       >
         {children}
