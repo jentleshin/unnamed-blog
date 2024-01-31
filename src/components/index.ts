@@ -11,3 +11,4 @@ export const Slider = dynamic(() => import("./Slider"));
 export const Accordian = dynamic(() => import("./Accordian"));
 export const VideoPlayer = dynamic(() => import("./Video"));
 export const Section = dynamic(() => import("./Section"));
+export const UIMotion = dynamic(() => import("./UIMotion"));

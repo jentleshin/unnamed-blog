@@ -4,15 +4,35 @@ import { combineClasses } from "../../utils/utils";
 import { Display } from "../../components";
 import Navbar from "../../components/Navbar";
 import { motion, AnimatePresence } from "framer-motion";
-import { useUiState } from "../../hooks/useUIState";
-
+import {
+  useUiStateCurrent,
+  useGetUiStateCurrent,
+  useUiState,
+} from "../../hooks/useUIState";
+import { TArticles, TViews } from "../../shared/interfaces";
+import UIMotion from "../../components/UIMotion";
 interface IProps {
   children?: any;
 }
 
+interface IContentProps {
+  children: any;
+  title: string;
+}
+const Content = ({ children, title }: IContentProps) => {
+  return (
+    <div className="grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,auto)_minmax(0,1fr)]">
+      <Display plaintitle>{title}</Display>
+      {children}
+    </div>
+  );
+};
+
 const HomeLayout = ({ children }: IProps) => {
   const childrenArray = React.Children.toArray(children);
-  const [fullView, setFullView] = useState(false);
+  const currentArticle = useGetUiStateCurrent("article");
+  const [[currentPage, animatePage], setPage] = useUiState("page");
+  const [currentView, setView] = useUiStateCurrent("view");
   return (
     <>
       <div
@@ -34,95 +54,75 @@ const HomeLayout = ({ children }: IProps) => {
             "grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)]"
           )}
         >
-          <AnimatePresence mode="popLayout">
-            {/* {currentPage && ( */}
-            <div
-              // key={currentPage}
-              // initial={{ translateX: "-100%", opacity: 0 }}
-              // animate={{ translateX: "0%", opacity: 1 }}
-              // exit={{ translateX: "100%", opacity: 0 }}
-              // transition={{ type: "spring", bounce: 0 }}
-              className="grid gap-[24px] grid-cols-[minmax(0,1fr)_minmax(0,2fr)] grid-rows-[minmax(0,1fr)]"
-            >
-              <div className="grid gap-[24px] grid-cols-[minmax(0,1fr)_minmax(0,auto)] grid-rows-[minmax(0,auto)_minmax(0,1fr)]">
-                <Display plaintitle>List</Display>
-                <div className="row-span-2 dark:bg-lime bg-organic w-[0.5px]" />
-                {childrenArray[0]}
-              </div>
-
-              {/* {(UIState=="view") ? (
-                  !isFullView && (
-                    <motion.div
-                      layoutId="content"
-                      transition={{ type: "spring", bounce: 0 }}
-                      className="grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,auto)_minmax(0,1fr)]"
-                    >
-                      <Display plaintitle>
-                        {currentArticle
-                          ? `${currentArticle}; ${ARTICLES[currentArticle].preview.articleTitle}`
-                          : "Content"}
-                      </Display>
-                      {childrenArray[1]}
-                    </motion.div>
-                  )
-                ) : ( */}
-              <div className="grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,auto)_minmax(0,1fr)]">
-                <Display plaintitle>
-                  {/* {currentArticle
-                        ? `${currentArticle}; ${ARTICLES[currentArticle].preview.articleTitle}`
-                        : "Content"} */}
-                </Display>
-                {childrenArray[1]}
-              </div>
-              {/* )} */}
+          <UIMotion
+            uiStateAnimate={animatePage}
+            initial={{ translateX: "-100%", opacity: 0 }}
+            animate={{ translateX: "0%", opacity: 1 }}
+            exit={{ translateX: "100%", opacity: 0 }}
+            className="grid gap-[24px] grid-cols-[minmax(0,1fr)_minmax(0,2fr)] grid-rows-[minmax(0,1fr)]"
+          >
+            <div className="grid gap-[24px] grid-cols-[minmax(0,1fr)_minmax(0,auto)] grid-rows-[minmax(0,1fr)]">
+              <Content title={"List"}>{childrenArray[0]}</Content>
+              <div className="row-span-2 dark:bg-lime bg-organic w-[0.5px]" />
             </div>
-            {/* )} */}
-          </AnimatePresence>
+            <UIMotion
+              layout
+              layoutId="content"
+              drawLayout={(currentView as TViews) === "list"}
+              className="grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)]"
+            >
+              <Content
+                title={`${currentArticle}; ${
+                  ARTICLES[currentArticle as TArticles].preview.articleTitle
+                }`}
+              >
+                {childrenArray[1]}
+              </Content>
+            </UIMotion>
+          </UIMotion>
         </div>
       </div>
       {/* ------------------------------------------------------------------------- */}
-      {/* <AnimatePresence>
-        {isFullView && (
+      <AnimatePresence>
+        {(currentView as TViews) === "full" && (
           <motion.div
             key="background"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ type: "spring", bounce: 0 }}
-            className="fixed top-0 left-0 w-full h-full dark:bg-organic bg-lime"
-          />
-        )}
-      </AnimatePresence> */}
-      {/* {isFullView && (
-        <div
-          className={combineClasses(
-            "fixed top-0 left-0",
-            "bg-transparent dark:text-lime text-organic",
-            "grid grid-cols-[minmax(0,1fr)_minmax(0,8fr)_minmax(0,1fr)] grid-rows-[minmax(0,1fr)]",
-            "h-screen w-screen",
-            "p-[24px]"
-          )}
-        >
-          <motion.div
-            layoutId="content"
-            transition={{ type: "spring", bounce: 0 }}
+            initial={{ backgroundColor: "#1A151000" }}
+            animate={{ backgroundColor: "#1A1510FF" }}
+            exit={{ backgroundColor: "#1A151000" }}
+            transition={{ type: "spring", bounce: 0, duration: 0.5 }}
             className={combineClasses(
-              "col-start-2",
-              "grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,auto)_minmax(0,1fr)]"
+              "fixed top-0 left-0",
+              "dark:text-lime text-organic",
+              "grid grid-cols-[minmax(0,1fr)_minmax(0,8fr)_minmax(0,1fr)] grid-rows-[minmax(0,1fr)]",
+              "h-screen w-screen",
+              "p-[24px]"
             )}
           >
-            <Display plaintitle>
-              {currentArticle
-                ? `${currentArticle} ; ${ARTICLES[currentArticle].preview.articleTitle}`
-                : "Content"}
-            </Display>
-            {childrenArray[1]}
+            <UIMotion
+              layout
+              layoutId="content"
+              drawLayout={(currentView as TViews) === "full"}
+              className="col-start-2 grid gap-[24px] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)]"
+            >
+              <Content
+                title={`${currentArticle}; ${
+                  ARTICLES[currentArticle as TArticles].preview.articleTitle
+                }`}
+              >
+                {childrenArray[1]}
+              </Content>
+            </UIMotion>
           </motion.div>
-        </div>
-      )} */}
+        )}
+      </AnimatePresence>
       <div
-        className={combineClasses("fixed right-[24px] bottom-[24px]", "z-30")}
-        onClick={() => setFullView(!fullView)}
+        className={combineClasses(
+          "fixed right-[24px] bottom-[24px]",
+          "dark:text-lime text-organic",
+          "z-30"
+        )}
+        onClick={() => setView(currentView === "list" ? "full" : "list")}
       >
         <Display plaintitle>full page</Display>
       </div>

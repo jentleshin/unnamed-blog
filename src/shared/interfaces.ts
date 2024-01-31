@@ -8,6 +8,8 @@ export interface IAuthor {
   social?: iNavSocials[];
 }
 
+export type TViews = "full" | "list";
+
 export type TArticles =
   | "Ivy"
   | "OakTree"
@@ -54,7 +56,7 @@ export interface IProjectHeaderData {
 export interface iProject {
   path: string;
   featureArticle?: boolean;
-  preview: IArticleHeaderData;
+  preview: IProjectHeaderData;
   seo?: iSEO;
 }
 

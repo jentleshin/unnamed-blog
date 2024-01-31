@@ -1,6 +1,6 @@
 import { DefaultValue, atom, selector } from "recoil";
 import { ARTICLES, PROJECTS } from "../../BLOG_CONSTANTS/_ARTICLES_LIST";
-import { TArticles, TProjects } from "../shared/interfaces";
+import { TArticles, TProjects, TViews } from "../shared/interfaces";
 
 const createArticleObject = <T extends Record<string, any>>(
   articles: T
@@ -17,13 +17,19 @@ const createArticleObject = <T extends Record<string, any>>(
 
 const ArticleObject = createArticleObject(ARTICLES);
 const ProjectObject = createArticleObject(PROJECTS);
+const ViewObject = {
+  full: null,
+  list: null,
+};
 export type TUIState = {
+  view: TViews;
   page: "article" | "onboarding" | "project";
   article: TArticles;
   project: TProjects;
   onboarding: null;
 } & typeof ArticleObject &
-  typeof ProjectObject;
+  typeof ProjectObject &
+  typeof ViewObject;
 export type TUINode = keyof TUIState;
 export type TUpdateUIState = {
   root: TUINode;
@@ -39,12 +45,14 @@ export type TUIStateChange = {
 export const UIState = atom<TUIState>({
   key: "UIState",
   default: {
+    view: "list",
     page: "article",
     article: "Vine",
     project: "Amazon",
     onboarding: null,
     ...ArticleObject,
     ...ProjectObject,
+    ...ViewObject,
   },
 });
 

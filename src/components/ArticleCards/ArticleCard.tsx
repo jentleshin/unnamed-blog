@@ -1,5 +1,8 @@
 import LinkTo from "../LinkTo";
-import { IArticleHeaderData } from "../../shared/interfaces";
+import {
+  IArticleHeaderData,
+  IProjectHeaderData,
+} from "../../shared/interfaces";
 import {
   combineClasses,
   transformImagePaths,
@@ -16,7 +19,7 @@ import { useTheme } from "next-themes";
 import { on } from "events";
 
 interface IProp {
-  article: IArticleHeaderData;
+  article: IArticleHeaderData | IProjectHeaderData;
   onClick?: () => void;
 }
 

@@ -1,3 +1,6 @@
+// TODO: Dynamically import article components
+import Amazon from "./how-to-setup-blog-1";
+import Zen from "./how-to-setup-blog-2";
 import Ivy from "./how-to-setup-blog";
 import OakTree from "./how-to-write-your-first-article";
 import Orchid from "./how-to-deploy-blog";
@@ -9,11 +12,11 @@ import Lily from "./style-guide";
 import Cacti from "./icons";
 import Moss from "./your-first-article";
 import { useEffect } from "react";
-import { iArticle } from "../shared/interfaces";
+import { iArticle, iProject } from "../shared/interfaces";
 import ArticleCard from "../components/ArticleCards/ArticleCard";
 import React from "react";
 interface IProps {
-  value?: iArticle;
+  value?: iArticle | iProject;
 }
 
 const PlantMap: { [key: string]: () => JSX.Element } = {
@@ -27,6 +30,8 @@ const PlantMap: { [key: string]: () => JSX.Element } = {
   Lily,
   Cacti,
   Moss,
+  Amazon,
+  Zen,
 };
 
 export const Article = React.forwardRef<HTMLElement, IProps>(

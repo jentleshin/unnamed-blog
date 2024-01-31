@@ -1,18 +1,13 @@
-import { useRecoilState, useRecoilValue, SetterOrUpdater } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { UpdateUIState, UIState } from "./atom";
 import { useState, useEffect, useRef } from "react";
 import { TUIState, TUINode, TUpdateUIState } from "./atom";
 
-type TSetUIState = (rootUiNode: TUINode, leafUiNode: TUINode) => void;
+type TSetUIState = (leafUiNode: TUINode) => void;
 type TAnimateState = "init" | "exit" | "stop";
-type TAnimateStateValue = {
-  init: TUINode;
-  exit: TUINode;
-  stop: TUINode;
-};
 type TUIStateCurrent = TUIState[TUINode];
 type TOnExitCallback = () => void;
-type TUIStateAnimate = {
+export type TUIStateAnimate = {
   status: TAnimateState;
   init: boolean;
   exit: boolean;
@@ -22,13 +17,7 @@ type TUIStateAnimate = {
 
 export const useUiState = (
   uiNode: TUINode
-): [
-  {
-    uiStateCurrent: TUIStateCurrent;
-    uiStateAnimate: TUIStateAnimate;
-  },
-  TSetUIState
-] => {
+): [[TUIStateCurrent, TUIStateAnimate], TSetUIState] => {
   const uiState = useRecoilValue(UIState);
   const [uiStateChange, setUiStateChange] = useRecoilState(UpdateUIState);
   const [animateState, setAnimateState] = useState<TAnimateState>("stop");
@@ -70,12 +59,44 @@ export const useUiState = (
       updateAnimateState("stop", uiStateChange, uiState);
     },
   };
-  const setUiState: TSetUIState = (rootUiNode, leafUiNode) => {
+  const setUiState: TSetUIState = (leafUiNode) => {
     setUiStateChange({
-      root: rootUiNode,
+      root: uiNode,
       before: "page", // placeHolder
       after: leafUiNode,
     });
   };
-  return [{ uiStateCurrent, uiStateAnimate }, setUiState];
+  return [[uiStateCurrent, uiStateAnimate], setUiState];
+};
+
+export const useSetUiState = (uiNode: TUINode): TSetUIState => {
+  const setUiStateChange = useSetRecoilState(UpdateUIState);
+  return (leafUiNode) => {
+    setUiStateChange({
+      root: uiNode,
+      before: "page", // placeHolder
+      after: leafUiNode,
+    });
+  };
+};
+
+export const useGetUiStateCurrent = (uiNode: TUINode): TUIStateCurrent => {
+  const uiState = useRecoilValue(UIState);
+  return uiState[uiNode];
+};
+
+export const useUiStateCurrent = (
+  uiNode: TUINode
+): [TUIStateCurrent, TSetUIState] => {
+  const uiState = useRecoilValue(UIState);
+  const setUiStateChange = useSetRecoilState(UpdateUIState);
+  const uiStateCurrent: TUIStateCurrent = uiState[uiNode];
+  const setUiState: TSetUIState = (leafUiNode) => {
+    setUiStateChange({
+      root: uiNode,
+      before: "page", // placeHolder
+      after: leafUiNode,
+    });
+  };
+  return [uiStateCurrent, setUiState];
 };

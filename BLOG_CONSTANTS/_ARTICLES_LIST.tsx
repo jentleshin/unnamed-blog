@@ -236,7 +236,7 @@ export const PROJECTS: Record<TProjects, iProject> = {
     preview: {
       author: MAYUR,
       date: "August 08 2022",
-      codeName: "Ivy",
+      codeName: "Amazon",
       articleTitle: "How to setup this blog template",
       tags: "demo, blog setup",
       thumbnail: "/public/imp_assets/tutorials/how-to-setup-blog.svg",
@@ -258,7 +258,7 @@ export const PROJECTS: Record<TProjects, iProject> = {
     preview: {
       author: RUPALI,
       date: "August 08 2022",
-      codeName: "OakTree",
+      codeName: "Zen",
       articleTitle: "How to write your first article",
       tags: "demo, first article",
       thumbnail: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
