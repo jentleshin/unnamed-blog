@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const tailwind = {
   darkMode: ["class"],
-  // purge: ['./src/**/*.{js,ts,jsx,tsx}', "./pages/**/*.{js,ts,jsx,tsx}"],
+  // purge: ['./src/**/*.{js,ts,jsx,tsx}', "./app/**/*.{js,ts,jsx,tsx}"],
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",

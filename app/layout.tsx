@@ -1,5 +1,5 @@
-import ClientLayout from "./ClientLayout";
 import "../src/styles/globals.scss";
+import ClientLayout from "./ClientLayout";
 
 export default function RootLayout({
   // Layouts must accept a children prop.
