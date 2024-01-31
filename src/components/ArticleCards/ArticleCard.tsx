@@ -1,14 +1,11 @@
-import {
-  IArticleHeaderData,
-  IProjectHeaderData,
-} from "../../shared/interfaces";
+import { IContentHeaderData } from "../../shared/interfaces";
 import { combineClasses, transformImagePaths } from "../../utils/utils";
 import Image from "next/image";
 import Display from "../Text/Display";
 import { useTheme } from "next-themes";
 
 interface IProp {
-  article: IArticleHeaderData | IProjectHeaderData;
+  article: IContentHeaderData;
 }
 
 const ArticleCard = ({ article }: IProp) => {

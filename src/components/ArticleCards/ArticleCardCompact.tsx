@@ -1,7 +1,4 @@
-import {
-  IArticleHeaderData,
-  IProjectHeaderData,
-} from "../../shared/interfaces";
+import { IContentHeaderData } from "../../shared/interfaces";
 import { combineClasses, transformImagePaths } from "../../utils/utils";
 import { THEMES } from "../../shared/enums";
 import Avatar from "../Misc/Avatar";
@@ -11,7 +8,7 @@ import Display from "../Text/Display";
 import { useTheme } from "next-themes";
 
 interface IProp {
-  article: IArticleHeaderData | IProjectHeaderData;
+  article: IContentHeaderData;
   onClick?: () => void;
   selected?: boolean;
 }
