@@ -1,6 +1,6 @@
 import { MAYUR, RUPALI } from "../../BLOG_CONSTANTS/_BLOG_SETUP";
 import { iArticle } from "../shared/interfaces";
-
+// TODO: Figure out what it is?
 export const MOCK_ARTICLES_LIST: iArticle[] = [
   {
     path: "/pages/tutorial/how-to-setup-blog.tsx",
@@ -8,7 +8,7 @@ export const MOCK_ARTICLES_LIST: iArticle[] = [
     preview: {
       author: MAYUR,
       date: "August 08 2022",
-      codeName: "ivy",
+      codeName: "Ivy",
       articleTitle: "How to setup this blog template",
       tags: "demo, blog setup",
       thumbnail: "/public/imp_assets/tutorials/how-to-setup-blog.svg",
@@ -30,7 +30,7 @@ export const MOCK_ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 08 2022",
-      codeName: "oakTree",
+      codeName: "OakTree",
       articleTitle: "How to write your first article",
       tags: "demo, first article",
       thumbnail: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
@@ -49,7 +49,7 @@ export const MOCK_ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 08 2022",
-      codeName: "orchid",
+      codeName: "Orchid",
       articleTitle: "How to Export and deploy on firebase",
       tags: "demo, deploy blog",
       thumbnail: "/public/imp_assets/tutorials/how-to-deploy.svg",
@@ -63,7 +63,7 @@ export const MOCK_ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 14 2022",
-      codeName: "vine",
+      codeName: "Vine",
       articleTitle: "Home Layout Example",
       tags: "demo, layout, home layout",
       thumbnail: "/public/imp_assets/tutorials/home-layouts.svg",
@@ -84,7 +84,7 @@ export const MOCK_ARTICLES_LIST: iArticle[] = [
     preview: {
       author: MAYUR,
       date: "August 14 2022",
-      codeName: "tulip",
+      codeName: "Tulip",
       articleTitle: "Page Layout for a article with sidebar",
       tags: "demo, with sidebar, default layout",
       thumbnail: "/public/imp_assets/tutorials/blog-with-sidebar-layout.svg",
@@ -103,7 +103,7 @@ export const MOCK_ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 14 2022",
-      codeName: "sunflower",
+      codeName: "Sunflower",
       articleTitle: "Page Layout for a article with centered layout",
       tags: "demo, centered, centered layout",
       thumbnail: "/public/imp_assets/tutorials/blog-with-centered-layout.svg",
@@ -121,7 +121,7 @@ export const MOCK_ARTICLES_LIST: iArticle[] = [
     preview: {
       author: RUPALI,
       date: "August 08 2022",
-      codeName: "pothos",
+      codeName: "Lily",
       articleTitle: "All Components",
       tags: "demo, all components",
       thumbnail: "/public/imp_assets/tutorials/all-components.svg",
@@ -137,7 +137,7 @@ export const MOCK_ARTICLES_LIST: iArticle[] = [
     preview: {
       author: MAYUR,
       date: "August 10 2022",
-      codeName: "lily",
+      codeName: "Lily",
       articleTitle: "Style Guide",
       tags: "demo, all components, style guide, styling tutorial",
       thumbnail: "/public/imp_assets/tutorials/style-guide.svg",
@@ -155,7 +155,7 @@ export const MOCK_ARTICLES_LIST: iArticle[] = [
       author: MAYUR,
       date: "August 13 2022",
       articleTitle: "How to use icons",
-      codeName: "cacti",
+      codeName: "Cacti",
       tags: "demo, all components, style guide, styling tutorial, icons, how to use icons in website",
       thumbnail: "/public/imp_assets/tutorials/how-to-use-icons.svg",
       shortIntro: "How to use icons in your blog website.",

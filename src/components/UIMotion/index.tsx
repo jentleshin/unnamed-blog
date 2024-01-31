@@ -31,7 +31,7 @@ const UIMotion = (props: IProps) => {
       <motion.div
         className={className}
         layoutId={uiStateAnimate.stop ? layoutId : undefined}
-        transition={{ type: "spring", bounce: 0, duration: 1 }}
+        transition={{ type: "spring", bounce: 0, duration: 0.5 }}
       >
         {children}
       </motion.div>
