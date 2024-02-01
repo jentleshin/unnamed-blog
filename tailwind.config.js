@@ -28,9 +28,9 @@ const tailwind = {
         beigie: "#FEE9D1",
       },
       fontFamily: {
-        body: ["Merriweather", "serif"],
-        design: ["Bodoni Moda", "serif"],
-        display: ["Noto Sans Display", "sans-serif"],
+        body: ["var(--font-merri)"],
+        design: ["var(--font-bodoni)"],
+        display: ["var(--font-noto)"],
       },
     },
   },
