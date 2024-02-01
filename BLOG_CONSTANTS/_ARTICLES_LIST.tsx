@@ -1,4 +1,5 @@
 import {
+  TContents,
   TArticles,
   TProjects,
   iArticle,
@@ -272,6 +273,21 @@ export const PROJECTS: Record<TProjects, iProject> = {
       ogImage: "/public/imp_assets/tutorials/how-to-write-first-article.svg",
     },
   },
+};
+
+export const NOTIONS: Record<TContents, string> = {
+  Ivy: "517366157ac54d2d8bc4d0f867152a37",
+  OakTree: "517366157ac54d2d8bc4d0f867152a37",
+  Orchid: "517366157ac54d2d8bc4d0f867152a37",
+  Vine: "517366157ac54d2d8bc4d0f867152a37",
+  Tulip: "517366157ac54d2d8bc4d0f867152a37",
+  Sunflower: "517366157ac54d2d8bc4d0f867152a37",
+  Potato: "517366157ac54d2d8bc4d0f867152a37",
+  Lily: "517366157ac54d2d8bc4d0f867152a37",
+  Cacti: "517366157ac54d2d8bc4d0f867152a37",
+  Moss: "517366157ac54d2d8bc4d0f867152a37",
+  Amazon: "517366157ac54d2d8bc4d0f867152a37",
+  Zen: "517366157ac54d2d8bc4d0f867152a37",
 };
 
 export const CONTENTS = { ...ARTICLES, ...PROJECTS };

@@ -12,3 +12,4 @@ export const Accordian = dynamic(() => import("./Accordian"));
 export const VideoPlayer = dynamic(() => import("./Video"));
 export const Section = dynamic(() => import("./Section"));
 export const UIMotion = dynamic(() => import("./UIMotion"));
+export const NotionPage = dynamic(() => import("./NotionPage"));
