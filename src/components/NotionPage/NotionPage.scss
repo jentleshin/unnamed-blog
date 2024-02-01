@@ -84,12 +84,13 @@
     --notion-item-bullet-purple: rgb(167, 130, 195);
     --notion-item-bullet-gray: rgb(145, 145, 142);
   
-    --notion-max-width: 720px;
+    // --notion-max-width: 720px;
+    --notion-max-width: 100%;
     --notion-header-height: 45px;
   }
   
   .dark-mode {
-    --fg-color: rgba(255, 255, 255, 0.9);
+    --fg-color: #C0D99E;
     --fg-color-0: var(--fg-color);
     --fg-color-1: var(--fg-color);
     --fg-color-2: var(--fg-color);
@@ -714,8 +715,10 @@
   .notion-page {
     box-sizing: border-box;
     width: var(--notion-max-width);
-    padding-left: calc(min(16px, 8vw));
-    padding-right: calc(min(16px, 8vw));
+    padding-left: 0px;
+    padding-right: 0px;
+    // padding-left: calc(min(16px, 8vw));
+    // padding-right: calc(min(16px, 8vw));
   }
   
   .notion-full-width {

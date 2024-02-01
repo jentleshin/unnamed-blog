@@ -13,7 +13,6 @@ export const Article = React.forwardRef<HTMLElement, IProps>(
     const [recordMap, setRecordMap] = useState(null); // State to hold the fetched data
 
     useEffect(() => {
-      // Fetch the article content when the component mounts
       const fetchArticle = async () => {
         try {
           const response = await fetch(`/api/notionPage?code=${code}`);
@@ -21,14 +20,13 @@ export const Article = React.forwardRef<HTMLElement, IProps>(
             throw new Error(`Error: ${response.status}`);
           }
           const data = await response.json();
-          setRecordMap(data.recordMap); // Update the state with the fetched data
+          setRecordMap(data.recordMap);
         } catch (error) {
           console.error("Failed to fetch article:", error);
         }
       };
-
       fetchArticle();
-    }, [code]); // Dependency array, re-run the effect if 'code' changes
+    }, [code]);
 
     return (
       <>
