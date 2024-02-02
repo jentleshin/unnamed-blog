@@ -52,9 +52,6 @@ const UIMotion = (props: IProps) => {
           animate={animate}
           exit={uiStateAnimate.exit ? exit : {}}
           transition={{ type: "spring", bounce: 0, duration: 1 }}
-          onAnimationComplete={() => {
-            uiStateAnimate.init && uiStateAnimate.onInitCallback();
-          }}
         >
           {children}
         </motion.div>

@@ -8,11 +8,12 @@ interface IProps {
   code: TContents;
 }
 
-export const Article = React.forwardRef<HTMLElement, IProps>(
-  ({ code }, ref) => {
+export const Article = React.memo(
+  React.forwardRef<HTMLElement, IProps>(({ code }, ref) => {
     const [recordMap, setRecordMap] = useState(null); // State to hold the fetched data
 
     useEffect(() => {
+      console.log("code", code);
       const fetchArticle = async () => {
         try {
           const response = await fetch(`/api/notionPage?code=${code}`);
@@ -35,7 +36,7 @@ export const Article = React.forwardRef<HTMLElement, IProps>(
         <div className="pb-[720px]" />
       </>
     );
-  }
+  })
 );
 
 Article.displayName = "Article";

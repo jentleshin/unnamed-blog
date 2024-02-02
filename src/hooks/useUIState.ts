@@ -13,7 +13,6 @@ export type TUIStateAnimate = {
   init: boolean;
   exit: boolean;
   value: TUINode;
-  onInitCallback: TOnExitCallback;
 };
 
 export const useUiState = (
@@ -57,9 +56,6 @@ export const useUiState = (
     init: animateState === "init",
     exit: animateState === "exit",
     value: animateStateValueRef.current as TUINode,
-    onInitCallback: () => {
-      updateAnimateState("stop", uiStateChange, uiState);
-    },
   };
   const setUiState: TSetUIState = (leafUiNode) => {
     setUiStateChange({
