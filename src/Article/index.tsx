@@ -36,7 +36,8 @@ export const Article = React.memo(
         <div className="pb-[720px]" />
       </>
     );
-  })
+  }),
+  (prevProps, nextProps) => prevProps.code === nextProps.code
 );
 
 Article.displayName = "Article";

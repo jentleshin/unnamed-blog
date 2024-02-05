@@ -6,7 +6,6 @@ import { TUIState, TUINode, TUpdateUIState } from "./atom";
 type TSetUIState = (leafUiNode: TUINode) => void;
 type TAnimateState = "init" | "exit" | "stop";
 type TUIStateCurrent = TUIState[TUINode];
-type TOnExitCallback = () => void;
 export type TUIStateAnimate = {
   status: TAnimateState;
   stop: boolean;
