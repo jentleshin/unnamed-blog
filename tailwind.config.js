@@ -32,6 +32,12 @@ const tailwind = {
         design: ["var(--font-bodoni)"],
         display: ["var(--font-noto)"],
       },
+      spacing: {
+        "notion-default": "8px",
+        "notion-lg": "16px",
+        "notion-xl": "24px",
+        "notion-indent": "24px",
+      },
     },
   },
   variants: {},
