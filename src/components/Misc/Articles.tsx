@@ -39,7 +39,7 @@ const Articles: React.FC<IProp> = (props) => {
             selected={props.selectContent === each.preview.codeName}
           />
           {i !== contents.length - 1 && (
-            <div className="dark:bg-lime bg-organic h-[0.5px]" />
+            <div className="dark:bg-lime bg-organic dark:bg-opacity-50 bg-opacity-50 h-[0.5px]" />
           )}
         </React.Fragment>
       ))}
